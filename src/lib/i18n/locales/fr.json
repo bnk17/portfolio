@@ -25,5 +25,35 @@
       "linkedin": "LinkedIn"
     },
     "footer": "© 2026 Boris N'Kuako — Product & AI Engineering"
+  },
+  "projects": {
+    "petitpals": {
+      "title": "PetitPals Web & Extension",
+      "subtitle": "Un écosystème de liste de naissance universel conçu pour le paysage e-commerce fragmenté actuel.",
+      "role": "Fondateur Solo & Lead Engineer",
+      "stats": {
+        "reach_label": "Couverture Marchande",
+        "reach_desc": "Compatibilité universelle avec 100 % des boutiques en ligne.",
+        "onboarding_label": "Vélocité d'Activation",
+        "onboarding_desc": "Temps écoulé entre la découverte et la première action utilisateur.",
+        "conversion_label": "Liquidité des Cadeaux",
+        "conversion_desc": "Taux de réservation réussie sur les listes partagées."
+      },
+      "sections": {
+        "overview_title": "Vision Produit",
+        "overview_content": "PetitPals résout le problème du 'panier fragmenté' où les articles souhaités par les parents sont éparpillés entre boutiques de niche, Etsy et grands distributeurs. Le défi consistait à bâtir une 'source de vérité' fiable unifiant ces points de données dans un registre cohérent au design premium. En supprimant la friction de la gestion multi-sites, nous faisons passer l'utilisateur d'un tableur chaotique à une expérience de don unifiée et fluide.",
+        "architecture_title": "Architecture Système",
+        "architecture_content": "Le système repose sur une architecture découplée, reliant une extension Chrome (Manifest V3) à un tableau de bord React 19 via un backend Supabase partagé. J'ai adopté le Feature-Sliced Design (FSD) pour isoler la logique complexe de réservation de l'interface de gestion des parents. Cette approche modulaire permet de scaler le moteur de scraping sans risquer la stabilité de l'état financier des réservations.",
+        "engineering_title": "Rigueur Technique",
+        "engineering_content": "Le principal défi technique a été de maintenir la synchronisation de l'état entre différents contextes de navigation sans introduire de latence liée au 'polling'. J'ai conçu un pont réactif utilisant le Change Data Capture (CDC) de Postgres pour garantir que les ajouts via l'extension s'affichent instantanément dans le dashboard. J'ai priorisé la gestion de la mémoire en implémentant des signaux AbortController pour éviter toute fuite lors des sessions de scraping intensives.",
+        "engineering_explanation": "Utilisation de Supabase Realtime pour synchroniser l'état global entre l'extension et l'application web avec une latence inférieure à 100ms.",
+        "ai_title": "Workflow Accéléré par l'IA",
+        "ai_content": "Pour faire évoluer le moteur d'analyse universel, j'ai développé un pipeline assisté par l'IA générant des templates de scraping adaptatifs pour divers schémas e-commerce. Au lieu d'écrire manuellement des sélecteurs pour chaque site, des LLMs identifient les motifs structurels des boutiques inconnues pour normaliser les métadonnées instantanément. Cette stratégie a considérablement réduit le 'time-to-market' tout en maintenant une précision de données élevée.",
+        "tradeoffs_title": "Compromis Stratégiques",
+        "tradeoffs_content": "J'ai implémenté un wrapper Shadow DOM personnalisé pour l'UI de l'extension afin de garantir une isolation stylistique totale, sacrifiant la taille du bundle pour une cohérence visuelle parfaite. Bien qu'un iframe classique aurait été plus simple, le Shadow DOM offre une sensation 'native' indispensable aux outils haut de gamme. De plus, j'ai opté pour le Client-Side Rendering (CSR) pour le flux de réservation afin de privilégier la réactivité de l'interface sur le SEO traditionnel.",
+        "impact_title": "Impact Produit",
+        "impact_content": "En identifiant que la friction lors du processus invité était la cause n°1 d'abandon de réservation, j'ai conçu un système de validation sans compte via des jetons sécurisés. Ce pivot architectural a entraîné une augmentation de 45 % du taux de conversion des invités par rapport aux modèles de listes classiques. L'accent mis sur la 'simplicité radicale' s'est directement traduit par une croissance mesurable de l'engagement utilisateur."
+      }
+    }
   }
 }
