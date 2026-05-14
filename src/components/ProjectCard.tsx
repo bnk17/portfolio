@@ -28,7 +28,7 @@ export const ProjectCard = ({
       onClick={() => navigate(`/project/${project.id}`)}
     >
       {/* Mobile Version (Unchanged) */}
-      <div className="flex items-center gap-4 rounded-[2rem] border border-zinc-100 bg-zinc-50 p-6 transition-all hover:bg-white min-[990px]:hidden">
+      <div className="flex items-center gap-4 rounded-[2rem] border border-zinc-100 bg-zinc-50 p-6 transition-all hover:bg-white min-[650px]:hidden">
         <div className="flex flex-col justify-center">
           <h3 className="font-display text-base font-extrabold tracking-tight text-black">
             {project.title}
@@ -45,12 +45,11 @@ export const ProjectCard = ({
       {/* Desktop Version */}
       <motion.div
         animate={{
-          // When dimmed, drop opacity. When hovered or when no hover exists, opacity 1.
           opacity: isDimmed ? 0.1 : 1,
           scale: isHovered ? 1.02 : 1,
         }}
         transition={{ duration: 0.4, ease: [0.23, 1, 0.32, 1] }}
-        className="relative z-20 hidden aspect-square cursor-pointer flex-col items-center justify-center overflow-hidden rounded-[3rem] border border-zinc-100 bg-cover shadow-sm hover:shadow-md lg:flex"
+        className="relative z-20 hidden aspect-square cursor-pointer flex-col items-center justify-center overflow-hidden rounded-[3rem] border border-zinc-100 bg-cover shadow-sm hover:shadow-md min-[650px]:flex"
         style={{
           backgroundImage: `url('/image/image.jpg')`,
           backgroundSize: 'cover',
@@ -70,7 +69,7 @@ export const ProjectCard = ({
             animate={{ opacity: 1, y: 10 }}
             exit={{ opacity: 0, y: 0 }}
             transition={{ duration: 0.3, ease: 'easeOut' }}
-            className="pointer-events-none absolute top-full left-8 z-10 hidden w-[calc(100%-64px)] pt-2 lg:block"
+            className="pointer-events-none absolute top-full left-8 z-10 hidden w-[calc(100%-64px)] pt-2 min-[990px]:block"
           >
             <h3 className="font-display mb-1 text-xl font-bold tracking-tight text-black">
               {project.title}

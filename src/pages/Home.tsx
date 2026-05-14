@@ -9,18 +9,8 @@ export function Home() {
   const email = 'hello@flo.design';
 
   return (
-    <div className="min-h-screen font-sans text-zinc-900 antialiased selection:bg-zinc-100">
+    <div className="min-h-screen text-zinc-900 antialiased selection:bg-zinc-100">
       <div className="mx-auto grid min-h-screen max-w-screen-2xl grid-cols-1 min-[990px]:grid-cols-[450px_1fr]">
-        <style
-          dangerouslySetInnerHTML={{
-            __html: `
-      @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;600&family=Outfit:wght@600;700;800&display=swap');
-      body { font-family: 'Inter', sans-serif; }
-      .font-mono { font-family: 'JetBrains Mono', monospace; }
-      .font-display { font-family: 'Outfit', sans-serif; }
-    `,
-          }}
-        />
         {/* Left Sidebar */}
         {/* Changed: Adjusted p-8/p-16 to pt-8/pt-16 and ensured flex alignment starts at top */}
         <aside className="z-50 flex h-fit flex-col border-b border-zinc-100 bg-white px-8 pt-8 pb-8 min-[990px]:sticky min-[990px]:top-0 min-[990px]:h-screen min-[990px]:border-r min-[990px]:border-b-0 min-[990px]:px-16 min-[990px]:pt-16">
@@ -30,12 +20,14 @@ export function Home() {
                 Boris <br /> N'Kuako
               </h1>
 
-              <div className="space-y-3 font-mono leading-[1.8] text-zinc-500">
+              <div className="space-y-3 leading-[1.8] text-zinc-600">
                 <p>
                   I’m a{' '}
-                  <span className="inline-flex items-center gap-1 font-semibold text-zinc-900 italic underline decoration-zinc-200 underline-offset-[6px]">
-                    <Terminal className="size-4.5 translate-y-[4px] text-blue-500" />
-                    <span className="translate-y-[4px]">Software Engineer</span>
+                  <span className="ml-1 inline-flex items-center font-medium text-zinc-900">
+                    <Terminal className="size-4.5 translate-y-[5.5px] text-blue-500" />
+                    <span className="translate-y-[3.5px]">
+                      Software Engineer
+                    </span>
                   </span>{' '}
                   focused on building AI-native applications and
                   high-performance SaaS.
@@ -94,10 +86,9 @@ export function Home() {
         </aside>
 
         {/* Right Section */}
-        {/* Changed: Removed pt-10 and pt-20 from the inner container */}
         <main className="min-h-screen bg-white p-8 min-[990px]:p-12 min-[990px]:px-16">
           <div className="mx-auto max-w-4xl">
-            <div className="grid grid-cols-1 gap-8 min-[990px]:gap-x-8 min-[990px]:gap-y-16 sm:grid-cols-1 xl:grid-cols-2">
+            <div className="grid grid-cols-1 gap-8 min-[990px]:gap-x-8 min-[990px]:gap-y-16 sm:grid-cols-2 xl:grid-cols-2">
               {PROJECTS_DETAIL.map((project) => (
                 <ProjectCard
                   key={project.id}
