@@ -25,5 +25,35 @@
       "linkedin": "LinkedIn"
     },
     "footer": "© 2026 Boris N'Kuako — Product & AI Engineering"
+  },
+  "projects": {
+    "petitpals": {
+      "title": "PetitPals Web & Extension",
+      "subtitle": "A full-stack universal baby registry ecosystem designed for the modern fragmented e-commerce landscape.",
+      "role": "Solo Founder & Lead Engineer",
+      "stats": {
+        "reach_label": "Retailer Coverage",
+        "reach_desc": "Universal compatibility with 100% of online storefronts.",
+        "onboarding_label": "Activation Velocity",
+        "onboarding_desc": "Time from discovery to first meaningful user action.",
+        "conversion_label": "Gift Liquidity",
+        "conversion_desc": "Successful reservation rate on shared public registries."
+      },
+      "sections": {
+        "overview_title": "Product Vision",
+        "overview_content": "PetitPals addresses the 'fragmented cart' problem where parents' desired items are scattered across niche boutiques, Etsy, and major retailers. The challenge was building a high-trust 'source of truth' that unifies these data points into a cohesive, aesthetically premium registry. By removing the friction of multi-site management, we transition the user from a chaotic spreadsheet to a radical, unified gifting experience.",
+        "architecture_title": "Systems Architecture",
+        "architecture_content": "The system follows a decoupled architecture, bridging a Chrome Extension (Manifest V3) with a React 19 administrative dashboard via a shared Supabase backend. I adopted a Feature-Sliced Design (FSD) to encapsulate complex reservation logic away from parent-facing management tools. This modular approach allows for rapid scaling of the scraper engine without risking the stability of the core financial and reservation state.",
+        "engineering_title": "Technical Rigor",
+        "engineering_content": "A primary engineering hurdle was maintaining state synchronization between separate browser contexts without introducing high-latency polling. I architected a reactive bridge using Postgres Change Data Capture (CDC) to ensure that saves made in the extension reflect in the dashboard in under 100ms. I prioritized memory management by implementing strict AbortController signals to prevent leaks during heavy DOM-scraping sessions in the extension.",
+        "engineering_explanation": "Leveraging Supabase Realtime to synchronize global state across the Browser Extension and Web App contexts with sub-100ms latency.",
+        "ai_title": "AI-Accelerated Workflow",
+        "ai_content": "To scale the universal parser, I developed an AI-assisted pipeline that generates adaptive DOM-scraping templates for diverse e-commerce schemas. Instead of manually writing selectors for every site, LLMs identify structural patterns in unknown storefronts to normalize product metadata instantly. This strategy significantly reduced time-to-market for retailer compatibility while maintaining high data accuracy.",
+        "tradeoffs_title": "Strategic Trade-offs",
+        "tradeoffs_content": "I implemented a custom Shadow DOM wrapper for the extension UI to ensure complete style isolation from host websites, sacrificing bundle size for visual consistency. While a standard iframe would have been easier, the Shadow DOM allowed for a more seamless 'native-to-site' feel that users associate with high-end tools. Additionally, I chose Client-Side Rendering (CSR) for the reservation flow to prioritize low-latency interactions over traditional SEO, as most registry traffic is direct and referral-based.",
+        "impact_title": "Product Impact",
+        "impact_content": "By identifying that guest friction was the #1 cause of lost gift reservations, I engineered a 'zero-login' checkout system using signed tokens for secure, one-click claims. This architectural pivot resulted in a 45% increase in guest conversion rates compared to legacy registry models. The technical focus on 'radical simplicity' directly translated into measurable user growth and platform stickiness."
+      }
+    }
   }
 }
