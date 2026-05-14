@@ -5,21 +5,8 @@
   },
   "home": {
     "hello": "Hello",
-    "intro": {
-      "part1": "I’m a",
-      "software_engineer": "Software Engineer",
-      "part2": "focused on building AI-native applications and high-performance SaaS."
-    },
-    "specialization": {
-      "part1": "Specialized in React & Next.js. I combine technical rigor with a",
-      "product_mindset": "product mindset",
-      "part2": "to transform complex workflows into radical simplicity."
-    },
-    "current": {
-      "part1": "Currently architecting",
-      "agentic_ai": "Agentic AI systems",
-      "part2": "(RAG, autonomous workflows) to enhance user productivity."
-    },
+    "intro": "Software Engineer with 4+ years of experience in developing high-performance SaaS and Generative AI applications.",
+    "current": "Focusing on performance optimization and streamlining complex business logic into seamless user experiences.",
     "links": {
       "email": "Email",
       "linkedin": "LinkedIn"

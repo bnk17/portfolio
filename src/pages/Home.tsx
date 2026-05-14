@@ -22,42 +22,12 @@ export function Home() {
                 Boris <br /> N'Kuako
               </h1>
 
-              <div className="space-y-3 leading-[1.8] text-zinc-600">
+              <div className="space-y-3 leading-[1.8] text-zinc-700">
                 {/* Intro Section */}
-                <p>
-                  {t('home.intro.part1')}{' '}
-                  <span className="ml-1 inline-flex items-center font-medium text-zinc-900">
-                    <Terminal className="size-4.5 translate-y-[5.5px] text-blue-500" />
-                    <span className="translate-y-[3.5px]">
-                      {t('home.intro.software_engineer')}
-                    </span>
-                  </span>{' '}
-                  {t('home.intro.part2')}
-                </p>
-
-                {/* Specialization Section */}
-                <p>
-                  {t('home.specialization.part1')}{' '}
-                  <span className="ml-1 inline-flex items-center gap-1.5 font-medium text-zinc-900">
-                    <AppWindow className="size-4.5 translate-y-[4px] text-indigo-500" />
-                    <span className="translate-y-[4px]">
-                      {t('home.specialization.product_mindset')}
-                    </span>
-                  </span>{' '}
-                  {t('home.specialization.part2')}
-                </p>
+                <p>{t('home.intro')}</p>
 
                 {/* Current Focus Section */}
-                <p>
-                  {t('home.current.part1')}{' '}
-                  <span className="mx-1 inline-flex items-center gap-1.5 font-medium text-zinc-900">
-                    <BrainCircuit className="size-4.5 translate-y-[4px] text-amber-500" />
-                    <span className="translate-y-[4px]">
-                      {t('home.current.agentic_ai')}
-                    </span>
-                  </span>{' '}
-                  {t('home.current.part2')}
-                </p>
+                <p>{t('home.current')} </p>
               </div>
 
               <div className="flex flex-wrap gap-3 pt-4">
