@@ -2,10 +2,12 @@ import { Mail, Share2, Terminal, AppWindow, BrainCircuit } from 'lucide-react';
 
 import { useState } from 'react';
 import { ProjectCard } from '../components/ProjectCard';
-import { PROJECTS_DETAIL } from '../data/projects';
+import { useGetProjects } from '../data/projects';
 import { useTranslation } from 'react-i18next';
 
 export function Home() {
+  const projects = useGetProjects();
+
   const [hoveredId, setHoveredId] = useState<string | null>(null);
   const email = 'hello@flo.design';
   const { t } = useTranslation();
@@ -94,7 +96,7 @@ export function Home() {
         <main className="min-h-screen bg-white p-8 min-[990px]:p-12 min-[990px]:px-16">
           <div className="mx-auto max-w-4xl">
             <div className="grid grid-cols-1 gap-8 min-[990px]:gap-x-8 min-[990px]:gap-y-16 sm:grid-cols-2 xl:grid-cols-2">
-              {PROJECTS_DETAIL.map((project) => (
+              {projects.map((project) => (
                 <ProjectCard
                   key={project.id}
                   project={project}
