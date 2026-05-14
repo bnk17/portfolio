@@ -18,15 +18,7 @@ export default function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/about" element={<About />} />
-
-        {/* 
-          Fixed: Added the '/' before the colon. 
-          The ':id' acts as a dynamic placeholder for your project slugs 
-          (e.g., /project/lumina-analytics)
-        */}
         <Route path="/project/:id" element={<ProjectDetailWrapper />} />
-
-        {/* Optional: 404 Catch-all */}
         <Route
           path="*"
           element={

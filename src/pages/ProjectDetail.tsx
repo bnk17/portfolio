@@ -170,7 +170,7 @@ export default function ProjectDetail({ slug }: { slug?: string }) {
                     onClick={() => scrollToSection(section.id)}
                     className={`group relative flex w-fit items-center rounded-full px-4 py-2 text-left text-sm font-medium transition-all duration-300 ${
                       activeSection === section.id
-                        ? 'bg-zinc-200 text-zinc-900'
+                        ? 'bg-zinc-100 text-zinc-900'
                         : 'text-zinc-400 hover:text-zinc-600'
                     }`}
                   >
