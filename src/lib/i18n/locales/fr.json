@@ -1,4 +1,8 @@
 {
+  "nav": {
+    "home": "Accueil",
+    "about": "À propos"
+  },
   "home": {
     "hello": "Bonjour",
     "intro": {
