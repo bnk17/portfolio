@@ -1,0 +1,25 @@
+{
+  "home": {
+    "hello": "Bonjour",
+    "intro": {
+      "part1": "Je suis un",
+      "software_engineer": "Ingénieur Logiciel",
+      "part2": "axé sur la création d'applications natives IA et de SaaS haute performance."
+    },
+    "specialization": {
+      "part1": "Spécialisé en React & Next.js. Je combine la rigueur technique avec un",
+      "product_mindset": "esprit produit",
+      "part2": "pour transformer des flux de travail complexes en une simplicité radicale."
+    },
+    "current": {
+      "part1": "Je conçois actuellement des",
+      "agentic_ai": "systèmes d'IA agentiques",
+      "part2": "(RAG, flux autonomes) pour améliorer la productivité des utilisateurs."
+    },
+    "links": {
+      "email": "Email",
+      "linkedin": "LinkedIn"
+    },
+    "footer": "© 2026 Boris N'Kuako — Product & AI Engineering"
+  }
+}

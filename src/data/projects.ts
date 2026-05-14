@@ -6,7 +6,7 @@ type ProjectSectionId =
   | 'tradeoffs'
   | 'impact';
 
-interface TechPill {
+export interface TechPill {
   name: string;
   category: 'frontend' | 'backend' | 'devops' | 'ai' | 'tooling';
 }

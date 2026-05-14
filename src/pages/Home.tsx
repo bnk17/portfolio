@@ -3,16 +3,16 @@ import { Mail, Share2, Terminal, AppWindow, BrainCircuit } from 'lucide-react';
 import { useState } from 'react';
 import { ProjectCard } from '../components/ProjectCard';
 import { PROJECTS_DETAIL } from '../data/projects';
+import { useTranslation } from 'react-i18next';
 
 export function Home() {
   const [hoveredId, setHoveredId] = useState<string | null>(null);
   const email = 'hello@flo.design';
+  const { t } = useTranslation();
 
   return (
     <div className="min-h-screen text-zinc-900 antialiased selection:bg-zinc-100">
       <div className="mx-auto grid min-h-screen max-w-screen-2xl grid-cols-1 min-[990px]:grid-cols-[450px_1fr]">
-        {/* Left Sidebar */}
-        {/* Changed: Adjusted p-8/p-16 to pt-8/pt-16 and ensured flex alignment starts at top */}
         <aside className="z-50 flex h-fit flex-col border-b border-zinc-100 bg-white px-8 pt-8 pb-8 min-[990px]:sticky min-[990px]:top-0 min-[990px]:h-screen min-[990px]:border-r min-[990px]:border-b-0 min-[990px]:px-16 min-[990px]:pt-16">
           <div className="flex h-full flex-col justify-start min-[990px]:justify-between">
             <div className="flex flex-col gap-10">
@@ -21,35 +21,40 @@ export function Home() {
               </h1>
 
               <div className="space-y-3 leading-[1.8] text-zinc-600">
+                {/* Intro Section */}
                 <p>
-                  I’m a{' '}
+                  {t('home.intro.part1')}{' '}
                   <span className="ml-1 inline-flex items-center font-medium text-zinc-900">
                     <Terminal className="size-4.5 translate-y-[5.5px] text-blue-500" />
                     <span className="translate-y-[3.5px]">
-                      Software Engineer
+                      {t('home.intro.software_engineer')}
                     </span>
                   </span>{' '}
-                  focused on building AI-native applications and
-                  high-performance SaaS.
+                  {t('home.intro.part2')}
                 </p>
+
+                {/* Specialization Section */}
                 <p>
-                  Specialized in React & Next.js. I combine technical rigor with
-                  a
+                  {t('home.specialization.part1')}{' '}
                   <span className="ml-1 inline-flex items-center gap-1.5 font-medium text-zinc-900">
                     <AppWindow className="size-4.5 translate-y-[4px] text-indigo-500" />
-                    <span className="translate-y-[4px]">product mindset</span>
+                    <span className="translate-y-[4px]">
+                      {t('home.specialization.product_mindset')}
+                    </span>
                   </span>{' '}
-                  to transform complex workflows into radical simplicity.
+                  {t('home.specialization.part2')}
                 </p>
+
+                {/* Current Focus Section */}
                 <p>
-                  Currently architecting
+                  {t('home.current.part1')}{' '}
                   <span className="mx-1 inline-flex items-center gap-1.5 font-medium text-zinc-900">
                     <BrainCircuit className="size-4.5 translate-y-[4px] text-amber-500" />
                     <span className="translate-y-[4px]">
-                      Agentic AI systems
+                      {t('home.current.agentic_ai')}
                     </span>
                   </span>{' '}
-                  (RAG, autonomous workflows) to enhance user productivity.
+                  {t('home.current.part2')}
                 </p>
               </div>
 
