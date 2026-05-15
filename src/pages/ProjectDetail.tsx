@@ -164,6 +164,7 @@ export default function ProjectDetail({ slug }: { slug?: string }) {
               <ContextualStack
                 stackList={project.techStack}
                 showIconName={false}
+                isProjectPage={true}
               />
             </motion.div>
           </motion.div>
