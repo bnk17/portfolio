@@ -33,13 +33,15 @@ export function ContextualStack({
 
   const stackView =
     variant === 'grid'
-      ? `grid grid-cols-2 gap-3 sm:grid-cols-3 ${isProjectPage ? 'md:grid-cols-6 w-fit mx-auto justify-items-center' : 'md:grid-cols-4'}`
+      ? isProjectPage
+        ? 'flex flex-wrap justify-center gap-3'
+        : 'grid grid-cols-2 gap-3 sm:grid-cols-3 md:grid-cols-4'
       : 'flex flex-col gap-3';
 
   return (
-    <section className="space-y-16">
+    <section className="w-full space-y-16">
       {sections.map((section, sectionIdx) => (
-        <div key={section.label || 'flat-section'}>
+        <div key={section.label || 'flat-section'} className="w-full">
           {section.label && (
             <div className="mb-8 flex items-center gap-4">
               <h3 className="font-mono text-[10px] font-bold tracking-[0.2em] text-zinc-400 uppercase">
