@@ -14,6 +14,7 @@
     "footer": "© 2026 Boris N'Kuako — Product & AI Engineering"
   },
   "projects": {
+    "back": "Back",
     "petitpals": {
       "title": "PetitPals Web & Extension",
       "subtitle": "A full-stack universal baby registry ecosystem designed for the modern fragmented e-commerce landscape.",
