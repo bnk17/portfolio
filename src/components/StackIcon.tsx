@@ -33,7 +33,7 @@ export function ContextualStack({
 
   const stackView =
     variant === 'grid'
-      ? `grid grid-cols-2 gap-3 sm:grid-cols-3 ${isProjectPage ? 'md:grid-cols-6' : 'md:grid-cols-4'}`
+      ? `grid grid-cols-2 gap-3 sm:grid-cols-3 ${isProjectPage ? 'md:grid-cols-6 w-fit mx-auto justify-items-center' : 'md:grid-cols-4'}`
       : 'flex flex-col gap-3';
 
   return (
