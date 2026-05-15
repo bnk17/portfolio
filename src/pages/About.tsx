@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useTranslation } from 'react-i18next';
 import { Mail, FileText, ArrowUpRight, Link } from 'lucide-react';
-import StackIcon from 'tech-stack-icons';
+import { ContextualStack } from '@/components/StackIcon';
 
 interface BioSegment {
   text: string;
@@ -32,6 +32,10 @@ export default function About() {
   const [hoveredVideo, setHoveredVideo] = useState<string | null>(null);
   const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
 
+  const stackList = t('about.currentStack.stack_sections', {
+    returnObjects: true,
+  }) as any[];
+
   const segments = t('about.bio_segments', {
     returnObjects: true,
   }) as BioSegment[];
@@ -56,7 +60,6 @@ export default function About() {
           >
             {t('nav.about')}
           </motion.h1>
-
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -174,7 +177,7 @@ export default function About() {
           >
             {t('about.currentStack.title')}
           </motion.h2>
-          <ContextualStack />
+          <ContextualStack stackList={stackList} />
         </section>
 
         {/* Simplified Contact Section */}
@@ -211,53 +214,5 @@ export default function About() {
         </section>
       </main>
     </div>
-  );
-}
-
-export function ContextualStack() {
-  const { t } = useTranslation();
-  // Fetch the structured array from translations
-  const sections = t('about.currentStack.stack_sections', {
-    returnObjects: true,
-  }) as any[];
-
-  return (
-    <section className="mt-16 space-y-16">
-      {sections.map((section, sectionIdx) => (
-        <div key={section.label}>
-          {/* Section Header */}
-          <div className="mb-8 flex items-center gap-4">
-            <h3 className="font-mono text-[10px] font-bold tracking-[0.2em] text-zinc-400 uppercase">
-              {section.label}
-            </h3>
-            <div className="h-px flex-1 bg-zinc-100" />
-          </div>
-
-          {/* Grid of Mobile-style Icons */}
-          <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 md:grid-cols-4">
-            {section.tools.map((tool: any, idx: number) => (
-              <motion.div
-                key={tool.slug}
-                initial={{ opacity: 0, y: 10 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{
-                  delay: idx * 0.05 + sectionIdx * 0.1,
-                  ease: [0.215, 0.61, 0.355, 1],
-                }}
-                className="group flex w-fit items-center gap-3 rounded-2xl border border-zinc-100 bg-white p-3 transition-all hover:border-zinc-200"
-              >
-                <div className="flex size-8 shrink-0 items-center justify-center transition-all group-hover:scale-110">
-                  <StackIcon name={tool.slug} />
-                </div>
-                <span className="truncate text-sm font-semibold text-zinc-600 group-hover:text-zinc-900 sm:text-xs">
-                  {tool.name}
-                </span>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      ))}
-    </section>
   );
 }

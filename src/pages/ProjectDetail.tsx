@@ -3,13 +3,12 @@ import { useEffect, useState } from 'react';
 import { useGetProjects } from '../data/projects';
 import { ArrowLeft } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
+import { ContextualStack } from '@/components/StackIcon';
 
 export default function ProjectDetail({ slug }: { slug?: string }) {
   const navigate = useNavigate();
-
   const projects = useGetProjects();
 
-  // 1. Find the specific project data
   const project = projects.find((p) => p.id === slug);
 
   const [activeSection, setActiveSection] = useState('overview');
@@ -146,24 +145,25 @@ export default function ProjectDetail({ slug }: { slug?: string }) {
               {project.subtitle}
             </p>
 
-            {/* Added justify-center to the tech stack flex container */}
-            <div className="flex flex-wrap justify-center gap-2">
-              {project.techStack.map((tech) => (
-                <span
-                  key={tech.name}
-                  className="rounded-full border border-zinc-100 bg-white px-3 py-1 font-mono text-[11px] font-medium text-zinc-500 uppercase"
-                >
-                  {tech.name}
-                </span>
-              ))}
-            </div>
-
             {/* Added justify-center to the metadata flex container */}
-            <div className="flex items-center justify-center gap-4 pt-4 text-sm font-medium text-zinc-400">
+            <div className="flex items-center justify-center gap-4 text-sm font-medium text-zinc-400">
               <span>{project.year}</span>
               <span className="h-1 w-1 rounded-full bg-zinc-300" />
               <span className="italic">{project.role}</span>
             </div>
+
+            {/* Added justify-center to the tech stack flex container */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.4 }}
+              className="text-xl font-semibold tracking-tight"
+            >
+              <ContextualStack
+                stackList={project.techStack}
+                showIconName={false}
+              />
+            </motion.div>
           </motion.div>
 
           <motion.div
