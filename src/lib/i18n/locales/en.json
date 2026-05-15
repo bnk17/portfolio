@@ -88,7 +88,10 @@
         "text": "\n\nWith 4 years of experience, my focus remains on engineering high-performance, scalable applications by bridging technical rigor with a deep product mindset. I thrive in cross-functional environments, leveraging collaborative teamwork to solve complex user problems and build products that deliver genuine value."
       }
     ],
-    "resume": "See Resume",
+    "resume": {
+      "sectionTitle": "Download Resume",
+      "downloadPath": "assets/document/cv_boris_nkuako_se_cdi_en.pdf"
+    },
     "currentStack": {
       "title": "Technical Stack",
       "stack_sections": [
@@ -122,7 +125,7 @@
           "label": "AI Stack",
           "tools": [
             { "name": "OpenAI", "slug": "openai" },
-            { "name": "Claude", "slug": "anthropic" },
+            { "name": "Claude", "slug": "claude" },
             { "name": "Langchain", "slug": "langchain" },
             { "name": "Ollama", "slug": "ollama" }
           ]
