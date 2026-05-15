@@ -148,18 +148,18 @@ export default function ProjectDetail({ slug }: { slug?: string }) {
             </p>
 
             {/* Added justify-center to the metadata flex container */}
-            <div className="flex w-full items-center justify-center gap-4 text-sm font-medium text-zinc-400">
+            <div className="flex w-full items-center justify-center gap-4 text-center text-sm font-medium text-zinc-400">
               <span>{project.year}</span>
               <span className="h-1 w-1 rounded-full bg-zinc-300" />
               <span className="italic">{project.role}</span>
             </div>
 
-            {/* Added justify-center to the tech stack flex container */}
+            {/* Added justify-center and w-full to the tech stack flex container */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.4 }}
-              className="flex justify-center text-xl font-semibold tracking-tight"
+              className="flex w-full justify-center text-xl font-semibold tracking-tight"
             >
               <ContextualStack
                 stackList={project.techStack}
