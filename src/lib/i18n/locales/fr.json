@@ -14,6 +14,7 @@
     "footer": "© 2026 Boris N'Kuako — Product & AI Engineering"
   },
   "projects": {
+    "back": "Retour",
     "petitpals": {
       "title": "PetitPals Web & Extension",
       "subtitle": "Un écosystème de liste de naissance universel conçu pour le paysage e-commerce fragmenté actuel.",
