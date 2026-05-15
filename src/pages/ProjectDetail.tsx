@@ -136,7 +136,7 @@ export default function ProjectDetail({ slug }: { slug?: string }) {
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            className="flex flex-col items-center space-y-6" /* Added flex-col and items-center */
+            className="flex w-full flex-col items-center space-y-6" /* Added w-full to ensure centering works correctly */
           >
             <h1 className="text-5xl leading-[1.1] font-bold tracking-tight text-zinc-900">
               {project.title}
@@ -148,7 +148,7 @@ export default function ProjectDetail({ slug }: { slug?: string }) {
             </p>
 
             {/* Added justify-center to the metadata flex container */}
-            <div className="flex items-center justify-center gap-4 text-sm font-medium text-zinc-400">
+            <div className="flex w-full items-center justify-center gap-4 text-sm font-medium text-zinc-400">
               <span>{project.year}</span>
               <span className="h-1 w-1 rounded-full bg-zinc-300" />
               <span className="italic">{project.role}</span>
@@ -159,7 +159,7 @@ export default function ProjectDetail({ slug }: { slug?: string }) {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.4 }}
-              className="text-xl font-semibold tracking-tight"
+              className="flex justify-center text-xl font-semibold tracking-tight"
             >
               <ContextualStack
                 stackList={project.techStack}
