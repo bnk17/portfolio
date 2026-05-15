@@ -91,7 +91,10 @@
         "text": "\nFort de 4 ans d'expérience, je me concentre sur la création d'applications optimisées et scalables, mêlant rigueur technique et sens du produit. J'apprécie le travail en équipe transverse pour simplifier des logiques métier complexes et concevoir des produits qui ont un impact réel sur l'utilisateur."
       }
     ],
-    "resume": "Voir le CV",
+    "resume": {
+      "sectionTitle": "Voir le CV",
+      "downloadPath": "assets/document/cv_boris_nkuako_se_cdi_fr.pdf"
+    },
     "currentStack": {
       "title": "Stack Technique",
       "tools": [

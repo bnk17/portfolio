@@ -12,6 +12,20 @@ interface BioSegment {
   video?: string;
 }
 
+const handleDownload = (filePath: string) => {
+  // Path to your resume in the /public folder
+  const resumeUrl = filePath;
+
+  const link = document.createElement('a');
+  link.href = resumeUrl;
+
+  link.setAttribute('download', filePath);
+
+  document.body.appendChild(link);
+  link.click();
+  document.body.removeChild(link);
+};
+
 export default function About() {
   const { t } = useTranslation();
   const [hoveredImage, setHoveredImage] = useState<string | null>(null);
@@ -94,15 +108,17 @@ export default function About() {
               transition={{ delay: 0.3 }}
               className="mt-10"
             >
-              <a
-                href="/resume.pdf"
-                target="_blank"
-                className="group inline-flex items-center gap-2 rounded-full border border-zinc-200 bg-white px-5 py-2.5 text-sm font-medium text-zinc-900 transition-all hover:border-zinc-900 hover:bg-zinc-900 hover:text-white"
+              <button
+                className="group inline-flex cursor-pointer items-center gap-2 rounded-full border border-zinc-200 bg-white px-5 py-2.5 text-sm font-medium text-zinc-900 transition-all hover:border-zinc-900 hover:bg-zinc-900 hover:text-white"
+                onClick={() => {
+                  const filePath = t('about.resume.downloadPath');
+                  handleDownload(filePath);
+                }}
               >
                 <FileText className="size-4" />
-                {t('about.resume')}
+                {t('about.resume.sectionTitle')}
                 <ArrowUpRight className="size-3.5 opacity-50 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
-              </a>
+              </button>
             </motion.div>
 
             {/* Hover Image Preview Overlay */}
@@ -197,32 +213,6 @@ export default function About() {
     </div>
   );
 }
-
-const STACK = [
-  // Core Frontend
-  { name: 'React', slug: 'react' },
-  { name: 'Next.js', slug: 'nextjs' },
-  { name: 'TypeScript', slug: 'typescript' },
-  { name: 'Javascript', slug: 'js' },
-  { name: 'Tailwind', slug: 'tailwindcss' },
-  { name: 'CSS', slug: 'css3' },
-  // State & Data
-  { name: 'Zustand', slug: 'zustand' },
-  { name: 'Zod', slug: 'zod' },
-  { name: 'Tanstack Query', slug: 'tanstack' },
-  // Backend & Runtime
-  { name: 'Hono', slug: 'hono' },
-  { name: 'Bun', slug: 'bunjs' },
-  // AI Stack
-  { name: 'OpenAI', slug: 'openai' },
-  { name: 'Claude', slug: 'claude' },
-  { name: 'Langchain', slug: 'langchain' },
-  { name: 'Ollama', slug: 'ollama' },
-  // Management & Design
-  { name: 'Figma', slug: 'figma' },
-  { name: 'Notion', slug: 'notion' },
-  { name: 'Jira', slug: 'jira' },
-];
 
 export function ContextualStack() {
   const { t } = useTranslation();
