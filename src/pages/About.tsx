@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useTranslation } from 'react-i18next';
 import { Mail, FileText, ArrowUpRight, Link } from 'lucide-react';
+import StackIcon from 'tech-stack-icons';
 
 interface BioSegment {
   text: string;
@@ -17,9 +18,6 @@ export default function About() {
   const [hoveredVideo, setHoveredVideo] = useState<string | null>(null);
   const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
 
-  const tools = t('about.currentStack.tools', {
-    returnObjects: true,
-  }) as string[];
   const segments = t('about.bio_segments', {
     returnObjects: true,
   }) as BioSegment[];
@@ -160,20 +158,7 @@ export default function About() {
           >
             {t('about.currentStack.title')}
           </motion.h2>
-          <div className="grid grid-cols-2 gap-4 md:grid-cols-3">
-            {tools.map((tool, index) => (
-              <motion.div
-                key={tool}
-                initial={{ opacity: 0, scale: 0.95 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ delay: 0.5 + index * 0.05 }}
-                className="flex items-center justify-between rounded-2xl border border-zinc-100 bg-white p-6 transition-colors hover:border-zinc-300"
-              >
-                <span className="font-medium text-zinc-900">{tool}</span>
-                <div className="h-1.5 w-1.5 rounded-full bg-zinc-200" />
-              </motion.div>
-            ))}
-          </div>
+          <ContextualStack />
         </section>
 
         {/* Simplified Contact Section */}
@@ -182,6 +167,7 @@ export default function About() {
           <h2 className="font-display mb-12 text-xl font-semibold tracking-tight">
             {t('about.contact.title')}
           </h2>
+          <div></div>
 
           <div className="flex flex-col gap-6">
             <a
@@ -209,5 +195,79 @@ export default function About() {
         </section>
       </main>
     </div>
+  );
+}
+
+const STACK = [
+  // Core Frontend
+  { name: 'React', slug: 'react' },
+  { name: 'Next.js', slug: 'nextjs' },
+  { name: 'TypeScript', slug: 'typescript' },
+  { name: 'Javascript', slug: 'js' },
+  { name: 'Tailwind', slug: 'tailwindcss' },
+  { name: 'CSS', slug: 'css3' },
+  // State & Data
+  { name: 'Zustand', slug: 'zustand' },
+  { name: 'Zod', slug: 'zod' },
+  { name: 'Tanstack Query', slug: 'tanstack' },
+  // Backend & Runtime
+  { name: 'Hono', slug: 'hono' },
+  { name: 'Bun', slug: 'bunjs' },
+  // AI Stack
+  { name: 'OpenAI', slug: 'openai' },
+  { name: 'Claude', slug: 'claude' },
+  { name: 'Langchain', slug: 'langchain' },
+  { name: 'Ollama', slug: 'ollama' },
+  // Management & Design
+  { name: 'Figma', slug: 'figma' },
+  { name: 'Notion', slug: 'notion' },
+  { name: 'Jira', slug: 'jira' },
+];
+
+export function ContextualStack() {
+  const { t } = useTranslation();
+  // Fetch the structured array from translations
+  const sections = t('about.currentStack.stack_sections', {
+    returnObjects: true,
+  }) as any[];
+
+  return (
+    <section className="mt-16 space-y-16">
+      {sections.map((section, sectionIdx) => (
+        <div key={section.label}>
+          {/* Section Header */}
+          <div className="mb-8 flex items-center gap-4">
+            <h3 className="font-mono text-[10px] font-bold tracking-[0.2em] text-zinc-400 uppercase">
+              {section.label}
+            </h3>
+            <div className="h-px flex-1 bg-zinc-100" />
+          </div>
+
+          {/* Grid of Mobile-style Icons */}
+          <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 md:grid-cols-4">
+            {section.tools.map((tool: any, idx: number) => (
+              <motion.div
+                key={tool.slug}
+                initial={{ opacity: 0, y: 10 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{
+                  delay: idx * 0.05 + sectionIdx * 0.1,
+                  ease: [0.215, 0.61, 0.355, 1],
+                }}
+                className="group flex w-fit items-center gap-3 rounded-2xl border border-zinc-100 bg-white p-3 transition-all hover:border-zinc-200"
+              >
+                <div className="flex size-8 shrink-0 items-center justify-center transition-all group-hover:scale-110">
+                  <StackIcon name={tool.slug} />
+                </div>
+                <span className="truncate text-sm font-semibold text-zinc-600 group-hover:text-zinc-900 sm:text-xs">
+                  {tool.name}
+                </span>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      ))}
+    </section>
   );
 }
