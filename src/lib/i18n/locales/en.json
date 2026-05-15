@@ -90,14 +90,51 @@
     ],
     "resume": "See Resume",
     "currentStack": {
-      "title": "Current Stack",
-      "tools": [
-        "React",
-        "Next.js",
-        "TypeScript",
-        "Tailwind CSS",
-        "TanStack Query",
-        "IA Générative"
+      "title": "Technical Stack",
+      "stack_sections": [
+        {
+          "label": "Core Frontend",
+          "tools": [
+            { "name": "React", "slug": "react" },
+            { "name": "Next.js", "slug": "nextjs" },
+            { "name": "TypeScript", "slug": "typescript" },
+            { "name": "Javascript", "slug": "js" },
+            { "name": "Tailwind", "slug": "tailwindcss" },
+            { "name": "CSS", "slug": "css3" }
+          ]
+        },
+        {
+          "label": "State & Data",
+          "tools": [
+            { "name": "Zustand", "slug": "zustand" },
+            { "name": "Zod", "slug": "zod" },
+            { "name": "Tanstack Query", "slug": "reactquery" }
+          ]
+        },
+        {
+          "label": "Backend & Runtime",
+          "tools": [
+            { "name": "Hono", "slug": "hono" },
+            { "name": "Bun", "slug": "bunjs" }
+          ]
+        },
+        {
+          "label": "AI Stack",
+          "tools": [
+            { "name": "OpenAI", "slug": "openai" },
+            { "name": "Claude", "slug": "anthropic" },
+            { "name": "Langchain", "slug": "langchain" },
+            { "name": "Ollama", "slug": "ollama" }
+          ]
+        },
+        {
+          "label": "Management & Design",
+          "tools": [
+            { "name": "Figma", "slug": "figma" },
+            { "name": "Notion", "slug": "notion" },
+            { "name": "Jira", "slug": "jira" }
+          ]
+        }
       ]
     },
     "contact": {
