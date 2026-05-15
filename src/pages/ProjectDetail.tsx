@@ -4,8 +4,10 @@ import { useGetProjects } from '../data/projects';
 import { ArrowLeft } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import { ContextualStack } from '@/components/StackIcon';
+import { useTranslation } from 'react-i18next';
 
 export default function ProjectDetail({ slug }: { slug?: string }) {
+  const { t } = useTranslation();
   const navigate = useNavigate();
   const projects = useGetProjects();
 
@@ -125,7 +127,7 @@ export default function ProjectDetail({ slug }: { slug?: string }) {
             onClick={() => navigate('/')}
           >
             <ArrowLeft className="size-5 transition-transform group-hover:-translate-x-1" />
-            <span className="text-sm font-medium">Back</span>
+            <span className="text-sm font-medium">{t('projects.back')}</span>
           </button>
         </div>
 
