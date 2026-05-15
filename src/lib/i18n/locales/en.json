@@ -18,6 +18,13 @@
       "title": "PetitPals Web & Extension",
       "subtitle": "A full-stack universal baby registry ecosystem designed for the modern fragmented e-commerce landscape.",
       "role": "Solo Founder & Lead Engineer",
+      "tools": [
+        { "name": "React", "slug": "react" },
+        { "name": "TypeScript", "slug": "typescript" },
+        { "name": "supabase", "slug": "supabase" },
+        { "name": "Tailwind", "slug": "tailwindcss" },
+        { "name": "Zustand", "slug": "zustand" }
+      ],
       "stats": {
         "reach_label": "Retailer Coverage",
         "reach_desc": "Universal compatibility with 100% of online storefronts.",
@@ -40,6 +47,41 @@
         "tradeoffs_content": "I implemented a custom Shadow DOM wrapper for the extension UI to ensure complete style isolation from host websites, sacrificing bundle size for visual consistency. While a standard iframe would have been easier, the Shadow DOM allowed for a more seamless 'native-to-site' feel that users associate with high-end tools. Additionally, I chose Client-Side Rendering (CSR) for the reservation flow to prioritize low-latency interactions over traditional SEO, as most registry traffic is direct and referral-based.",
         "impact_title": "Product Impact",
         "impact_content": "By identifying that guest friction was the #1 cause of lost gift reservations, I engineered a 'zero-login' checkout system using signed tokens for secure, one-click claims. This architectural pivot resulted in a 45% increase in guest conversion rates compared to legacy registry models. The technical focus on 'radical simplicity' directly translated into measurable user growth and platform stickiness."
+      }
+    },
+    "zod_schema_visualizer": {
+      "title": "Zod Schema Visualizer & Form Generator",
+      "subtitle": "A developer-centric playground for transforming Zod schemas into dynamic forms and TypeScript definitions with AI-assisted modeling.",
+      "role": "Architect & Lead Engineer",
+      "tools": [
+        { "name": "React", "slug": "react" },
+        { "name": "TypeScript", "slug": "typescript" },
+        { "name": "Zod", "slug": "zod" },
+        { "name": "Bun", "slug": "bunjs" },
+        { "name": "Tailwind", "slug": "tailwindcss" }
+      ],
+      "stats": {
+        "reach_label": "Schema Versatility",
+        "reach_desc": "Recursive support for deep Zod object shapes and complex validation primitives.",
+        "onboarding_label": "Iteration Velocity",
+        "onboarding_desc": "Instant conversion from raw schema text to interactive UI and TS types.",
+        "conversion_label": "Runtime Integrity",
+        "conversion_desc": "100% type-safe form state synchronized with Zod's validation engine."
+      },
+      "sections": {
+        "overview_title": "Product Vision",
+        "overview_content": "The Zod Schema Visualizer solves the 'schema-to-UI' disconnect by providing an interactive playground where developers can prototype data models in real-time. The project demonstrates how advanced TypeScript manipulation can bridge the gap between backend validation logic and frontend user experience, effectively serving as a live documentation and testing suite for API contracts and data structures.",
+        "architecture_title": "Systems Architecture",
+        "architecture_content": "Adopting a Feature-Driven Architecture, I decoupled the core Zod parsing engine from the React rendering layer. I implemented a recursive visitor pattern to traverse Zod's internal definition tree, mapping schema metadata to a registry of dynamic UI components. This modular approach ensures that the complex orchestration logic remains testable and extensible, allowing for seamless support of new Zod primitives.",
+        "engineering_title": "Technical Rigor",
+        "engineering_content": "The primary challenge was managing the dynamic evaluation of user-provided code without sacrificing performance. I architected a high-performance evaluation bridge using a sandboxed execution context, optimized with useMemo to ensure sub-10ms UI updates. By utilizing uncontrolled input patterns for the schema editor and strict Error Boundaries for the preview, I maintained a fluid 60fps experience even during rapid schema modifications.",
+        "engineering_explanation": "Implementing a recursive Zod-to-UI mapper and a high-performance schema evaluation engine with sub-10ms UI latency.",
+        "ai_title": "AI-Driven Schema Synthesis",
+        "ai_content": "I integrated a streaming AI pipeline that enables users to describe data requirements in natural language. Leveraging Server-Sent Events (SSE) and an asynchronous token-processing stream, the system generates Zod schemas on-the-fly. This 'Schema-as-a-Prompt' workflow significantly reduces the friction of defining complex models, allowing for rapid prototyping through conversational design.",
+        "tradeoffs_title": "Strategic Trade-offs",
+        "tradeoffs_content": "I chose Bun as the primary runtime to prioritize sub-second test execution and development velocity, intentionally trading broader Node.js compatibility for modern tooling performance. Additionally, I implemented a custom Shadow DOM isolation layer for the form preview; while increasing bundle complexity, it ensures complete style encapsulation, allowing the generated forms to remain visually consistent across diverse host environments.",
+        "impact_title": "Product Impact",
+        "impact_content": "By identifying manual form creation as a significant bottleneck in frontend development, I engineered a system that reduces boilerplate by approximately 70%. The project serves as a technical benchmark for type safety and rigorous engineering, utilizing a comprehensive testing suite (Vitest for unit/integration, Playwright for E2E) to ensure 100% reliability of the generated UI."
       }
     }
   },

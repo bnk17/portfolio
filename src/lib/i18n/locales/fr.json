@@ -41,6 +41,34 @@
         "impact_title": "Impact Produit",
         "impact_content": "En identifiant que la friction lors du processus invité était la cause n°1 d'abandon de réservation, j'ai conçu un système de validation sans compte via des jetons sécurisés. Ce pivot architectural a entraîné une augmentation de 45 % du taux de conversion des invités par rapport aux modèles de listes classiques. L'accent mis sur la 'simplicité radicale' s'est directement traduit par une croissance mesurable de l'engagement utilisateur."
       }
+    },
+    "zod_schema_visualizer": {
+      "title": "Visualiseur de Schémas Zod & Générateur de Formulaires",
+      "subtitle": "Un playground axé développeur pour transformer les schémas Zod en formulaires dynamiques et en définitions TypeScript grâce à la modélisation assistée par IA.",
+      "role": "Architecte & Ingénieur Principal",
+      "stats": {
+        "reach_label": "Polyvalence des Schémas",
+        "reach_desc": "Support récursif des structures d'objets Zod complexes et des primitives de validation imbriquées.",
+        "onboarding_label": "Vitesse d'Itération",
+        "onboarding_desc": "Conversion instantanée du code brut d'un schéma en interface interactive et types TS.",
+        "conversion_label": "Intégrité au Runtime",
+        "conversion_desc": "État du formulaire 100% typé et synchronisé en temps réel avec le moteur de validation de Zod."
+      },
+      "sections": {
+        "overview_title": "Vision Produit",
+        "overview_content": "Le Visualiseur de Schémas Zod résout la déconnexion entre le schéma et l'interface utilisateur en fournissant un playground interactif où les développeurs peuvent prototyper des modèles de données en temps réel. Le projet démontre comment la manipulation avancée de TypeScript peut combler le fossé entre la logique de validation back-end et l'expérience utilisateur front-end, faisant office de documentation vivante et de suite de tests pour les contrats d'API et les structures de données.",
+        "architecture_title": "Architecture Système",
+        "architecture_content": "En adoptant une architecture orientée fonctionnalités (Feature-Driven Architecture), j'ai découplé le moteur principal de parsing Zod de la couche de rendu React. J'ai implémenté un pattern visiteur (visitor pattern) récursif pour parcourir l'arbre de définition interne de Zod, associant les métadonnées du schéma à un registre de composants UI dynamiques. Cette approche modulaire garantit que la logique d'orchestration complexe reste testable et évolutive, permettant une intégration fluide des nouvelles primitives Zod.",
+        "engineering_title": "Rigueur Technique",
+        "engineering_content": "Le principal défi consistait à gérer l'évaluation dynamique du code fourni par l'utilisateur sans sacrifier les performances. J'ai architecturé une passerelle d'évaluation haute performance utilisant un contexte d'exécution sandboxé, optimisé avec useMemo pour garantir des mises à jour de l'interface en moins de 10 ms. En utilisant des patterns d'onglets de saisie non contrôlés (uncontrolled inputs) pour l'éditeur de schéma et des barrières d'erreur (Error Boundaries) strictes pour la prévisualisation, j'ai maintenu une expérience fluide à 60 images par seconde, même lors de modifications rapides.",
+        "engineering_explanation": "Implémentation d'un outil de mapping récursif Zod-vers-UI et d'un moteur d'évaluation de schémas haute performance avec une latence d'affichage inférieure à 10 ms.",
+        "ai_title": "Synthèse de Schémas par l'IA",
+        "ai_content": "J'ai intégré un pipeline d'IA en streaming qui permet aux utilisateurs de décrire leurs besoins en données en langage naturel. En exploitant les événements envoyés par le serveur (SSE) et un flux de traitement asynchrone des tokens, le système génère des schémas Zod à la volée. Ce workflow de 'Schéma-en-tant-que-Prompt' réduit considérablement la friction liée à la définition de modèles complexes, permettant un prototypage rapide par le biais d'une conception conversationnelle.",
+        "tradeoffs_title": "Arbitrages Stratégiques",
+        "tradeoffs_content": "J'ai choisi Bun comme runtime principal pour privilégier l'exécution des tests en moins d'une seconde et la vitesse de développement, acceptant ainsi de troquer une compatibilité Node.js plus large contre les performances des outils modernes. De plus, j'ai implémenté une couche d'isolation Shadow DOM personnalisée pour la prévisualisation des formulaires ; bien qu'elle augmente la complexité du bundle, elle garantit une encapsulation complète des styles, permettant aux formulaires générés de rester visuellement cohérents à travers divers environnements d'accueil.",
+        "impact_title": "Impact Produit",
+        "impact_content": "En identifiant la création manuelle de formulaires comme un goulot d'étranglement majeur dans le développement front-end, j'ai conçu un système qui réduit le code boilerplate d'environ 70 %. Le projet sert de référence technique en matière de sécurité des types et d'ingénierie rigoureuse, s'appuyant sur une suite de tests complète (Vitest pour les tests unitaires/intégration, Playwright pour le E2E) afin de garantir une fiabilité totale de l'interface utilisateur générée."
+      }
     }
   },
   "about": {
