@@ -42,5 +42,68 @@
         "impact_content": "By identifying that guest friction was the #1 cause of lost gift reservations, I engineered a 'zero-login' checkout system using signed tokens for secure, one-click claims. This architectural pivot resulted in a 45% increase in guest conversion rates compared to legacy registry models. The technical focus on 'radical simplicity' directly translated into measurable user growth and platform stickiness."
       }
     }
+  },
+  "about": {
+    "bio_segments": [
+      {
+        "text": "During my time at Diffusely, I spearheaded the development of various features, including generative AI tools such as "
+      },
+      {
+        "text": "Home Staging ",
+        "highlight": "ai",
+        "video": "/assets/video/ai_hs.webm"
+      },
+      {
+        "text": " for effortless room transformations and "
+      },
+      {
+        "text": " Wall Painting ",
+        "highlight": "ai",
+        "video": "/assets/video/wp.webm"
+      },
+      {
+        "text": " to refresh room aesthetics"
+      },
+      {
+        "text": "—to name just a few."
+      },
+      {
+        "text": " While engineering these features, I led initiatives like a "
+      },
+      {
+        "text": "registration flow redesign that boosted conversion by 20% and "
+      },
+      {
+        "text": "orchestrated a data pipeline using "
+      },
+      {
+        "text": "Segment and Mixpanel ",
+        "highlight": "link",
+        "url": "https://medium.diffuse.ly/segment-the-customer-data-platform-you-didnt-know-you-needed-5989b07c24ef"
+      },
+      {
+        "text": " to drive product decisions through behavioral insights. "
+      },
+      {
+        "text": "\n\nWith 4 years of experience, my focus remains on engineering high-performance, scalable applications by bridging technical rigor with a deep product mindset. I thrive in cross-functional environments, leveraging collaborative teamwork to solve complex user problems and build products that deliver genuine value."
+      }
+    ],
+    "resume": "See Resume",
+    "currentStack": {
+      "title": "Current Stack",
+      "tools": [
+        "React",
+        "Next.js",
+        "TypeScript",
+        "Tailwind CSS",
+        "TanStack Query",
+        "IA Générative"
+      ]
+    },
+    "contact": {
+      "title": "Connect",
+      "email": "nkuako.boris@gmail.com",
+      "linkedin": "https://linkedin.com/in/boris-nkuako"
+    }
   }
 }

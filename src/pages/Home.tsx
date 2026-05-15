@@ -1,4 +1,4 @@
-import { Mail, Share2, Terminal, AppWindow, BrainCircuit } from 'lucide-react';
+import { Mail, Share2 } from 'lucide-react';
 
 import { useState } from 'react';
 import { ProjectCard } from '../components/ProjectCard';
