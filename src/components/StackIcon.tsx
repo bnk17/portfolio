@@ -14,12 +14,14 @@ interface StackSection {
 interface ContextualStackProps {
   variant?: 'grid' | 'list';
   showIconName?: boolean;
+  isProjectPage?: boolean;
   stackList: StackSection[] | Tool[];
 }
 
 export function ContextualStack({
   variant = 'grid',
   showIconName = true,
+  isProjectPage = false,
   stackList,
 }: ContextualStackProps) {
   if (!stackList || stackList.length === 0) return null;
@@ -31,7 +33,7 @@ export function ContextualStack({
 
   const stackView =
     variant === 'grid'
-      ? 'grid grid-cols-2 gap-3 sm:grid-cols-3 md:grid-cols-4'
+      ? `grid grid-cols-2 gap-3 sm:grid-cols-3 ${isProjectPage ? 'md:grid-cols-6' : 'md:grid-cols-4'}`
       : 'flex flex-col gap-3';
 
   return (
