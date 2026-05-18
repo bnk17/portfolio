@@ -33,12 +33,12 @@ export default function LanguageSwitcher({
     <div ref={containerRef} className={`relative ${className}`}>
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className="flex items-center gap-2 rounded-lg border border-zinc-100 bg-white/50 px-3 py-1.5 text-[13px] font-medium transition-all hover:border-zinc-200 hover:bg-white active:scale-95"
+        className="flex items-center gap-2 rounded-lg border border-zinc-100 bg-white/50 px-3 py-1.5 text-[13px] font-medium transition-all hover:border-zinc-200 hover:bg-white hover:text-blue-600 active:scale-95"
         aria-label="Select language"
         aria-expanded={isOpen}
       >
-        <Languages size={14} className="text-zinc-400" />
-        <span className="uppercase text-zinc-600">{currentLocale.code}</span>
+        <Languages size={14} />
+        <span className="text-zinc-600 uppercase">{currentLocale.code}</span>
         <ChevronDown
           size={12}
           className={`text-zinc-400 transition-transform duration-200 ${
@@ -54,7 +54,7 @@ export default function LanguageSwitcher({
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: 8, scale: 0.95 }}
             transition={{ duration: 0.1, ease: 'easeOut' }}
-            className="absolute right-0 mt-2 min-w-[140px] origin-top-right overflow-hidden rounded-xl border border-zinc-100 bg-white p-1 shadow-lg ring-1 ring-black/5 z-50"
+            className="absolute right-0 z-50 mt-2 min-w-[140px] origin-top-right overflow-hidden rounded-xl border border-zinc-100 bg-white p-1 shadow-lg ring-1 ring-black/5"
           >
             {LOCALES.map((locale) => {
               const isActive = i18n.language.startsWith(locale.code);
@@ -67,7 +67,7 @@ export default function LanguageSwitcher({
                   }}
                   className={`flex w-full items-center justify-between rounded-lg px-3 py-2 text-[13px] transition-colors ${
                     isActive
-                      ? 'bg-zinc-50 text-black font-semibold'
+                      ? 'bg-zinc-50 font-semibold text-black'
                       : 'text-zinc-500 hover:bg-zinc-50 hover:text-black'
                   }`}
                 >

@@ -1,16 +1,28 @@
-import { Mail, Share2 } from 'lucide-react';
+import { Mail, Share2, FileText } from 'lucide-react';
 import { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
 import { ProjectCard } from '../components/ProjectCard';
 import { useGetProjects } from '../data/projects';
 import { useTranslation } from 'react-i18next';
+import { Button } from '@/components/ui/Button';
+
+const email = 'nkuako.boris@gmail.com';
 
 export function Home() {
   const projects = useGetProjects();
 
   const [hoveredId, setHoveredId] = useState<string | null>(null);
-  const email = 'hello@flo.design';
   const { t } = useTranslation();
+
+  const handleDownload = () => {
+    const filePath = t('about.resume.downloadPath');
+    const link = document.createElement('a');
+    link.href = filePath;
+    link.setAttribute('download', filePath.split('/').pop() || 'resume.pdf');
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  };
 
   useEffect(() => {
     window.scroll({ top: 0, behavior: 'smooth' });
@@ -39,32 +51,44 @@ export function Home() {
               </div>
 
               <div className="flex flex-wrap gap-3 pt-4">
-                <a
+                <Button
                   href={`mailto:${email}`}
-                  className="group flex items-center gap-2.5 rounded-full border border-zinc-100 px-4 py-2 transition-all hover:border-zinc-300 hover:bg-zinc-50"
+                  variant="secondary"
+                  className="px-4 py-2"
                 >
                   <Mail className="h-4 w-4 text-zinc-400 group-hover:text-blue-500" />
                   <span className="font-mono text-[13px] font-medium text-zinc-600 group-hover:text-black">
                     Email
                   </span>
-                </a>
-                <a
-                  href="https://linkedin.com/in/boris-nkuako"
+                </Button>
+                <Button
+                  href="https://www.linkedin.com/in/borisnkuako"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="group flex items-center gap-2.5 rounded-full border border-zinc-100 px-4 py-2 transition-all hover:border-zinc-300 hover:bg-zinc-50"
+                  variant="secondary"
+                  className="px-4 py-2"
                 >
                   <Share2 className="h-4 w-4 text-zinc-400 group-hover:text-indigo-600" />
                   <span className="font-mono text-[13px] font-medium text-zinc-600 group-hover:text-black">
                     LinkedIn
                   </span>
-                </a>
+                </Button>
+                <Button
+                  variant="secondary"
+                  onClick={handleDownload}
+                  className="px-4 py-2"
+                >
+                  <FileText className="h-4 w-4 text-zinc-400 group-hover:text-emerald-500" />
+                  <span className="font-mono text-[13px] font-medium text-zinc-600 group-hover:text-black">
+                    {t('about.resume.sectionTitle')}
+                  </span>
+                </Button>
               </div>
             </motion.div>
 
             <div className="mt-16 hidden min-[990px]:block">
               <p className="font-mono text-[11px] font-medium tracking-widest text-zinc-300 uppercase">
-                © 2026 Boris N'Kuako — Product & AI Engineering
+                © 2026 Boris N'Kuako — Software Engineer
               </p>
             </div>
           </div>
