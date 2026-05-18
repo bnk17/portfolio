@@ -1,21 +1,14 @@
 import { AnimatePresence, motion } from 'framer-motion';
 import { useEffect, useState } from 'react';
 import { useGetProjects } from '../data/projects';
-import {
-  ArrowLeft,
-  ExternalLink,
-  GitBranch,
-  GitPullRequestIcon,
-  Link,
-  X,
-} from 'lucide-react';
+import { ArrowLeft, X, ExternalLink, GitPullRequestIcon } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import { ContextualStack } from '@/components/StackIcon';
 import { useTranslation } from 'react-i18next';
 import TabbedCodeViewer from '@/components/CodeEditor';
-import { Button } from '@/components/ui/Button';
 
 function ImageModal({
+
   src,
   title,
   onClose,

@@ -20,6 +20,7 @@
     "react-dom": "^19.2.4",
     "react-i18next": "^17.0.7",
     "react-router-dom": "^7.13.2",
+    "react-syntax-highlighter": "^16.1.1",
     "tech-stack-icons": "^3.7.1",
     "vite": "^8.0.3"
   },
@@ -29,6 +30,7 @@
     "@types/node": "^25.5.0",
     "@types/react": "^19.2.14",
     "@types/react-dom": "^19.2.3",
+    "@types/react-syntax-highlighter": "^15.5.13",
     "oxlint": "^1.57.0",
     "prettier": "^3.8.1",
     "prettier-plugin-tailwindcss": "^0.7.2",
