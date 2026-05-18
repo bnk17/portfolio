@@ -70,8 +70,8 @@ export default function About() {
                       key={index}
                       className="relative inline-block cursor-help font-semibold text-zinc-600 underline decoration-blue-200 underline-offset-4 transition-all hover:text-blue-700 hover:decoration-blue-500"
                       onMouseEnter={() => {
-                        segment.image && setHoveredImage(segment.image);
-                        segment.video && setHoveredVideo(segment.video);
+                        if (segment.image) setHoveredImage(segment.image);
+                        if (segment.video) setHoveredVideo(segment.video);
                       }}
                       onMouseLeave={() => {
                         setHoveredImage(null);

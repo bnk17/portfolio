@@ -217,7 +217,7 @@ export const useGetProjects = (): ProjectDetail[] => {
         role: t('projects.zod_schema_visualizer.role'),
         cover_img: '/image/zod/zod-cover.jpeg',
         logo_img: '/image/zod/zod-cover.jpeg',
-        liveUrl: 'https://zod-visualizer.vercel.app',
+        liveUrl: 'https://zod-schema-visualizer.vercel.app/',
         githubUrl: 'https://github.com/bnk17/zod-schema-visualizer',
         techStack: t('projects.zod_schema_visualizer.tools', {
           returnObjects: true,
