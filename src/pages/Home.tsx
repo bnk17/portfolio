@@ -5,6 +5,7 @@ import { ProjectCard } from '../components/ProjectCard';
 import { useGetProjects } from '../data/projects';
 import { useTranslation } from 'react-i18next';
 import { Button } from '@/components/ui/Button';
+import { PdfModal } from '@/components/ui/PdfModal';
 
 const email = 'nkuako.boris@gmail.com';
 
@@ -13,16 +14,7 @@ export function Home() {
 
   const [hoveredId, setHoveredId] = useState<string | null>(null);
   const { t } = useTranslation();
-
-  const handleDownload = () => {
-    const filePath = t('about.resume.downloadPath');
-    const link = document.createElement('a');
-    link.href = filePath;
-    link.setAttribute('download', filePath.split('/').pop() || 'resume.pdf');
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
-  };
+  const [isPdfOpen, setIsPdfOpen] = useState(false);
 
   useEffect(() => {
     window.scroll({ top: 0, behavior: 'smooth' });
@@ -75,7 +67,7 @@ export function Home() {
                 </Button>
                 <Button
                   variant="secondary"
-                  onClick={handleDownload}
+                  onClick={() => setIsPdfOpen(true)}
                   className="px-4 py-2"
                 >
                   <FileText className="h-4 w-4 text-zinc-400 group-hover:text-emerald-500" />
@@ -118,6 +110,13 @@ export function Home() {
           </motion.div>
         </main>
       </div>
+
+      <PdfModal
+        isOpen={isPdfOpen}
+        onClose={() => setIsPdfOpen(false)}
+        pdfUrl={t('about.resume.downloadPath')}
+        title={t('about.resume.sectionTitle')}
+      />
     </div>
   );
 }
