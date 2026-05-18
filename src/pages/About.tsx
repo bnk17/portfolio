@@ -1,8 +1,9 @@
 import { useEffect, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useTranslation } from 'react-i18next';
-import { Mail, FileText, ArrowUpRight, Link } from 'lucide-react';
+import { Mail, ArrowUpRight, Link, FileText } from 'lucide-react';
 import { ContextualStack } from '@/components/StackIcon';
+import { Button } from '@/components/ui/Button';
 
 interface BioSegment {
   text: string;
@@ -13,14 +14,9 @@ interface BioSegment {
 }
 
 const handleDownload = (filePath: string) => {
-  // Path to your resume in the /public folder
-  const resumeUrl = filePath;
-
   const link = document.createElement('a');
-  link.href = resumeUrl;
-
-  link.setAttribute('download', filePath);
-
+  link.href = filePath;
+  link.setAttribute('download', filePath.split('/').pop() || 'resume.pdf');
   document.body.appendChild(link);
   link.click();
   document.body.removeChild(link);
@@ -111,17 +107,14 @@ export default function About() {
               transition={{ delay: 0.3 }}
               className="mt-10"
             >
-              <button
-                className="group inline-flex cursor-pointer items-center gap-2 rounded-full border border-zinc-200 bg-white px-5 py-2.5 text-sm font-medium text-zinc-900 transition-all hover:border-zinc-900 hover:bg-zinc-900 hover:text-white"
-                onClick={() => {
-                  const filePath = t('about.resume.downloadPath');
-                  handleDownload(filePath);
-                }}
+              <Button
+                variant="primary"
+                onClick={() => handleDownload(t('about.resume.downloadPath'))}
               >
                 <FileText className="size-4" />
                 {t('about.resume.sectionTitle')}
                 <ArrowUpRight className="size-3.5 opacity-50 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
-              </button>
+              </Button>
             </motion.div>
 
             {/* Hover Image Preview Overlay */}

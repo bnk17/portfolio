@@ -1,5 +1,6 @@
 import { NavLink } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
+import { Combine } from 'lucide-react';
 import LanguageSwitcher from './LanguageSwitcher';
 
 export function Navbar() {
@@ -11,9 +12,10 @@ export function Navbar() {
         {/* Optional Logo/Name */}
         <NavLink
           to="/"
-          className="font-display text-xl font-bold tracking-tight"
+          className="group flex items-center transition-all active:scale-95"
+          aria-label="Home"
         >
-          Boris.
+          <Combine className="size-6 text-zinc-900 transition-transform duration-300 group-hover:rotate-12 group-hover:text-blue-600" />
         </NavLink>
 
         {/* Navigation Items */}
