@@ -15,6 +15,10 @@
   },
   "projects": {
     "back": "Back",
+    "editor": {
+      "copy": "Copy",
+      "copied": "Copied!"
+    },
     "petitpals": {
       "title": "PetitPals Web & Extension",
       "subtitle": "A full-stack universal baby registry ecosystem designed for the modern fragmented e-commerce landscape.",
@@ -27,26 +31,51 @@
         { "name": "Zustand", "slug": "zustand" }
       ],
       "stats": {
-        "reach_label": "Retailer Coverage",
-        "reach_desc": "Universal compatibility with 100% of online storefronts.",
-        "onboarding_label": "Activation Velocity",
-        "onboarding_desc": "Time from discovery to first meaningful user action.",
-        "conversion_label": "Gift Liquidity",
-        "conversion_desc": "Successful reservation rate on shared public registries."
+        "reach": {
+          "label": "Retailer Coverage",
+          "value": "100%",
+          "desc": "Universal compatibility with 100% of online storefronts."
+        },
+        "onboarding": {
+          "label": "Time to First Action",
+          "value": "2 min",
+          "desc": "Time from discovery to first meaningful user action."
+        },
+        "time_to_market": {
+          "label": "Time to market",
+          "value": "3 days",
+          "desc": "Time from ideation to production"
+        }
       },
       "sections": {
-        "overview_title": "Product Vision",
-        "overview_content": "PetitPals addresses the 'fragmented cart' problem where parents' desired items are scattered across niche boutiques, Etsy, and major retailers. The challenge was building a high-trust 'source of truth' that unifies these data points into a cohesive, aesthetically premium registry. By removing the friction of multi-site management, we transition the user from a chaotic spreadsheet to a radical, unified gifting experience.",
-        "architecture_title": "Systems Architecture",
-        "architecture_content": "The system follows a decoupled architecture, bridging a Chrome Extension (Manifest V3) with a React 19 administrative dashboard via a shared Supabase backend. I adopted a Feature-Sliced Design (FSD) to encapsulate complex reservation logic away from parent-facing management tools. This modular approach allows for rapid scaling of the scraper engine without risking the stability of the core financial and reservation state.",
-        "engineering_title": "Technical Rigor",
+        "overview_title": "Overview",
+        "overview_content": "PetitPals addresses the fragmented cart problem and dismantles retailer vendor lock-in where parents' desired items are scattered across niche boutiques, Etsy, and major retailers. The challenge was building a high-trust, decentralized 'source of truth' that unifies these data points into a cohesive, aesthetically premium registry. By removing the friction of multi-site management, we bypass closed corporate ecosystems, transitioning users from a chaotic spreadsheet to a radical, liberating, and unified gifting experience.",
+
+        "problem_title": "The Problem",
+        "problem_content": "E-commerce fragmentation forces parents to navigate 'walled gardens'—traditional registries like Vertbaudet deliberately lock users into their proprietary catalogs, punishing multi-store cross-shopping. Parents are forced to maintain 3 to 4 separate registries or track un-synchronized spreadsheets. For gift givers, this creates a broken user journey: navigating disparate external storefronts, manually cross-checking item availability, and encountering frustrating double-purchases due to the lack of centralized state synchronization.",
+        "problem_list_title": "Key Architectural & UX Challenges:",
+        "problem_list": [
+          "Proprietary retailer vendor lock-in (e.g., Vertbaudet closing ecosystem boundaries).",
+          "High fragmentation leading to 3-4 separate, un-synchronized spreadsheets.",
+          "Broken gift-giver journeys causing duplicate purchases and blind manual cross-checking."
+        ],
+
+        "solution_title": "The Solution",
+        "solution_content": "I have engineered an open, universal registry ecosystem consisting of a browser extension for instant, single-click product scraping and a centralized dashboard.",
+        "solution_list_title": "Core Product Pillars:",
+        "solution_list": [
+          "Universal DOM-scraping engine bypassing closed single-retailer catalogs.",
+          "Centralized high-trust database syncing cross-store data states under 100ms.",
+          "Frictionless zero-login reservation flows protecting client conversion speed."
+        ],
+
+        "engineering_title": "Engineering",
         "engineering_content": "A primary engineering hurdle was maintaining state synchronization between separate browser contexts without introducing high-latency polling. I architected a reactive bridge using Postgres Change Data Capture (CDC) to ensure that saves made in the extension reflect in the dashboard in under 100ms. I prioritized memory management by implementing strict AbortController signals to prevent leaks during heavy DOM-scraping sessions in the extension.",
         "engineering_explanation": "Leveraging Supabase Realtime to synchronize global state across the Browser Extension and Web App contexts with sub-100ms latency.",
-        "ai_title": "AI-Accelerated Workflow",
-        "ai_content": "To scale the universal parser, I developed an AI-assisted pipeline that generates adaptive DOM-scraping templates for diverse e-commerce schemas. Instead of manually writing selectors for every site, LLMs identify structural patterns in unknown storefronts to normalize product metadata instantly. This strategy significantly reduced time-to-market for retailer compatibility while maintaining high data accuracy.",
-        "tradeoffs_title": "Strategic Trade-offs",
-        "tradeoffs_content": "I implemented a custom Shadow DOM wrapper for the extension UI to ensure complete style isolation from host websites, sacrificing bundle size for visual consistency. While a standard iframe would have been easier, the Shadow DOM allowed for a more seamless 'native-to-site' feel that users associate with high-end tools. Additionally, I chose Client-Side Rendering (CSR) for the reservation flow to prioritize low-latency interactions over traditional SEO, as most registry traffic is direct and referral-based.",
-        "impact_title": "Product Impact",
+        "ux_dom_engine_explanation": "Injecting a side panel is a common task, but doing it without breaking 3rd-party site layouts (especially those using 100vw) is difficult. This snippet shows a sophisticated CSS injection strategy using padding-right and box-sizing: border-box. It proves deep mastery of the CSS Box Model, manipulating the host page’s global layout without introducing layout shifts or side-scrolling bugs.",
+        "resilient_ui_explanation": "This custom hook demonstrates a 'Resilient UI' architecture. By integrating the Page Visibility API, the application automatically synchronizes the registry state whenever a user returns to the browser tab. This effectively solves the stale-data problem in collaborative environments (multiple family members claiming gifts) without the overhead or complexity of constant WebSocket connections. It further showcases clean state management through Memoized callbacks and Optimistic UI updates, ensuring a high-performance, real-time feel for the end user.",
+
+        "impact_title": "Impact",
         "impact_content": "By identifying that guest friction was the #1 cause of lost gift reservations, I engineered a 'zero-login' checkout system using signed tokens for secure, one-click claims. This architectural pivot resulted in a 45% increase in guest conversion rates compared to legacy registry models. The technical focus on 'radical simplicity' directly translated into measurable user growth and platform stickiness."
       }
     },
