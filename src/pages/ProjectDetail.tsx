@@ -1,11 +1,19 @@
 import { AnimatePresence, motion } from 'framer-motion';
 import { useEffect, useState } from 'react';
 import { useGetProjects } from '../data/projects';
-import { ArrowLeft, X } from 'lucide-react';
+import {
+  ArrowLeft,
+  ExternalLink,
+  GitBranch,
+  GitPullRequestIcon,
+  Link,
+  X,
+} from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import { ContextualStack } from '@/components/StackIcon';
 import { useTranslation } from 'react-i18next';
 import TabbedCodeViewer from '@/components/CodeEditor';
+import { Button } from '@/components/ui/Button';
 
 function ImageModal({
   src,
@@ -23,7 +31,7 @@ function ImageModal({
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
-      className="fixed inset-0 z-[200] flex items-center justify-center bg-black/90 backdrop-blur-md p-4 cursor-pointer"
+      className="fixed inset-0 z-[200] flex cursor-pointer items-center justify-center bg-black/90 p-4 backdrop-blur-md"
       onClick={onClose}
     >
       <button
@@ -211,6 +219,24 @@ export default function ProjectDetail({ slug }: { slug?: string }) {
               <span>{project.year}</span>
               <span className="h-1 w-1 rounded-full bg-zinc-300" />
               <span className="italic">{project.role}</span>
+              <div className="flex gap-2">
+                {project.liveUrl && (
+                  <a
+                    className="text-xs hover:text-blue-600"
+                    href={project.liveUrl}
+                  >
+                    <ExternalLink size={16} />
+                  </a>
+                )}{' '}
+                {project.githubUrl && (
+                  <a
+                    className="text-xs hover:text-blue-600"
+                    href={project.githubUrl}
+                  >
+                    <GitPullRequestIcon size={16} />
+                  </a>
+                )}
+              </div>
             </div>
 
             <motion.div
