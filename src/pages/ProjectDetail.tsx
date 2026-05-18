@@ -6,7 +6,6 @@ import { useNavigate } from 'react-router-dom';
 import { ContextualStack } from '@/components/StackIcon';
 import { useTranslation } from 'react-i18next';
 import TabbedCodeViewer from '@/components/CodeEditor';
-import { div } from 'framer-motion/client';
 
 export default function ProjectDetail({ slug }: { slug?: string }) {
   const { t } = useTranslation();
@@ -170,10 +169,10 @@ export default function ProjectDetail({ slug }: { slug?: string }) {
             initial={{ opacity: 0, y: 40 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.2, duration: 0.8 }}
-            className="mt-20 overflow-hidden rounded-[2.5rem] border border-zinc-100 shadow-[0_40px_100px_-20px_rgba(0,0,0,0.1)]"
+            className="sho mt-20 overflow-hidden rounded-[2.5rem] border border-zinc-100"
           >
             <img
-              src="/image/image.jpg"
+              src={project.cover_img ?? project.cover_img ?? '/image/image.jpg'}
               alt={project.title}
               className="h-auto w-full object-cover"
             />
@@ -189,7 +188,7 @@ export default function ProjectDetail({ slug }: { slug?: string }) {
               </h2>
               <div className="mb-10 h-px w-full bg-zinc-100" />
               <div className="prose prose-zinc prose-lg mb-12 max-w-none">
-                <p className="text-lg leading-[1.8] text-zinc-600">
+                <p className="text-lg leading-[1.8] whitespace-pre-wrap text-zinc-600">
                   {section.content}
                 </p>
 
@@ -211,7 +210,7 @@ export default function ProjectDetail({ slug }: { slug?: string }) {
                           className="flex items-start gap-3"
                         >
                           {/* Subtle minimal dot layout that preserves the clean font alignment */}
-                          <span className="mt-2.5 size-1.5 shrink-0 rounded-full bg-zinc-300" />
+
                           <span className="text-zinc-600">{item}</span>
                         </li>
                       ))}
@@ -223,7 +222,7 @@ export default function ProjectDetail({ slug }: { slug?: string }) {
               {/* Showcase Section Design Images Structured Layout */}
               {section.images && section.images.length > 0 && (
                 <>
-                  <h3 className="mb-10 text-lg font-bold tracking-tight">
+                  <h3 className="text-base font-bold tracking-tight text-zinc-900">
                     Screenshots
                   </h3>
                   <div
@@ -240,10 +239,10 @@ export default function ProjectDetail({ slug }: { slug?: string }) {
                           />
                           {/* Design Card Context Metadata */}
                           <div className="p-2">
-                            <h4 className="text-sm font-semibold tracking-tight text-zinc-900">
+                            <h4 className="text-md font-semibold tracking-tight text-zinc-900">
                               {imageItem.title}
                             </h4>
-                            <p className="text-xs leading-relaxed text-zinc-500">
+                            <p className="text-sm leading-relaxed text-zinc-500">
                               {imageItem.content}
                             </p>
                           </div>
@@ -256,7 +255,8 @@ export default function ProjectDetail({ slug }: { slug?: string }) {
 
               {/* Stats View Hook Context inside Overview Block */}
               {section.id === 'overview' && (
-                <div className="mt-12 grid grid-cols-3 gap-8 border-t border-zinc-100 pt-12">
+                <div className="mt-12 grid grid-cols-1 gap-8 border-t border-zinc-100 pt-12 md:grid-cols-3">
+                  {' '}
                   {project.stats.map((stat) => (
                     <div key={stat.label}>
                       <p className="text-3xl font-bold text-zinc-900">

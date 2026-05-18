@@ -29,6 +29,11 @@ export const ProjectCard = ({
     >
       {/* Mobile Version (Unchanged) */}
       <div className="flex items-center gap-4 rounded-[2rem] border border-zinc-100 bg-zinc-50 p-6 transition-all hover:bg-white min-[650px]:hidden">
+        <img
+          className="size-12 rounded-md"
+          src={project.logo_img ?? '/image/image.jpg'}
+          alt=""
+        />
         <div className="flex flex-col justify-center">
           <h3 className="font-display text-base font-extrabold tracking-tight text-black">
             {project.title}
@@ -51,7 +56,7 @@ export const ProjectCard = ({
         transition={{ duration: 0.4, ease: [0.23, 1, 0.32, 1] }}
         className="relative z-20 hidden aspect-square cursor-pointer flex-col items-center justify-center overflow-hidden rounded-[3rem] border border-zinc-100 bg-cover shadow-sm hover:shadow-md min-[650px]:flex"
         style={{
-          backgroundImage: `url('/image/image.jpg')`,
+          backgroundImage: `url(${project.cover_img ?? project.cover_img ?? '/image/image.jpg'})`,
           backgroundSize: 'cover',
           backgroundPosition: 'center',
         }}

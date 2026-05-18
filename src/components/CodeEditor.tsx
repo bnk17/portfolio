@@ -104,7 +104,7 @@ export default function TabbedCodeViewer({ t, files }: TabbedCodeViewerProps) {
       {currentFile.explanation && (
         <div className="flex gap-3 rounded-xl border border-zinc-100 bg-zinc-50 p-4 text-zinc-950">
           <Terminal className="mt-0.5 size-4 shrink-0 text-zinc-400" />
-          <p className="text-xs leading-relaxed italic sm:text-sm">
+          <p className="text-xs leading-relaxed whitespace-pre-wrap italic sm:text-sm">
             {currentFile.explanation}
           </p>
         </div>
