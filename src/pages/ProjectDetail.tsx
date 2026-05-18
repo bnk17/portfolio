@@ -6,6 +6,7 @@ import { useNavigate } from 'react-router-dom';
 import { ContextualStack } from '@/components/StackIcon';
 import { useTranslation } from 'react-i18next';
 import TabbedCodeViewer from '@/components/CodeEditor';
+import { OptimizedImage } from '@/components/ui/OptimizedImage';
 
 function ImageModal({
 
@@ -46,6 +47,7 @@ function ImageModal({
           src={src}
           alt={title}
           onClick={() => setIsZoomed(!isZoomed)}
+          decoding="async"
           className={`block h-auto max-h-[90vh] w-auto max-w-full object-contain transition-transform duration-300 ${
             isZoomed ? 'scale-150 cursor-zoom-out' : 'cursor-zoom-in'
           }`}
@@ -252,10 +254,11 @@ export default function ProjectDetail({ slug }: { slug?: string }) {
             transition={{ delay: 0.2, duration: 0.8 }}
             className="sho mt-20 overflow-hidden rounded-[2.5rem] border border-zinc-100"
           >
-            <img
+            <OptimizedImage
               src={project.cover_img ?? project.cover_img ?? '/image/image.jpg'}
               alt={project.title}
-              className="h-auto w-full object-cover"
+              containerClassName="w-full"
+              className="h-auto w-full"
             />
           </motion.div>
         </header>
@@ -320,11 +323,10 @@ export default function ProjectDetail({ slug }: { slug?: string }) {
                             })
                           }
                         >
-                          <img
+                          <OptimizedImage
                             src={imageItem.src}
                             alt={imageItem.title}
-                            className="h-auto w-full object-cover transition-transform duration-500 group-hover:scale-[1.02]"
-                            loading="lazy"
+                            className="h-auto w-full transition-transform duration-500 group-hover:scale-[1.02]"
                           />
                           {/* Design Card Context Metadata */}
                           <div className="p-2">
