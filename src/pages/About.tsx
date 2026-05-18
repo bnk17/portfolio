@@ -4,6 +4,7 @@ import { useTranslation } from 'react-i18next';
 import { Mail, ArrowUpRight, Link, FileText } from 'lucide-react';
 import { ContextualStack } from '@/components/StackIcon';
 import { Button } from '@/components/ui/Button';
+import { PdfModal } from '@/components/ui/PdfModal';
 
 interface BioSegment {
   text: string;
@@ -13,20 +14,12 @@ interface BioSegment {
   video?: string;
 }
 
-const handleDownload = (filePath: string) => {
-  const link = document.createElement('a');
-  link.href = filePath;
-  link.setAttribute('download', filePath.split('/').pop() || 'resume.pdf');
-  document.body.appendChild(link);
-  link.click();
-  document.body.removeChild(link);
-};
-
 export default function About() {
   const { t } = useTranslation();
   const [hoveredImage, setHoveredImage] = useState<string | null>(null);
   const [hoveredVideo, setHoveredVideo] = useState<string | null>(null);
   const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
+  const [isPdfOpen, setIsPdfOpen] = useState(false);
 
   const stackList = t('about.currentStack.stack_sections', {
     returnObjects: true,
@@ -107,10 +100,7 @@ export default function About() {
               transition={{ delay: 0.3 }}
               className="mt-10"
             >
-              <Button
-                variant="primary"
-                onClick={() => handleDownload(t('about.resume.downloadPath'))}
-              >
+              <Button variant="primary" onClick={() => setIsPdfOpen(true)}>
                 <FileText className="size-4" />
                 {t('about.resume.sectionTitle')}
                 <ArrowUpRight className="size-3.5 opacity-50 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
@@ -206,6 +196,13 @@ export default function About() {
           </div>
         </section>
       </main>
+
+      <PdfModal
+        isOpen={isPdfOpen}
+        onClose={() => setIsPdfOpen(false)}
+        pdfUrl={t('about.resume.downloadPath')}
+        title={t('about.resume.sectionTitle')}
+      />
     </div>
   );
 }
