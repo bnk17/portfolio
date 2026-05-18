@@ -64,7 +64,6 @@ export const useGetProjects = (): ProjectDetail[] => {
         role: t('projects.petitpals.role'),
         cover_img: '/image/petipals-cover.png',
         logo_img: '/image/petipals-logo.png',
-        githubUrl: 'https://github.com/yourusername/petitpals',
         liveUrl: 'https://petitpals.app',
         techStack: t('projects.petitpals.tools', {
           returnObjects: true,
@@ -218,9 +217,8 @@ export const useGetProjects = (): ProjectDetail[] => {
         role: t('projects.zod_schema_visualizer.role'),
         cover_img: '/image/zod/zod-cover.jpeg',
         logo_img: '/image/zod/zod-cover.jpeg',
-
         liveUrl: 'https://zod-visualizer.vercel.app',
-        githubUrl: 'https://github.com/yourusername/zod-visualizer',
+        githubUrl: 'https://github.com/bnk17/zod-schema-visualizer',
         techStack: t('projects.zod_schema_visualizer.tools', {
           returnObjects: true,
         }) as any[],
