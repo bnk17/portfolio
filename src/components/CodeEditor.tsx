@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import { Check, Copy, Terminal, FileCode } from 'lucide-react';
 import { TFunction } from 'i18next';
+import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
+import { vscDarkPlus } from 'react-syntax-highlighter/dist/esm/styles/prism';
 
 interface CodeFile {
   tabName: string;
@@ -27,8 +29,8 @@ export default function TabbedCodeViewer({ t, files }: TabbedCodeViewerProps) {
       await navigator.clipboard.writeText(currentFile.code);
       setCopied(true);
       setTimeout(() => setCopied(false), 2000);
-    } catch (err) {
-      console.error('Failed to copy text: ', err);
+    } catch {
+      // Failed to copy
     }
   };
 
@@ -92,11 +94,26 @@ export default function TabbedCodeViewer({ t, files }: TabbedCodeViewerProps) {
         </div>
 
         {/* Code Canvas View area */}
-        <div className="relative max-h-150 overflow-auto bg-zinc-950 p-5 font-mono text-[13px] leading-relaxed text-zinc-300 selection:bg-zinc-800">
-          {' '}
-          <pre className="whitespace-pre">
-            <code>{currentFile.code}</code>
-          </pre>
+        <div className="bg-zinc-950 selection:bg-zinc-800">
+          <SyntaxHighlighter
+            language={currentFile.language.toLowerCase()}
+            style={vscDarkPlus}
+            customStyle={{
+              margin: 0,
+              padding: '1.25rem',
+              fontSize: '13px',
+              lineHeight: '1.8',
+              backgroundColor: 'transparent',
+              maxHeight: '600px',
+            }}
+            codeTagProps={{
+              style: {
+                fontFamily: 'inherit',
+              },
+            }}
+          >
+            {currentFile.code}
+          </SyntaxHighlighter>
         </div>
       </div>
 
