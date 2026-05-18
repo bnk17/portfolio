@@ -5,6 +5,8 @@ import { ArrowLeft } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import { ContextualStack } from '@/components/StackIcon';
 import { useTranslation } from 'react-i18next';
+import TabbedCodeViewer from '@/components/CodeEditor';
+import { div } from 'framer-motion/client';
 
 export default function ProjectDetail({ slug }: { slug?: string }) {
   const { t } = useTranslation();
@@ -108,8 +110,6 @@ export default function ProjectDetail({ slug }: { slug?: string }) {
                       : 'text-zinc-400 hover:text-zinc-600'
                   }`}
                 >
-                  {/* Visual indicator for active section */}
-
                   {section.label}
                 </button>
               ))}
@@ -131,30 +131,27 @@ export default function ProjectDetail({ slug }: { slug?: string }) {
           </button>
         </div>
 
-        {/* Header - Perfect 4xl width */}
+        {/* Header */}
         <header className="pt-16 pb-20 text-center">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            className="flex w-full flex-col items-center space-y-6" /* Added w-full to ensure centering works correctly */
+            className="flex w-full flex-col items-center space-y-6"
           >
             <h1 className="text-5xl leading-[1.1] font-bold tracking-tight text-zinc-900">
               {project.title}
             </h1>
 
-            {/* Added mx-auto to center the paragraph within the header */}
             <p className="mx-auto max-w-2xl text-xl leading-relaxed text-zinc-500">
               {project.subtitle}
             </p>
 
-            {/* Added justify-center to the metadata flex container */}
             <div className="flex w-full items-center justify-center gap-4 text-center text-sm font-medium text-zinc-400">
               <span>{project.year}</span>
               <span className="h-1 w-1 rounded-full bg-zinc-300" />
               <span className="italic">{project.role}</span>
             </div>
 
-            {/* Added justify-center and w-full to the tech stack flex container */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
@@ -183,7 +180,7 @@ export default function ProjectDetail({ slug }: { slug?: string }) {
           </motion.div>
         </header>
 
-        {/* Main Content - Perfect 4xl width, identical to Header */}
+        {/* Main Content */}
         <main className="space-y-40 pb-40">
           {project.sections.map((section) => (
             <section key={section.id} id={section.id} className="scroll-mt-40">
@@ -191,13 +188,73 @@ export default function ProjectDetail({ slug }: { slug?: string }) {
                 {section.title}
               </h2>
               <div className="mb-10 h-px w-full bg-zinc-100" />
-              <div className="prose prose-zinc prose-lg max-w-none">
+              <div className="prose prose-zinc prose-lg mb-12 max-w-none">
                 <p className="text-lg leading-[1.8] text-zinc-600">
                   {section.content}
                 </p>
+
+                {/* Structural List Container */}
+                {section.list && section.list.length > 0 && (
+                  <div className="mt-10 space-y-4">
+                    {/* List Subheading Title - Upgraded typography to fit naturally into the text flow */}
+                    {section.listTitle && (
+                      <h3 className="text-base font-bold tracking-tight text-zinc-900">
+                        {section.listTitle}
+                      </h3>
+                    )}
+
+                    {/* Bullet Items Array Map */}
+                    <ul className="list-none space-y-3.5 text-base leading-[1.8] text-zinc-600">
+                      {section.list.map((item, index) => (
+                        <li
+                          key={`${section.id}-list-item-${index}`}
+                          className="flex items-start gap-3"
+                        >
+                          {/* Subtle minimal dot layout that preserves the clean font alignment */}
+                          <span className="mt-2.5 size-1.5 shrink-0 rounded-full bg-zinc-300" />
+                          <span className="text-zinc-600">{item}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                )}
               </div>
 
-              {/* Stats / Code Snippets will now be perfectly aligned within the 4xl container */}
+              {/* Showcase Section Design Images Structured Layout */}
+              {section.images && section.images.length > 0 && (
+                <>
+                  <h3 className="mb-10 text-lg font-bold tracking-tight">
+                    Screenshots
+                  </h3>
+                  <div
+                    className={`mt-6 grid w-full grid-cols-1 gap-8 md:grid-cols-2`}
+                  >
+                    {section.images.map((imageItem, i) => (
+                      <div key={imageItem.src + i} className="group space-y-3">
+                        <div className="overflow-hidden rounded-2xl border border-zinc-100 bg-zinc-50 transition-all duration-300">
+                          <img
+                            src={imageItem.src}
+                            alt={imageItem.title}
+                            className="h-auto w-full object-cover"
+                            loading="lazy"
+                          />
+                          {/* Design Card Context Metadata */}
+                          <div className="p-2">
+                            <h4 className="text-sm font-semibold tracking-tight text-zinc-900">
+                              {imageItem.title}
+                            </h4>
+                            <p className="text-xs leading-relaxed text-zinc-500">
+                              {imageItem.content}
+                            </p>
+                          </div>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </>
+              )}
+
+              {/* Stats View Hook Context inside Overview Block */}
               {section.id === 'overview' && (
                 <div className="mt-12 grid grid-cols-3 gap-8 border-t border-zinc-100 pt-12">
                   {project.stats.map((stat) => (
@@ -205,11 +262,18 @@ export default function ProjectDetail({ slug }: { slug?: string }) {
                       <p className="text-3xl font-bold text-zinc-900">
                         {stat.value}
                       </p>
-                      <p className="text-[11px] font-bold tracking-widest text-zinc-400 uppercase">
+                      <p className="mt-1 text-[11px] font-bold tracking-widest text-zinc-400 uppercase">
                         {stat.label}
                       </p>
                     </div>
                   ))}
+                </div>
+              )}
+
+              {/* Render TabbedCodeViewer if a code snippet array exists */}
+              {section.codeSnippet && section.codeSnippet.length > 0 && (
+                <div className="mt-12 w-full">
+                  <TabbedCodeViewer t={t} files={section.codeSnippet} />
                 </div>
               )}
             </section>
