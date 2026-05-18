@@ -1,11 +1,58 @@
 import { AnimatePresence, motion } from 'framer-motion';
 import { useEffect, useState } from 'react';
 import { useGetProjects } from '../data/projects';
-import { ArrowLeft } from 'lucide-react';
+import { ArrowLeft, X } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import { ContextualStack } from '@/components/StackIcon';
 import { useTranslation } from 'react-i18next';
 import TabbedCodeViewer from '@/components/CodeEditor';
+
+function ImageModal({
+  src,
+  title,
+  onClose,
+}: {
+  src: string;
+  title: string;
+  onClose: () => void;
+}) {
+  const [isZoomed, setIsZoomed] = useState(false);
+
+  return (
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      className="fixed inset-0 z-[200] flex items-center justify-center bg-black/90 backdrop-blur-md p-4 cursor-pointer"
+      onClick={onClose}
+    >
+      <button
+        onClick={onClose}
+        className="absolute top-6 right-6 z-50 rounded-full bg-white/10 p-2 text-white/70 transition-colors hover:bg-white/20 hover:text-white"
+        aria-label="Close modal"
+      >
+        <X size={24} />
+      </button>
+
+      <motion.div
+        initial={{ scale: 0.9, opacity: 0 }}
+        animate={{ scale: 1, opacity: 1 }}
+        exit={{ scale: 0.9, opacity: 0 }}
+        className="relative max-h-full max-w-full overflow-hidden rounded-lg shadow-2xl"
+        onClick={(e) => e.stopPropagation()}
+      >
+        <img
+          src={src}
+          alt={title}
+          onClick={() => setIsZoomed(!isZoomed)}
+          className={`block h-auto max-h-[90vh] w-auto max-w-full object-contain transition-transform duration-300 ${
+            isZoomed ? 'scale-150 cursor-zoom-out' : 'cursor-zoom-in'
+          }`}
+        />
+      </motion.div>
+    </motion.div>
+  );
+}
 
 export default function ProjectDetail({ slug }: { slug?: string }) {
   const { t } = useTranslation();
@@ -16,10 +63,25 @@ export default function ProjectDetail({ slug }: { slug?: string }) {
 
   const [activeSection, setActiveSection] = useState('overview');
   const [showMenu, setShowMenu] = useState(false);
+  const [selectedImage, setSelectedImage] = useState<{
+    src: string;
+    title: string;
+  } | null>(null);
 
   // 2. Setup dynamic sections for the scroll observer
   const SECTIONS =
     project?.sections.map((s) => ({ id: s.id, label: s.title })) || [];
+
+  useEffect(() => {
+    if (selectedImage) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = 'unset';
+    }
+    return () => {
+      document.body.style.overflow = 'unset';
+    };
+  }, [selectedImage]);
 
   useEffect(() => {
     if (!project) return;
@@ -230,11 +292,19 @@ export default function ProjectDetail({ slug }: { slug?: string }) {
                   >
                     {section.images.map((imageItem, i) => (
                       <div key={imageItem.src + i} className="group space-y-3">
-                        <div className="overflow-hidden rounded-2xl border border-zinc-100 bg-zinc-50 transition-all duration-300">
+                        <div
+                          className="cursor-zoom-in overflow-hidden rounded-2xl border border-zinc-100 bg-zinc-50 transition-all duration-300"
+                          onClick={() =>
+                            setSelectedImage({
+                              src: imageItem.src,
+                              title: imageItem.title,
+                            })
+                          }
+                        >
                           <img
                             src={imageItem.src}
                             alt={imageItem.title}
-                            className="h-auto w-full object-cover"
+                            className="h-auto w-full object-cover transition-transform duration-500 group-hover:scale-[1.02]"
                             loading="lazy"
                           />
                           {/* Design Card Context Metadata */}
@@ -280,6 +350,17 @@ export default function ProjectDetail({ slug }: { slug?: string }) {
           ))}
         </main>
       </div>
+
+      {/* Image Modal */}
+      <AnimatePresence>
+        {selectedImage && (
+          <ImageModal
+            src={selectedImage.src}
+            title={selectedImage.title}
+            onClose={() => setSelectedImage(null)}
+          />
+        )}
+      </AnimatePresence>
     </div>
   );
 }
