@@ -216,6 +216,9 @@ export const useGetProjects = (): ProjectDetail[] => {
         subtitle: t('projects.zod_schema_visualizer.subtitle'),
         year: '2024',
         role: t('projects.zod_schema_visualizer.role'),
+        cover_img: '/image/zod/zod-cover.jpeg',
+        logo_img: '/image/zod/zod-cover.jpeg',
+
         liveUrl: 'https://zod-visualizer.vercel.app',
         githubUrl: 'https://github.com/yourusername/zod-visualizer',
         techStack: t('projects.zod_schema_visualizer.tools', {
@@ -223,22 +226,24 @@ export const useGetProjects = (): ProjectDetail[] => {
         }) as any[],
         stats: [
           {
-            label: t('projects.zod_schema_visualizer.stats.reach_label'),
-            value: 'Recursive',
-            description: t('projects.zod_schema_visualizer.stats.reach_desc'),
-          },
-          {
-            label: t('projects.zod_schema_visualizer.stats.onboarding_label'),
-            value: '<10ms',
+            label: t('projects.zod_schema_visualizer.stats.generation.label'),
+            value: '< 1s',
             description: t(
-              'projects.zod_schema_visualizer.stats.onboarding_desc'
+              'projects.zod_schema_visualizer.stats.generation.desc'
             ),
           },
           {
-            label: t('projects.zod_schema_visualizer.stats.conversion_label'),
+            label: t('projects.zod_schema_visualizer.stats.type_safety.label'),
             value: '100%',
             description: t(
-              'projects.zod_schema_visualizer.stats.conversion_desc'
+              'projects.zod_schema_visualizer.stats.type_safety.desc'
+            ),
+          },
+          {
+            label: t('projects.zod_schema_visualizer.stats.render_perf.label'),
+            value: '60fps',
+            description: t(
+              'projects.zod_schema_visualizer.stats.render_perf.desc'
             ),
           },
         ],
@@ -256,6 +261,12 @@ export const useGetProjects = (): ProjectDetail[] => {
             content: t(
               'projects.zod_schema_visualizer.sections.problem_content'
             ),
+            listTitle: t(
+              'projects.zod_schema_visualizer.sections.problem_list_title'
+            ),
+            list: t('projects.zod_schema_visualizer.sections.problem_list', {
+              returnObjects: true,
+            }) as string[],
           },
           {
             id: 'solution',
@@ -263,6 +274,41 @@ export const useGetProjects = (): ProjectDetail[] => {
             content: t(
               'projects.zod_schema_visualizer.sections.solution_content'
             ),
+            listTitle: t(
+              'projects.zod_schema_visualizer.sections.solution_list_title'
+            ),
+            list: t('projects.zod_schema_visualizer.sections.solution_list', {
+              returnObjects: true,
+            }) as string[],
+            images: [
+              {
+                src: '/image/zod/zod-view.png',
+                title: t(
+                  'projects.zod_schema_visualizer.sections.screenshots.items.0.title'
+                ),
+                content: t(
+                  'projects.zod_schema_visualizer.sections.screenshots.items.0.content'
+                ),
+              },
+              {
+                src: '/image/zod/zod-form.png',
+                title: t(
+                  'projects.zod_schema_visualizer.sections.screenshots.items.1.title'
+                ),
+                content: t(
+                  'projects.zod_schema_visualizer.sections.screenshots.items.1.content'
+                ),
+              },
+              {
+                src: '/image/zod/zod-ai.png',
+                title: t(
+                  'projects.zod_schema_visualizer.sections.screenshots.items.2.title'
+                ),
+                content: t(
+                  'projects.zod_schema_visualizer.sections.screenshots.items.2.content'
+                ),
+              },
+            ],
           },
           {
             id: 'engineering',
@@ -273,6 +319,33 @@ export const useGetProjects = (): ProjectDetail[] => {
               'projects.zod_schema_visualizer.sections.engineering_content'
             ),
             codeSnippet: [
+              {
+                tabName: 'flush-buffer.ts',
+                language: 'typescript',
+                code: `// Throttled Token Buffer Hook
+export function useFlushBuffer(callback: (tokens: string) => void, delay = 80) {
+  const queue = useRef<string[]>([]);
+  const timer = useRef<NodeJS.Timeout | null>(null);
+
+  return useCallback((token: string) => {
+    queue.current.push(token);
+    if (timer.current) return;
+
+    timer.current = setInterval(() => {
+      if (queue.current.length === 0) {
+        clearInterval(timer.current!);
+        timer.current = null;
+        return;
+      }
+      const chunk = queue.current.splice(0, 5).join('');
+      callback(chunk);
+    }, delay);
+  }, [callback, delay]);
+}`,
+                explanation: t(
+                  'projects.zod_schema_visualizer.sections.ux_dom_engine_explanation'
+                ),
+              },
               {
                 tabName: 'zod-visitor.ts',
                 language: 'typescript',
@@ -290,24 +363,8 @@ export function parseZodSchema(schema: z.ZodTypeAny): FormComponentRegistry {
   return [];
 };`,
                 explanation: t(
-                  'projects.zod_schema_visualizer.sections.engineering_explanation'
+                  'projects.zod_schema_visualizer.sections.resilient_ui_explanation'
                 ),
-              },
-              {
-                tabName: 'sse-stream.ts',
-                language: 'typescript',
-                code: `// Server-Sent Events Token Broker
-export const useSchemaSynthesis = (prompt: string) => {
-  const eventSource = new EventSource(\\\`/api/synthesize?prompt=\\\${encodeURIComponent(prompt)}\\\`);
-  
-  eventSource.onmessage = (event) => {
-    const chunk = JSON.parse(event.data);
-    updateSchemaEditor(chunk.token);
-  };
-};`,
-                explanation: t(
-                  'projects.zod_schema_visualizer.sections.ai_content'
-                ), // Nested your Zod AI generation text here
               },
             ],
           },

@@ -101,38 +101,85 @@
       }
     },
     "zod_schema_visualizer": {
-      "title": "Zod Schema Visualizer & Form Generator",
-      "subtitle": "A developer-centric playground for transforming Zod schemas into dynamic forms and TypeScript definitions with AI-assisted modeling.",
-      "role": "Architect & Lead Engineer",
+      "title": "Zod Schema Visualizer & Generator",
+      "subtitle": "An AI-powered developer tool for bridging the gap between type-safe schemas and dynamic UI generation.",
+      "role": "Lead Architect & Full-Stack Engineer",
       "tools": [
-        { "name": "React", "slug": "react" },
+        { "name": "React 19", "slug": "react" },
         { "name": "TypeScript", "slug": "typescript" },
         { "name": "Zod", "slug": "zod" },
-        { "name": "Bun", "slug": "bunjs" },
-        { "name": "Tailwind", "slug": "tailwindcss" }
+        { "name": "Zustand", "slug": "zustand" },
+        { "name": "Tailwind", "slug": "tailwindcss" },
+        { "name": "Vercel Edge", "slug": "vercel" }
       ],
       "stats": {
-        "reach_label": "Schema Versatility",
-        "reach_desc": "Recursive support for deep Zod object shapes and complex validation primitives.",
-        "onboarding_label": "Iteration Velocity",
-        "onboarding_desc": "Instant conversion from raw schema text to interactive UI and TS types.",
-        "conversion_label": "Runtime Integrity",
-        "conversion_desc": "100% type-safe form state synchronized with Zods validation engine."
+        "generation": {
+          "label": "AI Generation Speed",
+          "value": "< 1s",
+          "desc": "Sub-second schema generation using Llama 3.3 via Groq."
+        },
+        "type_safety": {
+          "label": "Type Accuracy",
+          "value": "100%",
+          "desc": "Recursive AST-like traversal for accurate Zod-to-TS conversion."
+        },
+        "render_perf": {
+          "label": "UI Frame Rate",
+          "value": "60fps",
+          "desc": "Throttled token buffering to prevent React render saturation."
+        }
       },
       "sections": {
-        "overview_title": "Product Vision",
-        "overview_content": "The Zod Schema Visualizer solves the schema-to-UI disconnect by providing an interactive playground where developers can prototype data models in real-time. The project demonstrates how advanced TypeScript manipulation can bridge the gap between backend validation logic and frontend user experience, effectively serving as a live documentation and testing suite for API contracts and data structures.",
-        "architecture_title": "Systems Architecture",
-        "architecture_content": "Adopting a Feature-Driven Architecture, I decoupled the core Zod parsing engine from the React rendering layer. I implemented a recursive visitor pattern to traverse Zods internal definition tree, mapping schema metadata to a registry of dynamic UI components. This modular approach ensures that the complex orchestration logic remains testable and extensible, allowing for seamless support of new Zod primitives.",
-        "engineering_title": "Technical Rigor",
-        "engineering_content": "The primary challenge was managing the dynamic evaluation of user-provided code without sacrificing performance. I architected a high-performance evaluation bridge using a sandboxed execution context, optimized with useMemo to ensure sub-10ms UI updates. By utilizing uncontrolled input patterns for the schema editor and strict Error Boundaries for the preview, I maintained a fluid 60fps experience even during rapid schema modifications.",
-        "engineering_explanation": "Implementing a recursive Zod-to-UI mapper and a high-performance schema evaluation engine with sub-10ms UI latency.",
-        "ai_title": "AI-Driven Schema Synthesis",
-        "ai_content": "I integrated a streaming AI pipeline that enables users to describe data requirements in natural language. Leveraging Server-Sent Events (SSE) and an asynchronous token-processing stream, the system generates Zod schemas on-the-fly. This Schema-as-a-Prompt workflow significantly reduces the friction of defining complex models, allowing for rapid prototyping through conversational design.",
-        "tradeoffs_title": "Strategic Trade-offs",
-        "tradeoffs_content": "I chose Bun as the primary runtime to prioritize sub-second test execution and development velocity, intentionally trading broader Node.js compatibility for modern tooling performance. Additionally, I implemented a custom Shadow DOM isolation layer for the form preview; while increasing bundle complexity, it ensures complete style encapsulation, allowing the generated forms to remain visually consistent across diverse host environments.",
-        "impact_title": "Product Impact",
-        "impact_content": "By identifying manual form creation as a significant bottleneck in frontend development, I engineered a system that reduces boilerplate by approximately 70%. The project serves as a technical benchmark for type safety and rigorous engineering, utilizing a comprehensive testing suite (Vitest for unit/integration, Playwright for E2E) to ensure 100% reliability of the generated UI."
+        "overview_title": "Overview",
+        "overview_content": "The Zod Schema Visualizer is a technical demonstration of bridging the gap between backend validation schemas and frontend UI implementation. It allows developers to define complex data structures via Zod and instantly generate interactive, validated React forms. By integrating AI-driven schema generation, the tool transforms a vague prompt (e.g., 'a user profile with social links') into a robust, type-safe validation object and a corresponding functional sandbox.",
+
+        "problem_title": "The Problem",
+        "problem_content": "In modern full-stack development, maintaining synchronization between validation logic (Zod), TypeScript types, and UI forms is a frequent source of technical debt and bugs. Manually building accessible, validated forms for nested or conditional schemas is repetitive and error-prone. Furthermore, prototyping these structures often requires a local setup, slowing down the ideation phase for developers and architects trying to align on data contracts.",
+        "problem_list_title": "Key Architectural & UX Challenges:",
+        "problem_list": [
+          "🛑 Manual form-to-schema synchronization leading to validation drift.",
+          "🛑 High boilerplate overhead when implementing dynamic UI for complex Zod objects.",
+          "🛑 UI lag when rendering streaming text from LLMs into reactive React components."
+        ],
+
+        "solution_title": "The Solution",
+        "solution_content": "I engineered a dynamic playground that parses raw Zod expressions and maps them to a modular UI library. The application features a high-performance streaming engine that generates schemas from natural language, instantly providing a live-preview environment where developers can test validation rules, edge cases, and type generation in real-time.",
+        "solution_list_title": "Core Product Pillars:",
+        "solution_list": [
+          "✅ Real-time recursive schema parser with dynamic React component mapping.",
+          "✅ AI-assisted generation utilizing Groq Llama-3 (70B) for instant prototyping.",
+          "✅ Automated Zod-to-TypeScript type exporter for immediate DX utility."
+        ],
+
+        "screenshots": {
+          "title": "Screenshots",
+          "items": [
+            {
+              "src": "/image/schema-editor.png",
+              "title": "Real-time Schema Sandbox",
+              "content": "A high-density editor featuring syntax-aware Zod parsing and immediate visual feedback on schema validity."
+            },
+            {
+              "src": "/image/form-preview.png",
+              "title": "Dynamic Form Generation",
+              "content": "The core engine automatically mapping Zod primitives (String, Number, Enum, Date) to accessible and styled React inputs."
+            },
+            {
+              "src": "/image/type-panel.png",
+              "title": "TypeScript Type Export",
+              "content": "The recursive type generator panel, displaying the generated TypeScript interface derived from the active Zod schema."
+            }
+          ]
+        },
+
+        "engineering_title": "Engineering",
+        "engineering_content": "A primary engineering challenge was managing the UI performance during LLM token streaming. Naive integration causes React to re-render the entire tree on every character, leading to noticeable frame drops. I solved this by architecting a custom 'Flush Buffer' hook that throttles UI updates to 80ms intervals, ensuring smooth visual feedback while maintaining responsiveness. On the backend, I utilized Vercel Edge Functions to minimize cold starts and latency, implementing an in-memory rate-limiting strategy to protect the upstream AI provider. For the type generation, I implemented a recursive visitor pattern that traverses Zod's internal definition tree (AST-like), accurately mapping optionality, nested objects, and enum literals to their TypeScript equivalents.",
+        "engineering_explanation": "Utilizing Vercel Edge Runtime and Groq's low-latency streaming API to deliver schema prototypes in under 800ms.",
+        "ux_dom_engine_explanation": "Throttling LLM token updates via a dedicated buffer hook to prevent React render saturation, maintaining a consistent 60fps during schema generation.",
+        "resilient_ui_explanation": "Implementing a recursive visitor pattern to traverse Zod's internal 'def' tree, ensuring 100% accuracy in generated TypeScript interfaces, including nested structures and optional fields.",
+
+        "impact_title": "Impact",
+        "impact_content": "By automating the conversion from validation schema to functional UI, the visualizer reduces the 'time-to-sandbox' for new features from minutes to seconds. It serves as a high-fidelity communication tool for teams to align on data structures before a single line of production code is written. The project demonstrates a 'Resilient UI' architecture that remains performant under high-frequency state updates, showcasing senior-level proficiency in React performance optimization, TypeScript meta-programming, and modern AI integration patterns."
       }
     }
   },

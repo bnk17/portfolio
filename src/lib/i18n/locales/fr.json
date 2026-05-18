@@ -74,31 +74,85 @@
       }
     },
     "zod_schema_visualizer": {
-      "title": "Visualiseur de Schémas Zod & Générateur de Formulaires",
-      "subtitle": "Un playground axé développeur pour transformer les schémas Zod en formulaires dynamiques et en définitions TypeScript grâce à la modélisation assistée par IA.",
-      "role": "Architecte & Ingénieur Principal",
+      "title": "Zod Schema Visualizer & Generator",
+      "subtitle": "Un outil de développement propulsé par l'IA pour lier harmonieusement schémas de validation typés et génération dynamique d'interfaces.",
+      "role": "Architecte Principal & Ingénieur Full-Stack",
+      "tools": [
+        { "name": "React 19", "slug": "react" },
+        { "name": "TypeScript", "slug": "typescript" },
+        { "name": "Zod", "slug": "zod" },
+        { "name": "Zustand", "slug": "zustand" },
+        { "name": "Tailwind", "slug": "tailwindcss" },
+        { "name": "Vercel Edge", "slug": "vercel" }
+      ],
       "stats": {
-        "reach_label": "Polyvalence des Schémas",
-        "reach_desc": "Support récursif des structures d'objets Zod complexes et des primitives de validation imbriquées.",
-        "onboarding_label": "Vitesse d'Itération",
-        "onboarding_desc": "Conversion instantanée du code brut d'un schéma en interface interactive et types TS.",
-        "conversion_label": "Intégrité au Runtime",
-        "conversion_desc": "État du formulaire 100% typé et synchronisé en temps réel avec le moteur de validation de Zod."
+        "generation": {
+          "label": "Vitesse de génération IA",
+          "value": "< 1s",
+          "desc": "Génération instantanée de schémas en moins d'une seconde via Llama 3.3 sur Groq."
+        },
+        "type_safety": {
+          "label": "Précision du Typage",
+          "value": "100%",
+          "desc": "Parcours récursif de type AST pour une conversion Zod-vers-TypeScript d'une fidélité absolue."
+        },
+        "render_perf": {
+          "label": "Fluidité de l'UI",
+          "value": "60fps",
+          "desc": "Mise en tampon (buffering) régulée des jetons pour éviter la saturation des rendus React."
+        }
       },
       "sections": {
-        "overview_title": "Vision Produit",
-        "overview_content": "Le Visualiseur de Schémas Zod résout la déconnexion entre le schéma et l'interface utilisateur en fournissant un playground interactif où les développeurs peuvent prototyper des modèles de données en temps réel. Le projet démontre comment la manipulation avancée de TypeScript peut combler le fossé entre la logique de validation back-end et l'expérience utilisateur front-end, faisant office de documentation vivante et de suite de tests pour les contrats d'API et les structures de données.",
-        "architecture_title": "Architecture Système",
-        "architecture_content": "En adoptant une architecture orientée fonctionnalités (Feature-Driven Architecture), j'ai découplé le moteur principal de parsing Zod de la couche de rendu React. J'ai implémenté un pattern visiteur (visitor pattern) récursif pour parcourir l'arbre de définition interne de Zod, associant les métadonnées du schéma à un registre de composants UI dynamiques. Cette approche modulaire garantit que la logique d'orchestration complexe reste testable et évolutive, permettant une intégration fluide des nouvelles primitives Zod.",
-        "engineering_title": "Rigueur Technique",
-        "engineering_content": "Le principal défi consistait à gérer l'évaluation dynamique du code fourni par l'utilisateur sans sacrifier les performances. J'ai architecturé une passerelle d'évaluation haute performance utilisant un contexte d'exécution sandboxé, optimisé avec useMemo pour garantir des mises à jour de l'interface en moins de 10 ms. En utilisant des patterns d'onglets de saisie non contrôlés (uncontrolled inputs) pour l'éditeur de schéma et des barrières d'erreur (Error Boundaries) strictes pour la prévisualisation, j'ai maintenu une expérience fluide à 60 images par seconde, même lors de modifications rapides.",
-        "engineering_explanation": "Implémentation d'un outil de mapping récursif Zod-vers-UI et d'un moteur d'évaluation de schémas haute performance avec une latence d'affichage inférieure à 10 ms.",
-        "ai_title": "Synthèse de Schémas par l'IA",
-        "ai_content": "J'ai intégré un pipeline d'IA en streaming qui permet aux utilisateurs de décrire leurs besoins en données en langage naturel. En exploitant les événements envoyés par le serveur (SSE) et un flux de traitement asynchrone des tokens, le système génère des schémas Zod à la volée. Ce workflow de 'Schéma-en-tant-que-Prompt' réduit considérablement la friction liée à la définition de modèles complexes, permettant un prototypage rapide par le biais d'une conception conversationnelle.",
-        "tradeoffs_title": "Arbitrages Stratégiques",
-        "tradeoffs_content": "J'ai choisi Bun comme runtime principal pour privilégier l'exécution des tests en moins d'une seconde et la vitesse de développement, acceptant ainsi de troquer une compatibilité Node.js plus large contre les performances des outils modernes. De plus, j'ai implémenté une couche d'isolation Shadow DOM personnalisée pour la prévisualisation des formulaires ; bien qu'elle augmente la complexité du bundle, elle garantit une encapsulation complète des styles, permettant aux formulaires générés de rester visuellement cohérents à travers divers environnements d'accueil.",
-        "impact_title": "Impact Produit",
-        "impact_content": "En identifiant la création manuelle de formulaires comme un goulot d'étranglement majeur dans le développement front-end, j'ai conçu un système qui réduit le code boilerplate d'environ 70 %. Le projet sert de référence technique en matière de sécurité des types et d'ingénierie rigoureuse, s'appuyant sur une suite de tests complète (Vitest pour les tests unitaires/intégration, Playwright pour le E2E) afin de garantir une fiabilité totale de l'interface utilisateur générée."
+        "overview_title": "Vue d'ensemble",
+        "overview_content": "Le Zod Schema Visualizer est une démonstration technique visant à unifier les schémas de validation backend et leur implémentation UI frontend. Il permet aux développeurs de définir des structures de données complexes via Zod et de générer instantanément des formulaires React interactifs et validés. En intégrant la génération de schémas par IA, l'outil transforme une simple description textuelle (ex: 'un profil utilisateur avec des liens sociaux') en un objet de validation robuste et typé, prêt à être testé dans un bac à sable fonctionnel.",
+
+        "problem_title": "La Problématique",
+        "problem_content": "Dans le développement full-stack moderne, maintenir la synchronisation entre la logique de validation (Zod), les types TypeScript et les formulaires de l'interface utilisateur est une source fréquente de dette technique et de bugs. Construire manuellement des formulaires accessibles et validés pour des schémas imbriqués ou conditionnels s'avère répétitif et propice aux erreurs. De plus, le prototypage de ces structures nécessite souvent un environnement local complet, ce qui ralentit les phases d'idéation lorsque développeurs et architectes tentent de s'accorder sur les contrats de données.",
+        "problem_list_title": "Défis techniques et UX majeurs :",
+        "problem_list": [
+          "🛑 Désynchronisation manuelle entre les formulaires et le schéma, entraînant des dérives de validation.",
+          "🛑 Surcharge importante de code standard (boilerplate) pour générer des UI dynamiques basées sur des objets Zod complexes.",
+          "🛑 Latence et saccades de l'interface lors de l'affichage en streaming des données textuelles de l'infra LLM dans des composants React réactifs."
+        ],
+
+        "solution_title": "La Solution",
+        "solution_content": "J'ai conçu un terrain de jeu (playground) dynamique capable de lire et d'analyser des expressions Zod brutes pour les associer à une bibliothèque modulaire de composants UI. L'application intègre un moteur de streaming haute performance qui génère des schémas à partir du langage naturel. Cela offre instantanément un environnement de prévisualisation en direct où les développeurs peuvent tester les règles de validation, les cas limites (edge cases) et la génération de types en temps réel.",
+        "solution_list_title": "Piliers fondamentaux du produit :",
+        "solution_list": [
+          "✅ Analyseur de schémas récursif en temps réel avec mise en correspondance dynamique de composants React.",
+          "✅ Prototypage assisté par IA s'appuyant sur Groq Llama-3 (70B) pour des conceptions ultra-rapides.",
+          "✅ Exportateur automatisé de types Zod vers TypeScript pour un gain immédiat en confort de développement (DX)."
+        ],
+
+        "screenshots": {
+          "title": "Captures d'écran",
+          "items": [
+            {
+              "src": "/image/schema-editor.png",
+              "title": "Bac à sable de schémas en temps réel",
+              "content": "Un éditeur haute densité doté d'une analyse syntaxique fine de Zod et d'un retour visuel immédiat sur la validité du schéma."
+            },
+            {
+              "src": "/image/form-preview.png",
+              "title": "Génération dynamique de formulaires",
+              "content": "Le moteur principal associant automatiquement les primitives Zod (String, Number, Enum, Date) à des champs de saisie React stylisés et accessibles."
+            },
+            {
+              "src": "/image/type-panel.png",
+              "title": "Export de types TypeScript",
+              "content": "Le panneau du générateur de types récursif, affichant l'interface TypeScript pure directement dérivée du schéma Zod actif."
+            }
+          ]
+        },
+
+        "engineering_title": "Ingénierie",
+        "engineering_content": "L'un des principaux défis d'ingénierie consistait à préserver les performances de l'interface utilisateur pendant le streaming des jetons (tokens) du LLM. Une intégration naïve pousse React à recalculer l'ensemble de l'arbre de composants à chaque caractère, provoquant des chutes de framerate visibles. J'ai résolu ce problème en orchestrant un hook personnalisé de 'tampon de vidage' (Flush Buffer) qui cadence les mises à jour de l'UI à des intervalles stricts de 80 ms, garantissant une animation visuelle fluide tout en maintenant la réactivité globale. Côté backend, j'ai exploité les Vercel Edge Functions pour réduire à néant les démarrages à froid (cold starts), couplées à une stratégie de limitation de débit (rate-limiting) en mémoire pour protéger l'API du fournisseur d'IA. Pour la génération de types, j'ai mis en œuvre un patron de conception Visiteur récursif qui parcourt l'arbre de définition interne de Zod (similaire à un AST), traduisant fidèlement les champs optionnels, les objets imbriqués et les littéraux d'énumérations en leurs équivalents TypeScript.",
+        "engineering_explanation": "Exploitation du runtime Edge de Vercel et de l'API de streaming ultra-basse latence de Groq pour délivrer des prototypes de schémas en moins de 800 ms.",
+        "ux_dom_engine_explanation": "Régulation des flux de jetons du LLM via un hook de mise en tampon dédié pour éviter la saturation des rendus React, maintenant un affichage constant à 60 fps pendant la génération.",
+        "resilient_ui_explanation": "Déploiement d'un pattern Visiteur récursif inspectant l'objet interne '_def' de Zod, assurant une correspondance à 100 % dans les interfaces TypeScript générées, y compris pour les structures profondément imbriquées.",
+
+        "impact_title": "Impact",
+        "impact_content": "En automatisant la conversion d'un schéma de validation en une interface utilisateur fonctionnelle, le visualiseur réduit le temps d'accès au bac à sable de quelques minutes à de simples secondes. Il s'impose comme un outil de communication de haute fidélité permettant aux équipes de s'aligner sur les contrats de données avant même d'écrire la moindre ligne de code de production. Ce projet valide une architecture 'Resilient UI' qui reste extrêmement performante sous un flux intensif de mises à jour d'état, illustrant une expertise avancée en optimisation de rendu React, en méta-programmation TypeScript et en intégration d'outils d'IA modernes."
       }
     }
   },
