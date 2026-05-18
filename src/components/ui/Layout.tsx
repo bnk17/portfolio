@@ -1,5 +1,4 @@
 import type { ReactNode } from 'react';
-import LanguageSwitcher from '../LanguageSwitcher';
 import { Navbar } from '../Navbar';
 
 export default function Layout({ children }: { children: ReactNode }) {
