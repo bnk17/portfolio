@@ -6,6 +6,8 @@ import { ContextualStack } from '@/components/StackIcon';
 import { Button } from '@/components/ui/Button';
 import { PdfModal } from '@/components/ui/PdfModal';
 
+import { OptimizedImage } from '@/components/ui/OptimizedImage';
+
 interface BioSegment {
   text: string;
   highlight?: 'ai' | 'link';
@@ -124,7 +126,7 @@ export default function About() {
                   className="hidden h-44 w-64 overflow-hidden rounded-2xl border border-white bg-zinc-100 shadow-[0_20px_50px_rgba(0,0,0,0.2)] md:block"
                 >
                   {hoveredImage && (
-                    <img
+                    <OptimizedImage
                       src={hoveredImage}
                       alt="Work preview"
                       className="h-full w-full object-cover"

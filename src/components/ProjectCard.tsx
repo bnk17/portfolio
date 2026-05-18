@@ -2,6 +2,7 @@ import { AnimatePresence, motion } from 'framer-motion';
 import { ArrowUpRight } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import { ProjectDetail } from '../data/projects';
+import { OptimizedImage } from './ui/OptimizedImage';
 
 interface ProjectCardProps {
   project: ProjectDetail;
@@ -29,10 +30,10 @@ export const ProjectCard = ({
     >
       {/* Mobile Version (Unchanged) */}
       <div className="flex items-center gap-4 rounded-[2rem] border border-zinc-100 bg-zinc-50 p-6 transition-all hover:bg-white min-[650px]:hidden">
-        <img
-          className="size-12 rounded-md"
+        <OptimizedImage
+          containerClassName="size-12 rounded-md"
           src={project.logo_img ?? '/image/image.jpg'}
-          alt=""
+          alt={project.title}
         />
         <div className="flex flex-col justify-center">
           <h3 className="font-display text-base font-extrabold tracking-tight text-black">
@@ -54,14 +55,13 @@ export const ProjectCard = ({
           scale: isHovered ? 1.02 : 1,
         }}
         transition={{ duration: 0.4, ease: [0.23, 1, 0.32, 1] }}
-        className="relative z-20 hidden aspect-square cursor-pointer flex-col items-center justify-center overflow-hidden rounded-[3rem] border border-zinc-100 bg-cover shadow-sm hover:shadow-md min-[650px]:flex"
-        style={{
-          backgroundImage: `url(${project.cover_img ?? project.cover_img ?? '/image/image.jpg'})`,
-          backgroundSize: 'cover',
-          backgroundPosition: 'center',
-        }}
+        className="relative z-20 hidden aspect-square cursor-pointer overflow-hidden rounded-[3rem] border border-zinc-100 bg-white shadow-sm hover:shadow-md min-[650px]:flex"
       >
-        <div className="relative flex h-full w-full items-center justify-center overflow-hidden p-8"></div>
+        <OptimizedImage
+          src={project.cover_img ?? '/image/image.jpg'}
+          alt={project.title}
+          containerClassName="absolute inset-0"
+        />
         <div className="absolute bottom-8 left-8 flex h-10 w-10 -translate-x-2 items-center justify-center rounded-full border border-zinc-50 bg-white opacity-0 shadow-lg transition-all duration-300 group-hover:translate-x-0 group-hover:opacity-100">
           <ArrowUpRight size={18} className="text-black" />
         </div>
