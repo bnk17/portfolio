@@ -42,6 +42,8 @@ export interface ProjectDetail {
   subtitle: string;
   year: string;
   role: string;
+  cover_img?: string;
+  logo_img?: string;
   liveUrl?: string;
   githubUrl?: string;
   techStack: any[];
@@ -60,6 +62,9 @@ export const useGetProjects = (): ProjectDetail[] => {
         subtitle: t('projects.petitpals.subtitle'),
         year: '2026',
         role: t('projects.petitpals.role'),
+        cover_img: '/image/petipals-cover.png',
+        logo_img: '/image/petipals-logo.png',
+        githubUrl: 'https://github.com/yourusername/petitpals',
         liveUrl: 'https://petitpals.app',
         techStack: t('projects.petitpals.tools', {
           returnObjects: true,
@@ -105,26 +110,9 @@ export const useGetProjects = (): ProjectDetail[] => {
             list: t('projects.petitpals.sections.solution_list', {
               returnObjects: true,
             }) as string[],
-            images: [
-              {
-                src: '/image/image.jpg',
-                title: 'Extension Portal view',
-                content:
-                  'The localized overlay injecting native product actions directly over foreign e-commerce DOM components.',
-              },
-              {
-                src: '/image/image.jpg',
-                title: 'Decoupled Parent Dashboard',
-                content:
-                  'A centralized space configured with modern UI patterns for editing wishlists and monitoring reservations.',
-              },
-              {
-                src: '/image/image.jpg',
-                title: 'Zero-Login Checkout Flow',
-                content:
-                  'A secure web path optimizing checkout speed for external gift-givers down to minimal click interactions.',
-              },
-            ],
+            images: t('projects.petitpals.sections.screenshots.items', {
+              returnObjects: true,
+            }) as ProjectImage[],
           },
           {
             id: 'engineering',

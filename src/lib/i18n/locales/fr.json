@@ -48,7 +48,7 @@
         "problem_content": "La fragmentation du e-commerce contraint les futurs parents à naviguer au sein d'écosystèmes fermés (walled gardens). Les listes traditionnelles verrouillent délibérément les utilisateurs dans leur catalogue propriétaire.",
         "problem_list_title": "Défis techniques et UX majeurs :",
         "problem_list": [
-          "Stratégies d'enfermement propriétaire des grands distributeurs (ex: Vertbaudet).",
+          "🔴 Stratégies d'enfermement propriétaire des grands distributeurs (ex: Vertbaudet).",
           "Dispersion des besoins forçant la gestion de 3 à 4 listes ou tableurs obsolètes.",
           "Parcours proches fastidieux provoquant des doublons par manque de synchronisation."
         ],
