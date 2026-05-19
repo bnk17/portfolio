@@ -23,7 +23,8 @@
     "current": "Je me concentre sur l'optimisation des performances et la transformation de logiques métier complexes en experience utilisateur simple.",
     "links": {
       "email": "Email",
-      "linkedin": "LinkedIn"
+      "linkedin": "LinkedIn",
+      "resume": "CV"
     },
     "footer": "© 2026 Boris N'Kuako — Product & AI Engineering"
   },
@@ -173,7 +174,7 @@
   "about": {
     "bio_segments": [
       {
-        "text": "Lors de mon passage chez Diffusely, j'ai piloté le développement de diverses fonctionnalités, notamment des outils d'IA générative tels que le "
+        "text": "Fort de 4 ans d'expérience, je me concentre sur la conception d'applications web performantes et scalables en alliant rigueur technique et forte culture produit. J'évolue avec aisance dans des environnements cross-fonctionnels, capitalisant sur le travail d'équipe pour résoudre des problématiques utilisateur complexes et bâtir des produits à forte valeur ajoutée.\n\nRécemment chez Diffusely, j'ai piloté le développement de diverses fonctionnalités clés, notamment des outils d'IA générative comme "
       },
       {
         "text": "Home Staging ",
@@ -181,27 +182,21 @@
         "video": "/assets/video/ai_hs.webm"
       },
       {
-        "text": " pour transformer des pièces sans effort, et le "
+        "text": " pour transformer une pièce sans effort, ou encore "
       },
       {
-        "text": "Coup de peinture ",
+        "text": " Wall Painting ",
         "highlight": "ai",
         "video": "/assets/video/wp.webm"
       },
       {
-        "text": " pour rafraîchir l'esthétique d'un intérieur"
+        "text": " pour en rafraîchir instantanément l'esthétique. "
       },
       {
-        "text": "—pour ne citer qu'elles."
+        "text": "En parallèle de ces chantiers techniques, j'ai mené des initiatives stratégiques telles que la refonte du tunnel d'inscription, qui a généré une hausse de 20 % des conversions, "
       },
       {
-        "text": " Parallèlement à ces développements, j'ai mené des initiatives comme la "
-      },
-      {
-        "text": "refonte du parcours d'inscription ayant boosté la conversion de 20%, et "
-      },
-      {
-        "text": "orchestré un pipeline de données via "
+        "text": "et orchestré une architecture de données s'appuyant sur "
       },
       {
         "text": "Segment et Mixpanel ",
@@ -209,13 +204,7 @@
         "url": "https://medium.diffuse.ly/segment-the-customer-data-platform-you-didnt-know-you-needed-5989b07c24ef"
       },
       {
-        "text": " afin de piloter les décisions produit par l'analyse comportementale. "
-      },
-      {
-        "text": "\n"
-      },
-      {
-        "text": "\nFort de 4 ans d'expérience, je me concentre sur la création d'applications optimisées et scalables, mêlant rigueur technique et sens du produit. J'apprécie le travail en équipe transverse pour simplifier des logiques métier complexes et concevoir des produits qui ont un impact réel sur l'utilisateur."
+        "text": " afin de guider les choix produit par l'analyse fine des comportements utilisateurs."
       }
     ],
     "resume": {

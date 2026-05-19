@@ -23,7 +23,8 @@
     "current": "Focusing on performance optimization and streamlining complex business logic into seamless user experiences.",
     "links": {
       "email": "Email",
-      "linkedin": "LinkedIn"
+      "linkedin": "LinkedIn",
+      "resume": "Resume"
     },
     "footer": "© 2026 Boris NKuako — Product & AI Engineering"
   },
@@ -200,7 +201,7 @@
   "about": {
     "bio_segments": [
       {
-        "text": "During my time at Diffusely, I spearheaded the development of various features, including generative AI tools such as "
+        "text": "With 4 years of experience, my focus remains on engineering high-performance, scalable web applications by bridging technical rigor with a deep product mindset. I thrive in cross-functional environments, leveraging collaborative teamwork to solve complex user problems and build products that deliver genuine value.\n\nMost recently at Diffusely, I spearheaded the development of various features, including generative AI tools such as "
       },
       {
         "text": "Home Staging ",
@@ -216,19 +217,16 @@
         "video": "/assets/video/wp.webm"
       },
       {
-        "text": " to refresh room aesthetics"
+        "text": " to refresh room aesthetics. "
       },
       {
-        "text": "—to name just a few."
+        "text": "While engineering these systems, I led initiatives like a "
       },
       {
-        "text": " While engineering these features, I led initiatives like a "
+        "text": "registration flow redesign that boosted conversion by 20% "
       },
       {
-        "text": "registration flow redesign that boosted conversion by 20% and "
-      },
-      {
-        "text": "orchestrated a data pipeline using "
+        "text": "and orchestrated a data pipeline using "
       },
       {
         "text": "Segment and Mixpanel ",
@@ -236,14 +234,11 @@
         "url": "https://medium.diffuse.ly/segment-the-customer-data-platform-you-didnt-know-you-needed-5989b07c24ef"
       },
       {
-        "text": " to drive product decisions through behavioral insights. "
-      },
-      {
-        "text": "\n\nWith 4 years of experience, my focus remains on engineering high-performance, scalable applications by bridging technical rigor with a deep product mindset. I thrive in cross-functional environments, leveraging collaborative teamwork to solve complex user problems and build products that deliver genuine value."
+        "text": " to drive product decisions through behavioral insights."
       }
     ],
     "resume": {
-      "sectionTitle": "Download Resume",
+      "sectionTitle": "Show Resume",
       "downloadPath": "assets/document/cv_boris_nkuako_se_cdi_en.pdf"
     },
     "currentStack": {
