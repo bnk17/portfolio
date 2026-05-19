@@ -5,6 +5,7 @@ import { ArrowLeft, X, ExternalLink, GitPullRequestIcon } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import { ContextualStack } from '@/components/StackIcon';
 import { useTranslation } from 'react-i18next';
+import { Helmet } from 'react-helmet-async';
 import TabbedCodeViewer from '@/components/CodeEditor';
 import { OptimizedImage } from '@/components/ui/OptimizedImage';
 
@@ -154,6 +155,13 @@ export default function ProjectDetail({ slug }: { slug?: string }) {
 
   return (
     <div className="min-h-screen bg-[#FDFDFD] text-zinc-900 selection:bg-zinc-200">
+      <Helmet>
+        <title>{t('seo.project.title', { title: project?.title })}</title>
+        <meta name="description" content={t('seo.project.description', { subtitle: project?.subtitle })} />
+        <meta property="og:title" content={t('seo.project.title', { title: project?.title })} />
+        <meta property="og:description" content={t('seo.project.description', { subtitle: project?.subtitle })} />
+        {project?.cover_img && <meta property="og:image" content={project.cover_img} />}
+      </Helmet>
       {/* 1. Fixed Menu (Far Left) */}
       <aside className="fixed bottom-0 left-0 z-40 hidden h-full w-[250px] items-center px-12 lg:flex">
         <AnimatePresence>

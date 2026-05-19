@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { Check, Copy, Terminal, FileCode } from 'lucide-react';
 import { TFunction } from 'i18next';
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';

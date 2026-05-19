@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useTranslation } from 'react-i18next';
+import { Helmet } from 'react-helmet-async';
 import { Mail, ArrowUpRight, Link, FileText } from 'lucide-react';
 import { ContextualStack } from '@/components/StackIcon';
 import { Button } from '@/components/ui/Button';
@@ -41,6 +42,14 @@ export default function About() {
 
   return (
     <div className="min-h-screen bg-[#FDFDFD] text-zinc-900 selection:bg-zinc-200">
+      <Helmet>
+        <title>{t('seo.about.title')}</title>
+        <meta name="description" content={t('seo.about.description')} />
+        <meta property="og:title" content={t('seo.about.title')} />
+        <meta property="og:description" content={t('seo.about.description')} />
+        <meta name="twitter:title" content={t('seo.about.title')} />
+        <meta name="twitter:description" content={t('seo.about.description')} />
+      </Helmet>
       <main className="mx-auto max-w-4xl px-6 pt-32 pb-40">
         {/* Bio Section */}
         <section className="space-y-12" onMouseMove={handleMouseMove}>
