@@ -25,6 +25,8 @@ export function OptimizedImage({
 
   const baseContainerClasses = `${!isPositioned ? 'relative' : ''} overflow-hidden w-full h-full`;
 
+  const { onDrag, ...filteredProps } = props;
+
   return (
     <div
       className={`${baseContainerClasses} ${containerClassName}`}
@@ -53,7 +55,7 @@ export function OptimizedImage({
         initial={{ filter: 'blur(10px)', scale: 1.05 }}
         animate={isLoaded ? { filter: 'blur(0px)', scale: 1 } : {}}
         transition={{ duration: 0.6, ease: 'easeOut' }}
-        {...props}
+        {...(filteredProps as any)}
       />
     </div>
   );

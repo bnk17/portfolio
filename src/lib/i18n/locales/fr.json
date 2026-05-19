@@ -1,4 +1,18 @@
 {
+  "seo": {
+    "home": {
+      "title": "Boris Nkuako | Portfolio Ingénieur Logiciel",
+      "description": "Software Engineer avec plus de quatre années d'expérience dans le développement de SaaS haute performance et d'applications d'IA génératives."
+    },
+    "about": {
+      "title": "À propos | Boris Nkuako",
+      "description": "Découvrez le parcours de Boris Nkuako en ingénierie logicielle, spécialisé en performance et IA."
+    },
+    "project": {
+      "title": "{{title}} | Boris Nkuako",
+      "description": "{{subtitle}}"
+    }
+  },
   "nav": {
     "home": "Accueil",
     "about": "À propos"
@@ -48,18 +62,18 @@
         "problem_content": "La fragmentation du e-commerce contraint les futurs parents à naviguer au sein d'écosystèmes fermés (walled gardens). Les listes traditionnelles verrouillent délibérément les utilisateurs dans leur catalogue propriétaire.",
         "problem_list_title": "Défis techniques et UX majeurs :",
         "problem_list": [
-          "🔴 Stratégies d'enfermement propriétaire des grands distributeurs (ex: Vertbaudet).",
-          "Dispersion des besoins forçant la gestion de 3 à 4 listes ou tableurs obsolètes.",
-          "Parcours proches fastidieux provoquant des doublons par manque de synchronisation."
+          "🛑 Stratégies d'enfermement propriétaire des grands distributeurs (ex: Vertbaudet).",
+          "🛑 Dispersion des besoins forçant la gestion de 3 à 4 listes ou tableurs obsolètes.",
+          "🛑 Parcours proches fastidieux provoquant des doublons par manque de synchronisation."
         ],
 
         "solution_title": "La Solution",
         "solution_content": "Nous avons conçu un écosystème de liste de naissance universel et ouvert, composé d'une extension de navigateur et d'un tableau de bord centralisé.",
         "solution_list_title": "Piliers fondamentaux du produit :",
         "solution_list": [
-          "Moteur de scraping universel s'affranchissant des barrières des enseignes.",
-          "Base de données centralisée synchronisant l'état des stocks en temps réel.",
-          "Flux de réservation fluide sans inscription maximisant la vitesse de complétion."
+          "✅ Moteur de scraping universel s'affranchissant des barrières des enseignes.",
+          "✅ Base de données centralisée synchronisant l'état des stocks en temps réel.",
+          "✅ Flux de réservation fluide sans inscription maximisant la vitesse de complétion."
         ],
 
         "engineering_title": "Ingénierie",

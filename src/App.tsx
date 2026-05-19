@@ -1,33 +1,18 @@
-import { Routes, Route, useParams } from 'react-router-dom';
-import ProjectDetail from './pages/ProjectDetail';
-import About from './pages/About';
+import { useRoutes } from 'react-router-dom';
+import { HelmetProvider } from 'react-helmet-async';
+import { LazyMotion, domAnimation } from 'framer-motion';
 import Layout from './components/ui/Layout';
-import { Home } from './pages/Home';
-
-/**
- * Helper component to bridge the URL parameter to the ProjectDetail prop
- */
-function ProjectDetailWrapper() {
-  const { id } = useParams<{ id: string }>();
-  return <ProjectDetail slug={id} />;
-}
+import { routes } from './routes';
 
 export default function App() {
+  const element = useRoutes(routes);
   return (
-    <Layout>
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/about" element={<About />} />
-        <Route path="/project/:id" element={<ProjectDetailWrapper />} />
-        <Route
-          path="*"
-          element={
-            <div className="flex h-screen items-center justify-center">
-              Page Not Found
-            </div>
-          }
-        />
-      </Routes>
-    </Layout>
+    <HelmetProvider>
+      <LazyMotion features={domAnimation} strict>
+        <Layout>
+          {element}
+        </Layout>
+      </LazyMotion>
+    </HelmetProvider>
   );
 }

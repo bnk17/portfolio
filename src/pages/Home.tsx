@@ -1,6 +1,7 @@
 import { Mail, Share2, FileText } from 'lucide-react';
 import { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
+import { Helmet } from 'react-helmet-async';
 import { ProjectCard } from '../components/ProjectCard';
 import { useGetProjects } from '../data/projects';
 import { useTranslation } from 'react-i18next';
@@ -21,7 +22,16 @@ export function Home() {
   }, []);
 
   return (
-    <div className="min-h-screen text-zinc-900 antialiased selection:bg-zinc-100">
+    <div className="space-y-20 py-10">
+      <Helmet>
+        <title>{t('seo.home.title')}</title>
+        <meta name="description" content={t('seo.home.description')} />
+        <meta property="og:title" content={t('seo.home.title')} />
+        <meta property="og:description" content={t('seo.home.description')} />
+        <meta name="twitter:title" content={t('seo.home.title')} />
+        <meta name="twitter:description" content={t('seo.home.description')} />
+      </Helmet>
+
       <div className="mx-auto grid min-h-screen max-w-screen-2xl grid-cols-1 min-[990px]:grid-cols-[450px_1fr]">
         <aside className="z-50 flex h-fit flex-col border-b border-zinc-100 bg-white px-8 pt-8 pb-8 min-[990px]:sticky min-[990px]:top-0 min-[990px]:h-screen min-[990px]:border-r min-[990px]:border-b-0 min-[990px]:px-16 min-[990px]:pt-16">
           <div className="flex h-full flex-col justify-start min-[990px]:justify-between">
