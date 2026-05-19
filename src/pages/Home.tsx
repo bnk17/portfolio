@@ -82,7 +82,7 @@ export function Home() {
                 >
                   <FileText className="h-4 w-4 text-zinc-400 group-hover:text-emerald-500" />
                   <span className="font-mono text-[13px] font-medium text-zinc-600 group-hover:text-black">
-                    {t('about.resume.sectionTitle')}
+                    {t('home.links.resume')}
                   </span>
                 </Button>
               </div>

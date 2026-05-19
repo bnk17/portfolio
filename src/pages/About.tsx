@@ -50,16 +50,14 @@ export default function About() {
         <meta name="twitter:title" content={t('seo.about.title')} />
         <meta name="twitter:description" content={t('seo.about.description')} />
       </Helmet>
-      <main className="mx-auto max-w-4xl px-6 pt-32 pb-40">
+      <main className="mx-auto max-w-4xl px-6 pb-40">
         {/* Bio Section */}
         <section className="space-y-12" onMouseMove={handleMouseMove}>
-          <motion.h1
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            className="font-display text-xl font-semibold tracking-tight"
-          >
-            {t('nav.about')}
-          </motion.h1>
+          <img
+            src="/image/me.jpg"
+            className="size-50 rounded-2xl opacity-90"
+            alt="portrait of Boris N'KUAKO"
+          />
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
