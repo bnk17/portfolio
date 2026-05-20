@@ -45,10 +45,10 @@ export default defineConfig({
         quality: 80,
       },
       webp: {
-        lossless: true,
+        quality: 80,
       },
       avif: {
-        lossless: true,
+        quality: 70,
       },
     }),
   ],

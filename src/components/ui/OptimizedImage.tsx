@@ -4,6 +4,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 interface OptimizedImageProps extends React.ImgHTMLAttributes<HTMLImageElement> {
   aspectRatio?: string;
   containerClassName?: string;
+  priority?: boolean;
 }
 
 export function OptimizedImage({
@@ -12,6 +13,7 @@ export function OptimizedImage({
   className = '',
   aspectRatio = 'auto',
   containerClassName = '',
+  priority = false,
   ...props
 }: OptimizedImageProps) {
   const [isLoaded, setIsLoaded] = useState(false);
@@ -34,7 +36,7 @@ export function OptimizedImage({
     >
       {/* Skeleton / Placeholder */}
       <AnimatePresence>
-        {!isLoaded && (
+        {!isLoaded && !priority && (
           <motion.div
             initial={{ opacity: 1 }}
             exit={{ opacity: 0 }}
@@ -47,13 +49,14 @@ export function OptimizedImage({
         src={src}
         alt={alt || ''}
         className={`block h-full w-full object-cover transition-opacity duration-500 ${
-          isLoaded ? 'opacity-100' : 'opacity-0'
+          isLoaded || priority ? 'opacity-100' : 'opacity-0'
         } ${className}`}
         onLoad={() => setIsLoaded(true)}
-        loading="lazy"
+        loading={priority ? 'eager' : 'lazy'}
+        fetchPriority={priority ? 'high' : 'auto'}
         decoding="async"
-        initial={{ filter: 'blur(10px)', scale: 1.05 }}
-        animate={isLoaded ? { filter: 'blur(0px)', scale: 1 } : {}}
+        initial={priority ? {} : { filter: 'blur(10px)', scale: 1.05 }}
+        animate={(isLoaded || priority) ? { filter: 'blur(0px)', scale: 1 } : {}}
         transition={{ duration: 0.6, ease: 'easeOut' }}
         {...(filteredProps as any)}
       />

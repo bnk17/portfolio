@@ -1,7 +1,7 @@
 {
   "seo": {
     "home": {
-      "title": "Boris Nkuako | Portfolio Ingénieur Logiciel",
+      "title": "Boris Nkuako | Software Engineer",
       "description": "Software Engineer avec plus de quatre années d'expérience dans le développement de SaaS haute performance et d'applications d'IA génératives."
     },
     "about": {
@@ -85,7 +85,7 @@
         "ux_dom_engine_explanation": "Injecter un panneau latéral est une tâche classique, mais le faire sans casser la mise en page de sites tiers (surtout ceux configurés en 100vw) est complexe. Ce snippet montre une stratégie avancée d'injection CSS utilisant padding-right et box-sizing: border-box. Cela démontre une maîtrise pointue du modèle de boîte CSS, permettant d'altérer la mise en page globale de l'hôte sans introduire de décalage de contenu (layout shifts) ou de bugs de défilement horizontal.",
 
         "impact_title": "Impact",
-        "impact_content": "En identifiant que la friction lors du processus invité était la cause n°1 d'abandon de réservation, j'ai conçu un système de validation sans compte via des jetons sécurisés. Ce pivot architectural a entraîné une augmentation de 45 % du taux de conversion des invités par rapport aux modèles de listes classiques. L'accent mis sur la 'simplicité radicale' s'est directement traduit par une croissance mesurable de l'engagement utilisateur."
+        "impact_content": "En identifiant que la friction lors du processus invité était la cause n°1 d'abandon de réservation, j'ai conçu un système de validation sans compte via des jetons sécurisés. Ce pivot architectural a entraîné une augmentation de 45 % du taux de conversion des invités par rapport aux modèles de listes classiques. L'accent mis sur la simplicité radicale s'est directement traduit par une croissance mesurable de l'engagement utilisateur."
       }
     },
     "zod_schema_visualizer": {

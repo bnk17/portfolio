@@ -105,7 +105,7 @@ export function Home() {
             className="mx-auto max-w-4xl"
           >
             <div className="grid grid-cols-1 gap-8 min-[990px]:gap-x-8 min-[990px]:gap-y-16 sm:grid-cols-2 xl:grid-cols-2">
-              {projects.map((project) => (
+              {projects.map((project, idx) => (
                 <ProjectCard
                   key={project.id}
                   project={project}
@@ -113,6 +113,7 @@ export function Home() {
                   isHovered={hoveredId === project.id}
                   onHover={setHoveredId}
                   onLeave={() => setHoveredId(null)}
+                  priority={idx < 2}
                 />
               ))}
             </div>

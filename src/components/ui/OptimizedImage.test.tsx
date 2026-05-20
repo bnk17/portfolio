@@ -19,4 +19,18 @@ describe('OptimizedImage', () => {
     const skeleton = container.querySelector('.animate-pulse');
     expect(skeleton).toBeInTheDocument();
   });
+
+  it('should have eager loading and high fetch priority when priority is true', () => {
+    render(<OptimizedImage src="/test.jpg" alt="test image" priority />);
+    const img = screen.getByRole('img');
+    
+    expect(img).toHaveAttribute('loading', 'eager');
+    expect(img).toHaveAttribute('fetchpriority', 'high');
+  });
+
+  it('should not show skeleton when priority is true', () => {
+    const { container } = render(<OptimizedImage src="/test.jpg" alt="test image" priority />);
+    const skeleton = container.querySelector('.animate-pulse');
+    expect(skeleton).not.toBeInTheDocument();
+  });
 });

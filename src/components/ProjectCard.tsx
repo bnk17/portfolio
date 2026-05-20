@@ -10,6 +10,7 @@ interface ProjectCardProps {
   isHovered: boolean;
   onHover: (id: string) => void;
   onLeave: () => void;
+  priority?: boolean;
 }
 
 export const ProjectCard = ({
@@ -18,6 +19,7 @@ export const ProjectCard = ({
   isHovered,
   onHover,
   onLeave,
+  priority = false,
 }: ProjectCardProps) => {
   const navigate = useNavigate();
 
@@ -34,6 +36,7 @@ export const ProjectCard = ({
           containerClassName="size-12 rounded-md"
           src={project.logo_img ?? '/image/image.jpg'}
           alt={project.title}
+          priority={priority}
         />
         <div className="flex flex-col justify-center">
           <h3 className="font-display text-base font-extrabold tracking-tight text-black">
@@ -61,6 +64,7 @@ export const ProjectCard = ({
           src={project.cover_img ?? '/image/image.jpg'}
           alt={project.title}
           containerClassName="absolute inset-0"
+          priority={priority}
         />
         <div className="absolute bottom-8 left-8 flex h-10 w-10 -translate-x-2 items-center justify-center rounded-full border border-zinc-50 bg-white opacity-0 shadow-lg transition-all duration-300 group-hover:translate-x-0 group-hover:opacity-100">
           <ArrowUpRight size={18} className="text-black" />
