@@ -1,7 +1,7 @@
 {
   "seo": {
     "home": {
-      "title": "Boris Nkuako | Software Engineer Portfolio",
+      "title": "Boris Nkuako | Software Engineer",
       "description": "Software Engineer with 4+ years of experience in developing high-performance SaaS and Generative AI applications."
     },
     "about": {
@@ -26,7 +26,7 @@
       "linkedin": "LinkedIn",
       "resume": "Resume"
     },
-    "footer": "© 2026 Boris NKuako — Product & AI Engineering"
+    "footer": "© 2026 Boris NKuako — Software & AI Engineering"
   },
   "projects": {
     "back": "Back",

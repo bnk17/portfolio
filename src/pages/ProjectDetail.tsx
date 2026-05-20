@@ -1,13 +1,14 @@
 import { AnimatePresence, motion } from 'framer-motion';
-import { useEffect, useState } from 'react';
+import { useEffect, useState, lazy, Suspense } from 'react';
 import { useGetProjects } from '../data/projects';
 import { ArrowLeft, X, ExternalLink, GitPullRequestIcon } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import { ContextualStack } from '@/components/StackIcon';
 import { useTranslation } from 'react-i18next';
 import { Helmet } from 'react-helmet-async';
-import TabbedCodeViewer from '@/components/CodeEditor';
 import { OptimizedImage } from '@/components/ui/OptimizedImage';
+
+const TabbedCodeViewer = lazy(() => import('@/components/CodeEditor'));
 
 function ImageModal({
 
@@ -267,6 +268,7 @@ export default function ProjectDetail({ slug }: { slug?: string }) {
               alt={project.title}
               containerClassName="w-full"
               className="h-auto w-full"
+              priority={true}
             />
           </motion.div>
         </header>
@@ -372,7 +374,9 @@ export default function ProjectDetail({ slug }: { slug?: string }) {
               {/* Render TabbedCodeViewer if a code snippet array exists */}
               {section.codeSnippet && section.codeSnippet.length > 0 && (
                 <div className="mt-12 w-full">
-                  <TabbedCodeViewer t={t} files={section.codeSnippet} />
+                  <Suspense fallback={<div className="h-64 w-full animate-pulse rounded-2xl bg-zinc-100" />}>
+                    <TabbedCodeViewer t={t} files={section.codeSnippet} />
+                  </Suspense>
                 </div>
               )}
             </section>
