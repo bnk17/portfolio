@@ -31,7 +31,7 @@ export function Home() {
         hidden: { opacity: 0 },
         visible: { opacity: 1, transition: { staggerChildren: 0.18 } },
       }}
-      className="flex min-h-[100vh] w-full flex-col items-center justify-start py-12 md:py-24"
+      className="flex min-h-[95vh] w-full flex-col items-center justify-start py-12 md:py-24"
     >
       <Helmet>
         <title>{t('seo.home.title')}</title>
@@ -75,7 +75,7 @@ export function Home() {
           }}
           className="flex w-full justify-start md:order-1 md:col-span-5 md:justify-center md:self-center"
         >
-          <div className="relative flex aspect-square w-full max-w-[320px] items-center justify-center rounded-[2rem] border border-zinc-200/40 bg-zinc-50/20 p-6 shadow-xs sm:max-w-[400px] sm:rounded-[2.5rem] sm:p-8">
+          <div className="relative hidden aspect-square w-full max-w-[320px] items-center justify-center rounded-[2rem] border border-zinc-200/40 bg-zinc-50/20 p-6 shadow-xs sm:flex sm:max-w-[400px] sm:rounded-[2.5rem] sm:p-8">
             <div
               className="absolute inset-0 rounded-[2rem] opacity-20 sm:rounded-[2.5rem]"
               style={{
@@ -98,7 +98,7 @@ export function Home() {
                   }`}
                 >
                   <img
-                    src={project.cover_img ?? '/image/image.jpg'}
+                    src={project.images?.cover_img ?? '/image/image.jpg'}
                     alt={project.title}
                     className="max-h-[85%] max-w-[85%] rounded-2xl object-contain p-2"
                     loading="eager"
@@ -128,20 +128,18 @@ export function Home() {
                 <button
                   key={project.id}
                   onClick={() => setActiveId(project.id)}
-                  className={`flex shrink-0 cursor-pointer items-center rounded-xl border text-left transition-[colors,transform] duration-300 md:w-fit md:rounded-2xl ${
+                  className={`sm:text-md flex shrink-0 cursor-pointer items-center rounded-xl border text-left text-sm transition-[colors,transform] duration-300 md:w-fit md:rounded-2xl ${
                     isActive
                       ? 'scale-[1.01] border-zinc-100/50 bg-white px-4 py-2.5 shadow md:translate-x-1'
                       : 'border-transparent px-4 py-2.5 text-zinc-400/80 hover:text-zinc-600 md:hover:translate-x-0.5'
                   }`}
                 >
                   <span
-                    className={`font-display text-lg font-bold tracking-tight transition-colors duration-300 sm:text-xl md:text-2xl lg:text-3xl ${
+                    className={`font-display font-bold tracking-tight transition-colors duration-300 sm:text-xl md:text-2xl ${
                       isActive ? 'text-zinc-950' : 'text-zinc-400'
                     }`}
                   >
-                    {project.id === 'petitpals'
-                      ? 'PetitPals'
-                      : 'Zod Visualizer'}
+                    {project.homeTitle}
                   </span>
                 </button>
               );
@@ -157,16 +155,16 @@ export function Home() {
               transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
               className="space-y-4 pt-1"
             >
-              <h3 className="w-full max-w-[30ch] leading-snug font-medium text-zinc-700 sm:text-lg md:max-w-[40ch] md:text-xl">
+              <h3 className="text-md w-full leading-snug text-zinc-700 sm:max-w-[30ch] sm:text-lg md:max-w-[40ch]">
                 {activeProject.subtitle}
               </h3>
 
               {/* Action Buttons */}
-              <div className="flex flex-wrap gap-3 pt-2 sm:pt-4">
+              <div className="flex w-full flex-wrap gap-3 pt-2 sm:pt-4">
                 <Button
                   onClick={() => navigate(`/project/${activeProject.id}`)}
                   variant="primary"
-                  className="px-4 py-2 text-xs sm:px-5 sm:text-sm"
+                  className="w-full px-4 py-2 text-xs sm:w-fit sm:px-5 sm:text-sm"
                 >
                   <span>{t('projects.view_details')}</span>
                   <ArrowUpRight className="size-3.5 opacity-50 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5 sm:size-4" />
@@ -177,7 +175,7 @@ export function Home() {
                     target="_blank"
                     rel="noopener noreferrer"
                     variant="secondary"
-                    className="px-4 py-2 text-xs sm:px-5 sm:text-sm"
+                    className="w-full px-4 py-2 text-xs sm:w-fit sm:px-5 sm:text-sm"
                   >
                     <span>{t('projects.live_demo')}</span>
                   </Button>

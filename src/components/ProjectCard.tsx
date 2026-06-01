@@ -34,7 +34,7 @@ export const ProjectCard = ({
       <div className="flex items-center gap-4 rounded-[2rem] border border-zinc-100 bg-zinc-50 p-6 transition-all hover:bg-white min-[650px]:hidden">
         <OptimizedImage
           containerClassName="size-12 rounded-md"
-          src={project.logo_img ?? '/image/image.jpg'}
+          src={project.images?.logo_img ?? '/image/image.jpg'}
           alt={project.title}
           priority={priority}
         />
@@ -61,7 +61,7 @@ export const ProjectCard = ({
         className="relative z-20 hidden aspect-square cursor-pointer overflow-hidden rounded-[3rem] border border-zinc-100 bg-white shadow-sm hover:shadow-md min-[650px]:flex"
       >
         <OptimizedImage
-          src={project.cover_img ?? '/image/image.jpg'}
+          src={project.images?.cover_img ?? '/image/image.jpg'}
           alt={project.title}
           containerClassName="absolute inset-0"
           priority={priority}
