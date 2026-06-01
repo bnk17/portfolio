@@ -1,7 +1,6 @@
 import { RouteObject, Outlet, useParams } from 'react-router-dom';
 import { lazy, Suspense } from 'react';
 import Layout from './components/ui/Layout';
-import { LazyMotion, domAnimation } from 'framer-motion';
 
 // Lazy load page components
 const Home = lazy(() => import('./pages/Home').then(m => ({ default: m.Home })));
@@ -23,13 +22,11 @@ const Loading = () => (
 );
 
 const Root = () => (
-  <LazyMotion features={domAnimation} strict>
-    <Layout>
-      <Suspense fallback={<Loading />}>
-        <Outlet />
-      </Suspense>
-    </Layout>
-  </LazyMotion>
+  <Layout>
+    <Suspense fallback={<Loading />}>
+      <Outlet />
+    </Suspense>
+  </Layout>
 );
 
 export const routes: RouteObject[] = [

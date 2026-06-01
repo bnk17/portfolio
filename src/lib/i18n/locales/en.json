@@ -20,16 +20,12 @@
   "home": {
     "hello": "Hello",
     "intro": "Software Engineer with 4+ years of experience in developing high-performance SaaS and Generative AI applications.",
-    "current": "Focusing on performance optimization and streamlining complex business logic into seamless user experiences.",
-    "links": {
-      "email": "Email",
-      "linkedin": "LinkedIn",
-      "resume": "Resume"
-    },
     "footer": "© 2026 Boris NKuako — Software & AI Engineering"
   },
   "projects": {
     "back": "Back",
+    "view_details": "View Details",
+    "live_demo": "Live Demo",
     "editor": {
       "copy": "Copy",
       "copied": "Copied!"
@@ -201,7 +197,10 @@
   "about": {
     "bio_segments": [
       {
-        "text": "With 4 years of experience, my focus remains on engineering high-performance, scalable web applications by bridging technical rigor with a deep product mindset. I thrive in cross-functional environments, leveraging collaborative teamwork to solve complex user problems and build products that deliver genuine value.\n\nMost recently at Diffusely, I spearheaded the development of various features, including generative AI tools such as "
+        "text": "Hey, I'm Boris a Software engineer with 4 years of experience. \n"
+      },
+      {
+        "text": "For the past several years my focus remains on engineering high-performance, scalable web applications by bridging technical rigor with a deep product mindset. I thrive in cross-functional environments, leveraging collaborative teamwork to solve complex user problems and build products that deliver genuine value.\n\nMost recently at Diffusely, I spearheaded the development of various features, including generative AI tools such as "
       },
       {
         "text": "Home Staging ",

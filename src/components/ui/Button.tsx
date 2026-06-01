@@ -22,7 +22,7 @@ export function Button({
   ...props
 }: ButtonProps) {
   const baseStyles =
-    'group inline-flex items-center justify-center gap-2 rounded-full transition-all duration-200 active:scale-95 font-medium';
+    'group inline-flex items-center cursor-pointer justify-center gap-2 rounded-full transition-all duration-200 active:scale-95 font-medium';
 
   const variants = {
     primary:
