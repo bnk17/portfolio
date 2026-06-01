@@ -90,7 +90,9 @@ export default function About() {
                       key={index}
                       className="relative inline-block cursor-pointer font-semibold text-zinc-600 underline decoration-amber-200 underline-offset-4 transition-all hover:text-amber-700 hover:decoration-amber-500"
                     >
-                      <a href={segment.url}>{segment.text}</a>
+                      <a href={segment.url} target="_blank" rel="noreferrer">
+                        {segment.text}
+                      </a>
                     </span>
                   );
                 }
