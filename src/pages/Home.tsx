@@ -1,28 +1,29 @@
-import { Mail, Share2, FileText } from 'lucide-react';
+import { Baby, Code2, ArrowUpRight } from 'lucide-react';
 import { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
 import { Helmet } from 'react-helmet-async';
-import { ProjectCard } from '../components/ProjectCard';
 import { useGetProjects } from '../data/projects';
 import { useTranslation } from 'react-i18next';
 import { Button } from '@/components/ui/Button';
-import { PdfModal } from '@/components/ui/PdfModal';
-
-const email = 'nkuako.boris@gmail.com';
+import { useNavigate } from 'react-router-dom';
 
 export function Home() {
   const projects = useGetProjects();
-
-  const [hoveredId, setHoveredId] = useState<string | null>(null);
+  const navigate = useNavigate();
   const { t } = useTranslation();
-  const [isPdfOpen, setIsPdfOpen] = useState(false);
+
+  const [activeId, setActiveId] = useState<string>(
+    projects[0]?.id || 'petitpals'
+  );
 
   useEffect(() => {
     window.scroll({ top: 0, behavior: 'smooth' });
   }, []);
 
+  const activeProject = projects.find((p) => p.id === activeId) || projects[0];
+
   return (
-    <div className="space-y-20 py-10">
+    <div className="space-y-16 py-10">
       <Helmet>
         <title>{t('seo.home.title')}</title>
         <meta name="description" content={t('seo.home.description')} />
@@ -32,102 +33,114 @@ export function Home() {
         <meta name="twitter:description" content={t('seo.home.description')} />
       </Helmet>
 
-      <div className="mx-auto grid min-h-screen max-w-screen-2xl grid-cols-1 min-[990px]:grid-cols-[450px_1fr]">
-        <aside className="z-50 flex h-fit flex-col border-b border-zinc-100 bg-white px-8 pt-8 pb-8 min-[990px]:sticky min-[990px]:top-0 min-[990px]:h-screen min-[990px]:border-r min-[990px]:border-b-0 min-[990px]:px-16 min-[990px]:pt-16">
-          <div className="flex h-full flex-col justify-start min-[990px]:justify-between">
+      {/* Main Project Showcase Section (Reworked to copy the screenshot UI) */}
+      <div className="mx-auto grid max-w-6xl grid-cols-1 items-center gap-12 px-6 pt-8 lg:grid-cols-12 lg:gap-16">
+        <div className="flex w-full justify-center lg:col-span-5">
+          <div className="relative flex aspect-square w-full max-w-[400px] items-center justify-center rounded-[2.5rem] border border-zinc-200/40 bg-zinc-50/20 p-8 shadow-xs">
+            {/* Dotted pattern background inside */}
+            <div
+              className="absolute inset-0 rounded-[2.5rem] opacity-20"
+              style={{
+                backgroundImage:
+                  'radial-gradient(#71717a 1.5px, transparent 1.5px)',
+                backgroundSize: '50px 20px',
+              }}
+            />
+
+            {/* Pre-rendered Project Cover Images with CSS opacity toggles to avoid decoding lag */}
+            {projects.map((project) => {
+              const isActive = project.id === activeId;
+              return (
+                <div
+                  key={project.id}
+                  className={`absolute inset-0 flex items-center justify-center p-8 transition-all duration-300 ease-out ${
+                    isActive
+                      ? 'pointer-events-auto z-10 scale-100 opacity-100'
+                      : 'pointer-events-none z-0 scale-95 opacity-0'
+                  }`}
+                >
+                  <img
+                    src={project.cover_img ?? '/image/image.jpg'}
+                    alt={project.title}
+                    className="max-h-[85%] max-w-[85%] rounded-2xl object-contain p-2"
+                    loading="eager"
+                  />
+                </div>
+              );
+            })}
+          </div>
+        </div>
+
+        {/* Right Side: Tab Selector and Project Info */}
+        <div className="flex flex-col justify-center space-y-6 lg:col-span-7">
+          {/* Project List / Selector Tabs */}
+          <div className="flex max-w-md flex-col gap-2">
+            {projects.map((project) => {
+              const isActive = project.id === activeId;
+              const Icon = project.id === 'petitpals' ? Baby : Code2;
+              return (
+                <button
+                  key={project.id}
+                  onClick={() => setActiveId(project.id)}
+                  className={`flex w-fit items-center rounded-2xl border text-left transition-all duration-300 ${
+                    isActive
+                      ? 'translate-x-1 scale-[1.01] border-zinc-100/50 bg-white px-5 py-3 shadow-[0_10px_25px_-5px_rgba(0,0,0,0.08),0_0_1px_rgba(0,0,0,0.04)]'
+                      : 'border-transparent px-5 py-3 text-zinc-400/80 hover:translate-x-0.5 hover:text-zinc-600'
+                  }`}
+                >
+                  <span
+                    className={`font-display text-xl font-extrabold tracking-tight transition-colors duration-300 sm:text-2xl md:text-3xl ${
+                      isActive ? 'text-zinc-950' : 'text-zinc-400'
+                    }`}
+                  >
+                    {project.id === 'petitpals'
+                      ? 'PetitPals'
+                      : 'Zod Visualizer'}
+                  </span>
+                </button>
+              );
+            })}
+          </div>
+
+          {/* Selected Project Description (Below list, like screenshot) */}
+          <div className="min-h-[220px]">
             <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              className="flex flex-col gap-10"
+              key={activeProject.id}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 0.15, ease: 'easeOut' }}
+              className="space-y-4 pt-2"
             >
-              <h1 className="font-display text-[32px] leading-tight font-extrabold tracking-tight">
-                Boris <br /> N'Kuako
-              </h1>
+              <h3 className="text-lg leading-snug font-bold text-zinc-900 md:text-xl">
+                {activeProject.subtitle}
+              </h3>
 
-              <div className="space-y-3 leading-[1.8] text-zinc-700">
-                {/* Intro Section */}
-                <p>{t('home.intro')}</p>
-
-                {/* Current Focus Section */}
-                <p>{t('home.current')} </p>
-              </div>
-
-              <div className="flex flex-wrap gap-3 pt-4">
+              <div className="flex gap-3 pt-4">
                 <Button
-                  href={`mailto:${email}`}
-                  variant="secondary"
-                  className="px-4 py-2"
+                  onClick={() => navigate(`/project/${activeProject.id}`)}
+                  variant="primary"
+                  className="px-5 py-2 text-xs"
                 >
-                  <Mail className="h-4 w-4 text-zinc-400 group-hover:text-blue-500" />
-                  <span className="font-mono text-[13px] font-medium text-zinc-600 group-hover:text-black">
-                    Email
-                  </span>
+                  <span>View Project Details</span>
+                  <ArrowUpRight className="size-4 opacity-50 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
                 </Button>
-                <Button
-                  href="https://www.linkedin.com/in/borisnkuako"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  variant="secondary"
-                  className="px-4 py-2"
-                >
-                  <Share2 className="h-4 w-4 text-zinc-400 group-hover:text-indigo-600" />
-                  <span className="font-mono text-[13px] font-medium text-zinc-600 group-hover:text-black">
-                    LinkedIn
-                  </span>
-                </Button>
-                <Button
-                  variant="secondary"
-                  onClick={() => setIsPdfOpen(true)}
-                  className="px-4 py-2"
-                >
-                  <FileText className="h-4 w-4 text-zinc-400 group-hover:text-emerald-500" />
-                  <span className="font-mono text-[13px] font-medium text-zinc-600 group-hover:text-black">
-                    {t('home.links.resume')}
-                  </span>
-                </Button>
+                {activeProject.liveUrl && (
+                  <Button
+                    href={activeProject.liveUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    variant="outline"
+                    className="px-5 py-2 text-xs"
+                  >
+                    <span>Live Demo</span>
+                    <ArrowUpRight className="size-4 opacity-50 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+                  </Button>
+                )}
               </div>
             </motion.div>
-
-            <div className="mt-16 hidden min-[990px]:block">
-              <p className="font-mono text-[11px] font-medium tracking-widest text-zinc-300 uppercase">
-                © 2026 Boris N'Kuako — Software Engineer
-              </p>
-            </div>
           </div>
-        </aside>
-
-        {/* Right Section */}
-        <main className="min-h-screen bg-white p-8 min-[990px]:p-12 min-[990px]:px-16">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.1 }}
-            className="mx-auto max-w-4xl"
-          >
-            <div className="grid grid-cols-1 gap-8 min-[990px]:gap-x-8 min-[990px]:gap-y-16 sm:grid-cols-2 xl:grid-cols-2">
-              {projects.map((project, idx) => (
-                <ProjectCard
-                  key={project.id}
-                  project={project}
-                  isDimmed={hoveredId !== null && hoveredId !== project.id}
-                  isHovered={hoveredId === project.id}
-                  onHover={setHoveredId}
-                  onLeave={() => setHoveredId(null)}
-                  priority={idx < 2}
-                />
-              ))}
-            </div>
-            <div className="h-48" />
-          </motion.div>
-        </main>
+        </div>
       </div>
-
-      <PdfModal
-        isOpen={isPdfOpen}
-        onClose={() => setIsPdfOpen(false)}
-        pdfUrl={t('about.resume.downloadPath')}
-        title={t('about.resume.sectionTitle')}
-      />
     </div>
   );
 }
