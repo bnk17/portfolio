@@ -11,7 +11,6 @@ import { OptimizedImage } from '@/components/ui/OptimizedImage';
 const TabbedCodeViewer = lazy(() => import('@/components/CodeEditor'));
 
 function ImageModal({
-
   src,
   title,
   onClose,
@@ -155,14 +154,30 @@ export default function ProjectDetail({ slug }: { slug?: string }) {
   };
 
   return (
-    <div className="min-h-screen bg-[#FDFDFD] text-zinc-900 selection:bg-zinc-200">
+    <div className="min-h-screen text-zinc-900 selection:bg-zinc-200">
       <Helmet>
         <title>{t('seo.project.title', { title: project?.title })}</title>
-        <meta name="description" content={t('seo.project.description', { subtitle: project?.subtitle })} />
-        <meta property="og:title" content={t('seo.project.title', { title: project?.title })} />
-        <meta property="og:description" content={t('seo.project.description', { subtitle: project?.subtitle })} />
-        {project?.cover_img && <meta property="og:image" content={project.cover_img} />}
+        <meta
+          name="description"
+          content={t('seo.project.description', {
+            subtitle: project?.subtitle,
+          })}
+        />
+        <meta
+          property="og:title"
+          content={t('seo.project.title', { title: project?.title })}
+        />
+        <meta
+          property="og:description"
+          content={t('seo.project.description', {
+            subtitle: project?.subtitle,
+          })}
+        />
+        {project?.cover_img && (
+          <meta property="og:image" content={project.cover_img} />
+        )}
       </Helmet>
+
       {/* 1. Fixed Menu (Far Left) */}
       <aside className="fixed bottom-0 left-0 z-40 hidden h-full w-[250px] items-center px-12 lg:flex">
         <AnimatePresence>
@@ -177,9 +192,9 @@ export default function ProjectDetail({ slug }: { slug?: string }) {
                 <button
                   key={section.id}
                   onClick={() => scrollToSection(section.id)}
-                  className={`group flex w-full items-center rounded-full py-1.5 text-left text-[13px] font-medium transition-all duration-300 ${
+                  className={`group flex w-fit cursor-pointer items-center rounded-md py-1.5 text-left text-[13px] transition-colors duration-300 ${
                     activeSection === section.id
-                      ? 'font-semibold text-zinc-900'
+                      ? 'bg-white p-1 font-semibold text-black shadow-sm shadow-zinc-100'
                       : 'text-zinc-400 hover:text-zinc-600'
                   }`}
                 >
@@ -192,44 +207,66 @@ export default function ProjectDetail({ slug }: { slug?: string }) {
       </aside>
 
       {/* 2. Main Scrollable Container */}
-      <div className="mx-auto max-w-4xl px-6 md:px-0">
+      <div className="mx-auto max-w-4xl px-4 sm:px-6 md:px-0">
         {/* Back Button Container */}
-        <div className="pt-8">
+        <div className="pt-6 md:pt-8">
           <button
             className="group flex cursor-pointer items-center gap-2 text-zinc-400 transition-all hover:text-zinc-900"
             onClick={() => navigate('/')}
           >
-            <ArrowLeft className="size-5 transition-transform group-hover:-translate-x-1" />
-            <span className="text-sm font-medium">{t('projects.back')}</span>
+            <ArrowLeft className="size-4 transition-transform group-hover:-translate-x-1 md:size-5" />
+            <span className="text-xs font-medium md:text-sm">
+              {t('projects.back')}
+            </span>
           </button>
         </div>
 
         {/* Header */}
-        <header className="pt-16 pb-20 text-center">
+        <header className="pb-12 text-center md:pb-12">
+          <motion.div
+            initial={{ opacity: 0, y: 40 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{
+              delay: 0.2,
+              duration: 0.5,
+              ease: 'backOut',
+            }}
+            className="mx-auto mt-12 mb-20 size-48 overflow-hidden rounded-[1.75rem] border border-zinc-100 md:mt-20 md:size-68 md:rounded-[2.5rem]"
+          >
+            <OptimizedImage
+              src={project.cover_img ?? '/image/image.jpg'}
+              alt={project.title}
+              containerClassName="w-full"
+              className="h-auto w-full"
+              priority={true}
+            />
+          </motion.div>
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            className="flex w-full flex-col items-center space-y-6"
+            className="flex w-full flex-col items-center space-y-4 md:space-y-6"
           >
-            <h1 className="text-5xl leading-[1.1] font-bold tracking-tight text-zinc-900">
+            {/* Responsive Heading: text-3xl on mobile -> text-5xl on desktop */}
+            <h1 className="text-3xl leading-[1.15] font-bold tracking-tight text-zinc-900 sm:text-4xl md:text-5xl">
               {project.title}
             </h1>
 
-            <p className="mx-auto max-w-2xl text-xl leading-relaxed text-zinc-500">
+            {/* Responsive Subtitle: text-base on mobile -> text-xl on desktop */}
+            <p className="mx-auto max-w-2xl text-base leading-relaxed text-zinc-500 sm:text-lg md:text-xl">
               {project.subtitle}
             </p>
 
-            <div className="flex w-full items-center justify-center gap-4 text-center text-sm font-medium text-zinc-400">
+            <div className="flex flex-wrap items-center justify-center gap-x-3 gap-y-1.5 text-center text-xs font-medium text-zinc-400 md:text-sm">
               <span>{project.year}</span>
               <span className="h-1 w-1 rounded-full bg-zinc-300" />
               <span className="italic">{project.role}</span>
-              <div className="flex gap-2">
+              <div className="ml-1 flex gap-2">
                 {project.liveUrl && (
                   <a
                     className="text-xs hover:text-blue-600"
                     href={project.liveUrl}
                   >
-                    <ExternalLink size={16} />
+                    <ExternalLink size={15} />
                   </a>
                 )}{' '}
                 {project.githubUrl && (
@@ -237,7 +274,7 @@ export default function ProjectDetail({ slug }: { slug?: string }) {
                     className="text-xs hover:text-blue-600"
                     href={project.githubUrl}
                   >
-                    <GitPullRequestIcon size={16} />
+                    <GitPullRequestIcon size={15} />
                   </a>
                 )}
               </div>
@@ -247,7 +284,7 @@ export default function ProjectDetail({ slug }: { slug?: string }) {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.4 }}
-              className="flex w-full justify-center text-xl font-semibold tracking-tight"
+              className="flex w-full justify-center text-lg font-semibold tracking-tight md:text-xl"
             >
               <ContextualStack
                 stackList={project.techStack}
@@ -256,55 +293,43 @@ export default function ProjectDetail({ slug }: { slug?: string }) {
               />
             </motion.div>
           </motion.div>
-
-          <motion.div
-            initial={{ opacity: 0, y: 40 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.2, duration: 0.8 }}
-            className="sho mt-20 overflow-hidden rounded-[2.5rem] border border-zinc-100"
-          >
-            <OptimizedImage
-              src={project.cover_img ?? project.cover_img ?? '/image/image.jpg'}
-              alt={project.title}
-              containerClassName="w-full"
-              className="h-auto w-full"
-              priority={true}
-            />
-          </motion.div>
         </header>
 
         {/* Main Content */}
-        <main className="space-y-40 pb-40">
+        <main className="space-y-24 pb-24 md:space-y-40 md:pb-40">
           {project.sections.map((section) => (
-            <section key={section.id} id={section.id} className="scroll-mt-40">
-              <h2 className="mb-10 text-2xl font-bold tracking-tight">
+            <section
+              key={section.id}
+              id={section.id}
+              className="scroll-mt-24 md:scroll-mt-40"
+            >
+              {/* Responsive Section Headings */}
+              <h2 className="mb-4 text-xl font-bold tracking-tight md:mb-10 md:text-2xl">
                 {section.title}
               </h2>
-              <div className="mb-10 h-px w-full bg-zinc-100" />
-              <div className="prose prose-zinc prose-lg mb-12 max-w-none">
-                <p className="text-lg leading-[1.8] whitespace-pre-wrap text-zinc-600">
+              <div className="mb-6 h-px w-full bg-zinc-100 md:mb-10" />
+
+              {/* Modified prose text sizing to handle small viewport dynamics cleanly */}
+              <div className="prose prose-zinc md:prose-lg mb-8 max-w-none md:mb-12">
+                <p className="text-base leading-[1.7] whitespace-pre-wrap text-zinc-600 md:text-lg md:leading-[1.8]">
                   {section.content}
                 </p>
 
                 {/* Structural List Container */}
                 {section.list && section.list.length > 0 && (
-                  <div className="mt-10 space-y-4">
-                    {/* List Subheading Title - Upgraded typography to fit naturally into the text flow */}
+                  <div className="mt-8 space-y-3 md:mt-10 md:space-y-4">
                     {section.listTitle && (
-                      <h3 className="text-base font-bold tracking-tight text-zinc-900">
+                      <h3 className="text-sm font-bold tracking-tight text-zinc-900 md:text-base">
                         {section.listTitle}
                       </h3>
                     )}
 
-                    {/* Bullet Items Array Map */}
-                    <ul className="list-none space-y-3.5 text-base leading-[1.8] text-zinc-600">
+                    <ul className="list-none space-y-3 text-sm leading-[1.7] text-zinc-600 md:text-base md:leading-[1.8]">
                       {section.list.map((item, index) => (
                         <li
                           key={`${section.id}-list-item-${index}`}
                           className="flex items-start gap-3"
                         >
-                          {/* Subtle minimal dot layout that preserves the clean font alignment */}
-
                           <span className="text-zinc-600">{item}</span>
                         </li>
                       ))}
@@ -313,19 +338,17 @@ export default function ProjectDetail({ slug }: { slug?: string }) {
                 )}
               </div>
 
-              {/* Showcase Section Design Images Structured Layout */}
+              {/* Showcase Section Design Images */}
               {section.images && section.images.length > 0 && (
                 <>
-                  <h3 className="text-base font-bold tracking-tight text-zinc-900">
+                  <h3 className="text-sm font-bold tracking-tight text-zinc-900 md:text-base">
                     Screenshots
                   </h3>
-                  <div
-                    className={`mt-6 grid w-full grid-cols-1 gap-8 md:grid-cols-2`}
-                  >
+                  <div className="mt-4 grid w-full grid-cols-1 gap-6 md:mt-6 md:grid-cols-2 md:gap-8">
                     {section.images.map((imageItem, i) => (
                       <div key={imageItem.src + i} className="group space-y-3">
                         <div
-                          className="cursor-zoom-in overflow-hidden rounded-2xl border border-zinc-100 bg-zinc-50 transition-all duration-300"
+                          className="cursor-zoom-in overflow-hidden rounded-xl border border-zinc-100 bg-zinc-50 transition-all duration-300 md:rounded-2xl"
                           onClick={() =>
                             setSelectedImage({
                               src: imageItem.src,
@@ -339,11 +362,11 @@ export default function ProjectDetail({ slug }: { slug?: string }) {
                             className="h-auto w-full transition-transform duration-500 group-hover:scale-[1.02]"
                           />
                           {/* Design Card Context Metadata */}
-                          <div className="p-2">
-                            <h4 className="text-md font-semibold tracking-tight text-zinc-900">
+                          <div className="p-3 md:p-4">
+                            <h4 className="text-sm font-semibold tracking-tight text-zinc-900 md:text-base">
                               {imageItem.title}
                             </h4>
-                            <p className="text-sm leading-relaxed text-zinc-500">
+                            <p className="mt-1 text-xs leading-relaxed text-zinc-500 md:text-sm">
                               {imageItem.content}
                             </p>
                           </div>
@@ -354,16 +377,16 @@ export default function ProjectDetail({ slug }: { slug?: string }) {
                 </>
               )}
 
-              {/* Stats View Hook Context inside Overview Block */}
+              {/* Stats Overview Grid */}
               {section.id === 'overview' && (
-                <div className="mt-12 grid grid-cols-1 gap-8 border-t border-zinc-100 pt-12 md:grid-cols-3">
-                  {' '}
+                <div className="mt-8 grid grid-cols-2 gap-6 border-t border-zinc-100 pt-8 sm:grid-cols-3 md:mt-12 md:gap-8 md:pt-12">
                   {project.stats.map((stat) => (
                     <div key={stat.label}>
-                      <p className="text-3xl font-bold text-zinc-900">
+                      {/* Scaled stat values down slightly on tiny viewports */}
+                      <p className="text-2xl font-bold text-zinc-900 md:text-3xl">
                         {stat.value}
                       </p>
-                      <p className="mt-1 text-[11px] font-bold tracking-widest text-zinc-400 uppercase">
+                      <p className="mt-1 text-[10px] font-bold tracking-widest text-zinc-400 uppercase md:text-[11px]">
                         {stat.label}
                       </p>
                     </div>
@@ -373,8 +396,12 @@ export default function ProjectDetail({ slug }: { slug?: string }) {
 
               {/* Render TabbedCodeViewer if a code snippet array exists */}
               {section.codeSnippet && section.codeSnippet.length > 0 && (
-                <div className="mt-12 w-full">
-                  <Suspense fallback={<div className="h-64 w-full animate-pulse rounded-2xl bg-zinc-100" />}>
+                <div className="mt-8 w-full md:mt-12">
+                  <Suspense
+                    fallback={
+                      <div className="h-64 w-full animate-pulse rounded-2xl bg-zinc-100" />
+                    }
+                  >
                     <TabbedCodeViewer t={t} files={section.codeSnippet} />
                   </Suspense>
                 </div>

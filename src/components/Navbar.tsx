@@ -7,7 +7,7 @@ export function Navbar() {
   const { t } = useTranslation();
 
   return (
-    <nav className="fixed top-0 left-0 z-[100] w-full border-b border-zinc-100/50 bg-white/70 backdrop-blur-md">
+    <nav className="fixed top-0 left-0 z-[100] w-full border-b border-zinc-100/50 bg-zinc-50/50 backdrop-blur-md">
       <div className="mx-auto flex h-16 max-w-screen-2xl items-center justify-between px-8 min-[990px]:px-16">
         {/* Optional Logo/Name */}
         <NavLink
