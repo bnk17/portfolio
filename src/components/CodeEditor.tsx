@@ -1,8 +1,8 @@
-import { useState } from 'react';
-import { Check, Copy, Terminal, FileCode } from 'lucide-react';
 import { TFunction } from 'i18next';
+import { Check, Copy, FileCode, Terminal } from 'lucide-react';
+import { useState } from 'react';
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
-import { vscDarkPlus } from 'react-syntax-highlighter/dist/esm/styles/prism';
+import { coldarkDark } from 'react-syntax-highlighter/dist/esm/styles/prism';
 
 interface CodeFile {
   tabName: string;
@@ -97,7 +97,7 @@ export default function TabbedCodeViewer({ t, files }: TabbedCodeViewerProps) {
         <div className="bg-zinc-950 selection:bg-zinc-800">
           <SyntaxHighlighter
             language={currentFile.language.toLowerCase()}
-            style={vscDarkPlus}
+            style={coldarkDark}
             customStyle={{
               margin: 0,
               padding: '1.25rem',

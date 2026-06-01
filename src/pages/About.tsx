@@ -41,7 +41,7 @@ export default function About() {
   }, []);
 
   return (
-    <div className="min-h-screen bg-[#FDFDFD] text-zinc-900 selection:bg-zinc-200">
+    <div className="min-h-screen pt-24 selection:bg-zinc-200">
       <Helmet>
         <title>{t('seo.about.title')}</title>
         <meta name="description" content={t('seo.about.description')} />
@@ -64,7 +64,7 @@ export default function About() {
             transition={{ delay: 0.1 }}
             className="relative"
           >
-            <p className="leading-[1.8] text-zinc-700">
+            <p className="text-zinc-750 leading-[1.8]">
               {segments.map((segment, index) => {
                 if (segment.highlight === 'ai') {
                   return (
