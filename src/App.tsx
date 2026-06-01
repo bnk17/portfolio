@@ -9,9 +9,11 @@ export default function App() {
   return (
     <HelmetProvider>
       <LazyMotion features={domAnimation} strict>
-        <Layout>
-          {element}
-        </Layout>
+        <div className="min-h-screen bg-zinc-50/50">
+          <Layout>
+            {element}
+          </Layout>
+        </div>
       </LazyMotion>
     </HelmetProvider>
   );

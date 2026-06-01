@@ -59,7 +59,7 @@
 @layer base {
   html,
   body {
-    background-color: #ffffff;
+    background-color: #fafafa;
     scroll-behavior: smooth;
     text-rendering: optimizeLegibility;
     -webkit-font-smoothing: antialiased;
