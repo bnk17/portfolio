@@ -12,7 +12,7 @@ export function Navbar() {
         {/* Optional Logo/Name */}
         <NavLink
           to="/"
-          className="group flex items-center transition-all active:scale-95"
+          className="group flex items-center gap-2 transition-all active:scale-95"
           aria-label="Home"
         >
           <Combine className="size-6 text-zinc-900 transition-transform duration-300 group-hover:rotate-12 group-hover:text-blue-600" />

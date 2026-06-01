@@ -20,16 +20,12 @@
   "home": {
     "hello": "Bonjour",
     "intro": "Software Engineer avec plus de quatre années d'expérience dans le développement de SaaS haute performance et d'applications d'IA génératives.",
-    "current": "Je me concentre sur l'optimisation des performances et la transformation de logiques métier complexes en experience utilisateur simple.",
-    "links": {
-      "email": "Email",
-      "linkedin": "LinkedIn",
-      "resume": "CV"
-    },
-    "footer": "© 2026 Boris N'Kuako — Product & AI Engineering"
+    "current": "Je me concentre sur l'optimisation des performances et la transformation de logiques métier complexes en experience utilisateur simple."
   },
   "projects": {
     "back": "Retour",
+    "view_details": "Voir le projet",
+    "live_demo": "Visiter le site",
     "editor": {
       "copy": "Copier",
       "copied": "Copié!"
@@ -174,7 +170,10 @@
   "about": {
     "bio_segments": [
       {
-        "text": "Fort de 4 ans d'expérience, je me concentre sur la conception d'applications web performantes et scalables en alliant rigueur technique et forte culture produit. J'évolue avec aisance dans des environnements cross-fonctionnels, capitalisant sur le travail d'équipe pour résoudre des problématiques utilisateur complexes et bâtir des produits à forte valeur ajoutée.\n\nRécemment chez Diffusely, j'ai piloté le développement de diverses fonctionnalités clés, notamment des outils d'IA générative comme "
+        "text": "Hey, moi c'est Boris, software engineer avec plus de 4 ans d'expérience. \n"
+      },
+      {
+        "text": "Ces dernières années, je me suis principalement concentré sur la conception d'applications web performantes et scalables, en associant rigueur technique et une forte culture produit. J'évolue avec aisance dans les environnements interfonctionnels, m'appuyant sur le travail d'équipe pour résoudre des problèmes utilisateurs complexes et concevoir des produits qui apportent une réelle valeur ajoutée.\n\nPlus récemment chez Diffusely, j'ai piloté le développement de diverses fonctionnalités, notamment des outils d'IA générative tels que "
       },
       {
         "text": "Home Staging ",

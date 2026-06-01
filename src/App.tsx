@@ -1,7 +1,6 @@
 import { useRoutes } from 'react-router-dom';
 import { HelmetProvider } from 'react-helmet-async';
 import { LazyMotion, domAnimation } from 'framer-motion';
-import Layout from './components/ui/Layout';
 import { routes } from './routes';
 
 export default function App() {
@@ -10,7 +9,7 @@ export default function App() {
     <HelmetProvider>
       <LazyMotion features={domAnimation} strict>
         <div className="min-h-screen bg-zinc-50/50">
-          <Layout>{element}</Layout>
+          {element}
         </div>
       </LazyMotion>
     </HelmetProvider>
