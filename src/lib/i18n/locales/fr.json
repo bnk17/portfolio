@@ -57,7 +57,7 @@
       },
       "sections": {
         "overview_title": "Présentation",
-        "overview_content": "PetitPals résout le problème du 'panier fragmenté' où les articles souhaités par les parents sont éparpillés entre boutiques de niche, Etsy et grands distributeurs. Le défi consistait à bâtir une 'source de vérité' fiable unifiant ces points de données dans un registre cohérent au design premium. En supprimant la friction de la gestion multi-sites, nous faisons passer l'utilisateur d'un tableur chaotique à une expérience de don unifiée et fluide.",
+        "overview_content": "PetitPals résout le problème du 'panier fragmenté' où les articles souhaités par les parents sont éparpillés entre boutiques de niche, Etsy et grands distributeurs. Le défi consistait à bâtir une 'source de vérité' fiable unifiant ces points de données dans un registre cohérent au design premium. En supprimant la friction de la gestion multi-sites, je fais passer l'utilisateur d'un tableur chaotique à une expérience de don unifiée et fluide.",
 
         "problem_title": "La Problématique",
         "problem_content": "La fragmentation du e-commerce contraint les futurs parents à naviguer au sein d'écosystèmes fermés (walled gardens). Les listes traditionnelles verrouillent délibérément les utilisateurs dans leur catalogue propriétaire.",
@@ -69,7 +69,7 @@
         ],
 
         "solution_title": "La Solution",
-        "solution_content": "Nous avons conçu un écosystème de liste de naissance universel et ouvert, composé d'une extension de navigateur et d'un tableau de bord centralisé.",
+        "solution_content": "J'ai conçu un écosystème de liste de naissance universel et ouvert, composé d'une extension de navigateur et d'un tableau de bord centralisé.",
         "solution_list_title": "Piliers fondamentaux du produit :",
         "solution_list": [
           "✅ Moteur de scraping universel s'affranchissant des barrières des enseignes.",
@@ -85,7 +85,7 @@
         "ux_dom_engine_explanation": "Injecter un panneau latéral est une tâche classique, mais le faire sans casser la mise en page de sites tiers (surtout ceux configurés en 100vw) est complexe. Ce snippet montre une stratégie avancée d'injection CSS utilisant padding-right et box-sizing: border-box. Cela démontre une maîtrise pointue du modèle de boîte CSS, permettant d'altérer la mise en page globale de l'hôte sans introduire de décalage de contenu (layout shifts) ou de bugs de défilement horizontal.",
 
         "impact_title": "Impact",
-        "impact_content": "En identifiant que la friction lors du processus invité était la cause n°1 d'abandon de réservation, j'ai conçu un système de validation sans compte via des jetons sécurisés. Ce pivot architectural a entraîné une augmentation de 45 % du taux de conversion des invités par rapport aux modèles de listes classiques. L'accent mis sur la simplicité radicale s'est directement traduit par une croissance mesurable de l'engagement utilisateur."
+        "impact_content": "En identifiant que la friction lors du processus invité était la cause n°1 d'abandon de réservation, j'ai conçu un system de validation sans compte via des jetons sécurisés. Ce pivot architectural a entraîné une augmentation de 45 % du taux de conversion des invités par rapport aux modèles de listes classiques. L'accent mis sur la simplicité radicale s'est directement traduit par une croissance mesurable de l'engagement utilisateur."
       }
     },
     "zod_schema_visualizer": {
@@ -145,7 +145,7 @@
             {
               "src": "/image/schema-editor.png",
               "title": "Bac à sable de schémas en temps réel",
-              "content": "Un éditeur haute densité doté d'une analyse syntaxique fine de Zod et d'un retour visuel immédiat sur la validité du schéma."
+              "content": "Un éditeur haute densité doté d'une analysis syntaxique fine de Zod et d'un retour visuel immédiat sur la validité du schéma."
             },
             {
               "src": "/image/form-preview.png",
@@ -167,7 +167,7 @@
         "resilient_ui_explanation": "Déploiement d'un pattern Visiteur récursif inspectant l'objet interne '_def' de Zod, assurant une correspondance à 100 % dans les interfaces TypeScript générées, y compris pour les structures profondément imbriquées.",
 
         "impact_title": "Impact",
-        "impact_content": "En automatisant la conversion d'un schéma de validation en une interface utilisateur fonctionnelle, le visualiseur réduit le temps d'accès au bac à sable de quelques minutes à de simples secondes. Il s'impose comme un outil de communication de haute fidélité permettant aux équipes de s'aligner sur les contrats de données avant même d'écrire la moindre ligne de code de production. Ce projet valide une architecture 'Resilient UI' qui reste extrêmement performante sous un flux intensif de mises à jour d'état, illustrant une expertise avancée en optimisation de rendu React, en méta-programmation TypeScript et en intégration d'outils d'IA modernes."
+        "impact_content": "En automatisant la conversion d'un schéma de validation en une interface utilisateur fonctionnelle, le visualiseur réduit le temps d'accès au bac à sable de quelques minutes à de simples secondes. Il s'impose comme un outil de communication de haute fidelity permettant aux équipes de s'aligner sur les contrats de données avant même d'écrire la moindre ligne de code de production. Ce projet valide une architecture 'Resilient UI' qui reste extrêmement performante sous un flux intensif de mises à jour d'état, illustrant une expertise avancée en optimisation de rendu React, en méta-programmation TypeScript et en intégration d'outils d'IA modernes."
       }
     }
   },

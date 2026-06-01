@@ -41,3 +41,5 @@ playwright/.cache/
 
 # Finder (MacOS) folder config
 .DS_Store
+
+todo.md
