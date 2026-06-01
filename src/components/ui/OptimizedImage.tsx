@@ -27,7 +27,7 @@ export function OptimizedImage({
 
   const baseContainerClasses = `${!isPositioned ? 'relative' : ''} overflow-hidden w-full h-full`;
 
-  const { onDrag, ...filteredProps } = props;
+  const { onDrag: _onDrag, ...filteredProps } = props;
 
   return (
     <div

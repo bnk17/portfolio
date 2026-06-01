@@ -54,7 +54,7 @@ export default function About() {
         {/* Bio Section */}
         <section className="space-y-12" onMouseMove={handleMouseMove}>
           <img
-            src="/image/me.jpg"
+            src="assets/image/me.jpg"
             className="size-50 rounded-2xl opacity-90"
             alt="portrait of Boris N'KUAKO"
           />
@@ -70,7 +70,7 @@ export default function About() {
                   return (
                     <span
                       key={index}
-                      className="relative inline-block cursor-help font-semibold text-zinc-600 underline decoration-blue-200 underline-offset-4 transition-all hover:text-blue-700 hover:decoration-blue-500"
+                      className="relative inline-block cursor-help font-semibold text-black underline decoration-blue-200 underline-offset-4 transition-all hover:text-blue-700 hover:decoration-blue-500"
                       onMouseEnter={() => {
                         if (segment.image) setHoveredImage(segment.image);
                         if (segment.video) setHoveredVideo(segment.video);
@@ -88,7 +88,7 @@ export default function About() {
                   return (
                     <span
                       key={index}
-                      className="relative inline-block cursor-pointer font-semibold text-zinc-600 underline decoration-amber-200 underline-offset-4 transition-all hover:text-amber-700 hover:decoration-amber-500"
+                      className="relative inline-block cursor-pointer font-semibold text-black underline decoration-amber-200 underline-offset-4 transition-all hover:text-amber-700 hover:decoration-amber-500"
                     >
                       <a href={segment.url} target="_blank" rel="noreferrer">
                         {segment.text}

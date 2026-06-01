@@ -31,9 +31,17 @@
       "copied": "Copié!"
     },
     "petitpals": {
+      "homeTitle": "PetitPals",
       "title": "PetitPals Web & Extension",
       "subtitle": "Un écosystème de liste de naissance universel conçu pour le paysage e-commerce fragmenté actuel.",
       "role": "Fondateur Solo & Lead Engineer",
+      "tools": [
+        { "name": "React", "slug": "react" },
+        { "name": "TypeScript", "slug": "typescript" },
+        { "name": "supabase", "slug": "supabase" },
+        { "name": "Tailwind", "slug": "tailwindcss" },
+        { "name": "Zustand", "slug": "zustand" }
+      ],
       "stats": {
         "reach": {
           "label": "Couverture Marchande",
@@ -52,39 +60,69 @@
         }
       },
       "sections": {
-        "overview_title": "Présentation",
-        "overview_content": "PetitPals résout le problème du 'panier fragmenté' où les articles souhaités par les parents sont éparpillés entre boutiques de niche, Etsy et grands distributeurs. Le défi consistait à bâtir une 'source de vérité' fiable unifiant ces points de données dans un registre cohérent au design premium. En supprimant la friction de la gestion multi-sites, je fais passer l'utilisateur d'un tableur chaotique à une expérience de don unifiée et fluide.",
-
-        "problem_title": "La Problématique",
-        "problem_content": "La fragmentation du e-commerce contraint les futurs parents à naviguer au sein d'écosystèmes fermés (walled gardens). Les listes traditionnelles verrouillent délibérément les utilisateurs dans leur catalogue propriétaire.",
-        "problem_list_title": "Défis techniques et UX majeurs :",
-        "problem_list": [
+        "context_goal_title": "Origine du Projet & Objectifs",
+        "project_origin_title": "L'Origine",
+        "project_origin_content": "PetitPals résout le problème du 'panier fragmenté' où les articles souhaités par les parents sont éparpillés entre boutiques de niche, Etsy et grands distributeurs. Le défi consistait à bâtir une 'source de vérité' fiable unifiant ces points de données dans un registre cohérent au design premium. En supprimant la friction de la gestion multi-sites, je fais passer l'utilisateur d'un tableur chaotique à une expérience de don unifiée et fluide.",
+        "learning_objectives_title": "Objectifs d'Apprentissage",
+        "learning_objectives_content": "Mes objectifs principaux pour PetitPals étaient de maîtriser les architectures d'extensions Manifest V3 et de concevoir une couche de synchronisation de données hautement fiable entre des états clients déconnectés. Je voulais prouver qu'un développeur solo pouvait concevoir un produit fluide et multi-contextes en combinant une manipulation non destructive du DOM avec des bases de données serverless légères, tout en garantissant une cohérence des données sans la lourdeur de WebSockets permanents.",
+        "user_friction_title": "Le Problème",
+        "workplace_frustration_title": "Friction Parents & Donateurs",
+        "workplace_frustration_content": "La fragmentation du e-commerce contraint les futurs parents à naviguer au sein d'écosystèmes fermés (walled gardens). Les listes traditionnelles comme Vertbaudet verrouillent délibérément les utilisateurs dans leur catalogue propriétaire, pénalisant les achats multi-boutiques. Les parents se retrouvent obligés de gérer 3 à 4 listes différentes ou des tableurs non synchronisés. Pour les donateurs, cela crée un parcours brisé : naviguer sur des boutiques externes disparates, vérifier manuellement la disponibilité et faire face à des doublons frustrants.",
+        "behavioral_insights_list_title": "Défis techniques et UX majeurs :",
+        "behavioral_insights_list": [
           "🛑 Stratégies d'enfermement propriétaire des grands distributeurs (ex: Vertbaudet).",
           "🛑 Dispersion des besoins forçant la gestion de 3 à 4 listes ou tableurs obsolètes.",
           "🛑 Parcours proches fastidieux provoquant des doublons par manque de synchronisation."
         ],
-
-        "solution_title": "La Solution",
-        "solution_content": "J'ai conçu un écosystème de liste de naissance universel et ouvert, composé d'une extension de navigateur et d'un tableau de bord centralisé.",
-        "solution_list_title": "Piliers fondamentaux du produit :",
-        "solution_list": [
-          "✅ Moteur de scraping universel s'affranchissant des barrières des enseignes.",
-          "✅ Base de données centralisée synchronisant l'état des stocks en temps réel.",
-          "✅ Flux de réservation fluide sans inscription maximisant la vitesse de complétion."
-        ],
-
-        "engineering_title": "Ingénierie",
-        "engineering_content": "Le principal défi technique a été de maintenir la synchronisation de l'état entre différents contextes de navigation sans introduire de latence liée au 'polling'. J'ai conçu un pont réactif utilisant le Change Data Capture (CDC) de Postgres pour garantir que les ajouts via l'extension s'affichent instantanément dans le dashboard. J'ai priorisé la gestion de la mémoire en implémentant des signaux AbortController pour éviter toute fuite lors des sessions de scraping intensives.",
-        "engineering_explanation": "Utilisation de Supabase Realtime pour synchroniser l'état global entre l'extension et l'application web avec une latence inférieure à 100ms.",
-
+        "anonymity_challenge_title": "Le Défi de la Conversion Invité",
+        "anonymity_challenge_content": "Un point de friction majeur des listes de cadeaux classiques est l'obligation de créer un compte pour réserver un article. Les donateurs abandonnent souvent en cours de route. J'ai résolu cela en concevant un tunnel de réservation invité sans compte, basé sur des transactions atomiques Supabase RPC pour éviter toute collision de réservation et garantir l'intégrité des données.",
+        "discovery_tradeoffs_title": "Développement & Arbitrages",
+        "scoping_mvp_title": "Scoping de l'MVP",
+        "scoping_mvp_content": "Pour livrer rapidement, j'ai ciblé deux éléments clés : une extension Chrome pour scraper les produits en un clic et un tableau de bord responsive pour les donateurs. J'ai volontairement repoussé les fonctionnalités secondaires (suivi de prix, partage social complexe) pour stabiliser le moteur de scraping et de réservation.",
+        "tech_debt_title": "Gestion de la Dette Technique",
+        "tech_debt_content": "Pour éviter la mise en place d'un serveur WebSocket dédié, j'ai utilisé Supabase Postgres CDC combiné à l'API Page Visibility du navigateur. Bien que les clients ne reçoivent pas de notifications instantanées sans interaction ou retour sur l'onglet, cette approche m'a permis de déployer rapidement une infrastructure robuste et sécurisée.",
+        "architecture_title": "Architecture & Code",
+        "topology_flow_title": "Architecture Système",
+        "topology_flow_content": "L'écosystème intègre un moteur de scraping universel injecté dans un panneau latéral Chrome, communiquant avec un backend Supabase PostgreSQL. La synchronisation d'authentification de l'extension utilise chrome.storage.local, et le frontend s'appuie sur Zustand.",
+        "screenshots": {
+          "items": [
+            {
+              "src": "/assets/image/petitpals/petitpals-fab.png",
+              "title": "Injection Contextuelle de FAB",
+              "content": "Un bouton d'action flottant (FAB) injecté dans le DOM de la boutique, offrant un point d'accès discret pour ajouter un produit."
+            },
+            {
+              "src": "/assets/image/petitpals/petitpals-ext.png",
+              "title": "Panneau Latéral Manifest V3",
+              "content": "L'interface du panneau latéral affichant les résultats du scraping : détection automatique du prix, de l'image et des métadonnées."
+            },
+            {
+              "src": "/assets/image/petitpals/petitpals-web.png",
+              "title": "Dashboard de Liste de Naissance",
+              "content": "L'application web centralisée montrant la liste partagée avec statut de réservation en temps réel et interface optimisée mobile."
+            }
+          ]
+        },
+        "code_implementation_title": "Implémentation du Code",
+        "code_implementation_content": "Utilisation de structures TypeScript claires, d'adaptateurs de stockage personnalisés et de hooks de visibilité pour garantir fluidité et synchronisation.",
         "resilient_ui_explanation": "Ce hook illustre une architecture 'Resilient UI'. Grâce à l'API Page Visibility, l'application synchronise automatiquement l'état de la liste dès qu'un utilisateur revient sur l'onglet. Cela résout efficacement le problème de données obsolètes dans un environnement collaboratif (plusieurs proches réservant des cadeaux en même temps) sans la lourdeur ni la complexité d'une connexion WebSocket permanente. Il met également en avant une gestion propre de l'état via des callbacks mémoïsés et des mises à jour UI optimistes, garantissant une expérience ultra-fluide en temps réel.",
-        "ux_dom_engine_explanation": "Injecter un panneau latéral est une tâche classique, mais le faire sans casser la mise en page de sites tiers (surtout ceux configurés en 100vw) est complexe. Ce snippet montre une stratégie avancée d'injection CSS utilisant padding-right et box-sizing: border-box. Cela démontre une maîtrise pointue du modèle de boîte CSS, permettant d'altérer la mise en page globale de l'hôte sans introduire de décalage de contenu (layout shifts) ou de bugs de défilement horizontal.",
-
-        "impact_title": "Impact",
-        "impact_content": "En identifiant que la friction lors du processus invité était la cause n°1 d'abandon de réservation, j'ai conçu un system de validation sans compte via des jetons sécurisés. Ce pivot architectural a entraîné une augmentation de 45 % du taux de conversion des invités par rapport aux modèles de listes classiques. L'accent mis sur la simplicité radicale s'est directement traduit par une croissance mesurable de l'engagement utilisateur."
+        "ux_dom_engine_explanation": "Injecter un panneau latéral est une tâche classique, mais le faire sans casser la mise en page de sites tiers (surtout ceux configurés en 100vw) is complexe. Ce snippet montre une stratégie avancée d'injection CSS utilisant padding-right et box-sizing: border-box. Cela démontre une maîtrise pointue du modèle de boîte CSS, permettant d'altérer la mise en page globale de l'hôte sans introduire de décalage de contenu (layout shifts) ou de bugs de défilement horizontal.",
+        "performance_bottlenecks_title": "Intégrité du DOM & Performance",
+        "performance_bottlenecks_content": "Le principal défi était d'injecter l'extension sans déformer les styles des sites tiers. J'ai utilisé une manipulation fine du modèle de boîte CSS. De plus, le moteur de scraping ne s'exécute que lorsque l'utilisateur ouvre activement le panneau latéral.",
+        "outcome_metrics_title": "Statut Actuel & Performance",
+        "beta_testing_title": "Lancement Production",
+        "beta_testing_content": "L'écosystème est opérationnel sur petitpals.app. Je recherche activement des familles pilotes pour valider le produit en conditions réelles et prioriser les futures fonctionnalités.",
+        "technical_benchmarks_title": "Benchmarks Techniques",
+        "technical_benchmarks_content": "Le moteur de scraping extrait les métadonnées produit avec 100% de réussite sur les sites structurés en JSON-LD. Les requêtes de réservation et synchronisation d'état s'effectuent avec une latence inférieure à 100ms.",
+        "retrospective_title": "Rétrospective & Prochaines Étapes",
+        "key_takeaways_title": "Points Clés",
+        "key_takeaways_content": "Manipuler le DOM de sites externes impose un CSS extrêmement défensif. Côté produit, supprimer l'inscription pour les invités a radicalement augmenté la conversion et la complétion des listes.",
+        "future_roadmap_title": "Roadmap Future",
+        "future_roadmap_content": "Le plan de développement inclut l'ajout de alertes automatiques de baisse de prix, l'intégration d'un panier d'achat multi-boutiques et des paramètres avancés de confidentialité."
       }
     },
     "zod_schema_visualizer": {
+      "homeTitle": "Zod Visualizer",
       "title": "Zod Schema Visualizer & Generator",
       "subtitle": "Un outil de développement propulsé par l'IA pour lier harmonieusement schémas de validation typés et génération dynamique d'interfaces.",
       "role": "Architecte Principal & Ingénieur Full-Stack",
@@ -114,56 +152,147 @@
         }
       },
       "sections": {
-        "overview_title": "Vue d'ensemble",
-        "overview_content": "Le Zod Schema Visualizer est une démonstration technique visant à unifier les schémas de validation backend et leur implémentation UI frontend. Il permet aux développeurs de définir des structures de données complexes via Zod et de générer instantanément des formulaires React interactifs et validés. En intégrant la génération de schémas par IA, l'outil transforme une simple description textuelle (ex: 'un profil utilisateur avec des liens sociaux') en un objet de validation robuste et typé, prêt à être testé dans un bac à sable fonctionnel.",
-
-        "problem_title": "La Problématique",
-        "problem_content": "Dans le développement full-stack moderne, maintenir la synchronisation entre la logique de validation (Zod), les types TypeScript et les formulaires de l'interface utilisateur est une source fréquente de dette technique et de bugs. Construire manuellement des formulaires accessibles et validés pour des schémas imbriqués ou conditionnels s'avère répétitif et propice aux erreurs. De plus, le prototypage de ces structures nécessite souvent un environnement local complet, ce qui ralentit les phases d'idéation lorsque développeurs et architectes tentent de s'accorder sur les contrats de données.",
-        "problem_list_title": "Défis techniques et UX majeurs :",
-        "problem_list": [
+        "context_goal_title": "Origine du Projet & Objectifs",
+        "project_origin_title": "L'Origine",
+        "project_origin_content": "Le Zod Schema Visualizer est une démonstration technique visant à unifier les schémas de validation backend et leur implémentation UI frontend. Il permet aux développeurs de définir des structures de données complexes via Zod et de générer instantanément des formulaires React interactifs et validés. En intégrant la génération de schémas par IA, l'outil transforme une simple description textuelle (ex: 'un profil utilisateur avec des liens sociaux') en un objet de validation robuste et typé, prêt à être testé dans un bac à sable fonctionnel.",
+        "learning_objectives_title": "Objectifs d'Apprentissage",
+        "learning_objectives_content": "Mes objectifs principaux étaient de concevoir un mappeur de formulaires React hautement optimisé et d'implémenter des stratégies avancées de mise en tampon de flux. Je souhaitais approfondir ma compréhension du parcours récursif de type AST pour la génération de code TypeScript, et concevoir des pipelines d'IA Edge capables de traiter des jetons en temps réel sans saturer la boucle de rendu du client.",
+        "user_friction_title": "Le Problème",
+        "workplace_frustration_title": "Friction Développeurs & Schémas",
+        "workplace_frustration_content": "Dans le développement full-stack moderne, maintenir la synchronisation entre la logique de validation (Zod), les types TypeScript et les formulaires de l'interface utilisateur est une source fréquente de dette technique et de bugs. Construire manuellement des formulaires accessibles et validés pour des schémas imbriqués ou conditionnels s'avère répétitif et propice aux erreurs. De plus, le prototypage de ces structures nécessite souvent un environnement local complet.",
+        "behavioral_insights_list_title": "Défis techniques et UX majeurs :",
+        "behavioral_insights_list": [
           "🛑 Désynchronisation manuelle entre les formulaires et le schéma, entraînant des dérives de validation.",
           "🛑 Surcharge importante de code standard (boilerplate) pour générer des UI dynamiques basées sur des objets Zod complexes.",
-          "🛑 Latence et saccades de l'interface lors de l'affichage en streaming des données textuelles de l'infra LLM dans des composants React réactifs."
+          "🛑 Latence et saccades de l'interface lors de l'affichage en streaming des données textuelles de l'infra LLM."
         ],
-
-        "solution_title": "La Solution",
-        "solution_content": "J'ai conçu un terrain de jeu (playground) dynamique capable de lire et d'analyser des expressions Zod brutes pour les associer à une bibliothèque modulaire de composants UI. L'application intègre un moteur de streaming haute performance qui génère des schémas à partir du langage naturel. Cela offre instantanément un environnement de prévisualisation en direct où les développeurs peuvent tester les règles de validation, les cas limites (edge cases) et la génération de types en temps réel.",
-        "solution_list_title": "Piliers fondamentaux du produit :",
-        "solution_list": [
-          "✅ Analyseur de schémas récursif en temps réel avec mise en correspondance dynamique de composants React.",
-          "✅ Prototypage assisté par IA s'appuyant sur Groq Llama-3 (70B) pour des conceptions ultra-rapides.",
-          "✅ Exportateur automatisé de types Zod vers TypeScript pour un gain immédiat en confort de développement (DX)."
-        ],
-
+        "anonymity_challenge_title": "Le Défi de l'Intégration de l'IA",
+        "anonymity_challenge_content": "L'intégration de la génération de schémas par IA à faible latence présentait un obstacle majeur : les sorties des LLM sont imprévisibles et peuvent casser le parser frontend si elles ne respectent pas des règles syntaxiques strictes. J'ai résolu cela en imposant le format Structured Outputs / JSON Schema d'OpenAI à la frontière du LLM et en implémentant un parser incrémentiel.",
+        "discovery_tradeoffs_title": "Développement & Arbitrages",
+        "scoping_mvp_title": "Scoping de l'MVP",
+        "scoping_mvp_content": "Pour concevoir rapidement un outil utile, j'ai axé le MVP sur la compilation immédiate du schéma et sa prévisualisation dynamique. J'ai différé les relations complexes multi-fichiers et les validations personnalisées pour privilégier un bac à sable réactif et rapide à l'usage.",
+        "tech_debt_title": "Gestion de la Dette Technique",
+        "tech_debt_content": "Pour livrer le MVP rapidement, j'ai routé les requêtes de compilation IA via des fonctions Edge Vercel sur l'API Groq avec une limitation en mémoire. J'ai choisi de me passer d'un stockage utilisateur persistant, ce qui signifie que les utilisateurs ne peuvent pas encore sauvegarder ou partager leurs formulaires via un lien permanent.",
+        "architecture_title": "Architecture & Code",
+        "topology_flow_title": "Architecture Système",
+        "topology_flow_content": "L'architecture comprend un frontend Next.js avec intégration de l'éditeur Monaco, un backend Vercel Edge appelant Groq en moins d'une seconde, un parser récursif basé sur le pattern Visiteur (type AST) et un store de mise en tampon.",
         "screenshots": {
-          "title": "Captures d'écran",
           "items": [
             {
-              "src": "/image/schema-editor.png",
-              "title": "Bac à sable de schémas en temps réel",
-              "content": "Un éditeur haute densité doté d'une analysis syntaxique fine de Zod et d'un retour visuel immédiat sur la validité du schéma."
+              "src": "/assets/image/zod/zod-view.png",
+              "title": "Bac à sable en temps réel",
+              "content": "Un éditeur haute densité doté d'une analyse syntaxique fine de Zod et d'un retour visuel immédiat sur la validité du schéma."
             },
             {
-              "src": "/image/form-preview.png",
+              "src": "/assets/image/zod/zod-form.png",
               "title": "Génération dynamique de formulaires",
               "content": "Le moteur principal associant automatiquement les primitives Zod (String, Number, Enum, Date) à des champs de saisie React stylisés et accessibles."
             },
             {
-              "src": "/image/type-panel.png",
+              "src": "/assets/image/zod/zod-ai.png",
               "title": "Export de types TypeScript",
               "content": "Le panneau du générateur de types récursif, affichant l'interface TypeScript pure directement dérivée du schéma Zod actif."
             }
           ]
         },
-
-        "engineering_title": "Ingénierie",
-        "engineering_content": "L'un des principaux défis d'ingénierie consistait à préserver les performances de l'interface utilisateur pendant le streaming des jetons (tokens) du LLM. Une intégration naïve pousse React à recalculer l'ensemble de l'arbre de composants à chaque caractère, provoquant des chutes de framerate visibles. J'ai résolu ce problème en orchestrant un hook personnalisé de 'tampon de vidage' (Flush Buffer) qui cadence les mises à jour de l'UI à des intervalles stricts de 80 ms, garantissant une animation visuelle fluide tout en maintenant la réactivité globale. Côté backend, j'ai exploité les Vercel Edge Functions pour réduire à néant les démarrages à froid (cold starts), couplées à une stratégie de limitation de débit (rate-limiting) en mémoire pour protéger l'API du fournisseur d'IA. Pour la génération de types, j'ai mis en œuvre un patron de conception Visiteur récursif qui parcourt l'arbre de définition interne de Zod (similaire à un AST), traduisant fidèlement les champs optionnels, les objets imbriqués et les littéraux d'énumérations en leurs équivalents TypeScript.",
-        "engineering_explanation": "Exploitation du runtime Edge de Vercel et de l'API de streaming ultra-basse latence de Groq pour délivrer des prototypes de schémas en moins de 800 ms.",
+        "code_implementation_title": "Implémentation du Code",
+        "code_implementation_content": "Mise en œuvre d'un mappage récursif et d'une file d'attente de jetons pour garantir des performances optimales lors des rendus fréquents.",
         "ux_dom_engine_explanation": "Régulation des flux de jetons du LLM via un hook de mise en tampon dédié pour éviter la saturation des rendus React, maintenant un affichage constant à 60 fps pendant la génération.",
         "resilient_ui_explanation": "Déploiement d'un pattern Visiteur récursif inspectant l'objet interne '_def' de Zod, assurant une correspondance à 100 % dans les interfaces TypeScript générées, y compris pour les structures profondément imbriquées.",
-
-        "impact_title": "Impact",
-        "impact_content": "En automatisant la conversion d'un schéma de validation en une interface utilisateur fonctionnelle, le visualiseur réduit le temps d'accès au bac à sable de quelques minutes à de simples secondes. Il s'impose comme un outil de communication de haute fidelity permettant aux équipes de s'aligner sur les contrats de données avant même d'écrire la moindre ligne de code de production. Ce projet valide une architecture 'Resilient UI' qui reste extrêmement performante sous un flux intensif de mises à jour d'état, illustrant une expertise avancée en optimisation de rendu React, en méta-programmation TypeScript et en intégration d'outils d'IA modernes."
+        "performance_bottlenecks_title": "Fluidité de l'UI & Performance",
+        "performance_bottlenecks_content": "Le principal goulot d'étranglement était la latence de l'UI lors de la réception du flux du LLM, poussant React à re-rendre à chaque caractère. J'ai résolu ce problème en créant un hook 'Flush Buffer' personnalisé qui regroupe les mises à jour à intervalles de 80 ms, maintenant un affichage constant à 60 fps.",
+        "outcome_metrics_title": "Statut Actuel & Performance",
+        "beta_testing_title": "Adoption Développeurs",
+        "beta_testing_content": "Le visualiseur est pleinement opérationnel. Je recueille actuellement les retours de la communauté TypeScript pour orienter la prochaine phase de développement.",
+        "technical_benchmarks_title": "Benchmarks Techniques",
+        "technical_benchmarks_content": "Le playground génère des objets de validation complexes en moins de 800 ms via Groq. Le parser récursif produit des interfaces TypeScript fidèles à 100 % comparé aux types Zod natifs.",
+        "retrospective_title": "Rétrospective & Prochaines Étapes",
+        "key_takeaways_title": "Points Clés",
+        "key_takeaways_content": "Travailler avec des interfaces en temps réel m'a appris l'importance de temporiser les mises à jour fréquentes de React. J'ai également constaté que des schémas stricts sont cruciaux pour intégrer proprement des générateurs IA dans des workflows de dev.",
+        "future_roadmap_title": "Roadmap Future",
+        "future_roadmap_content": "Les prochaines étapes prévoient le support des schémas composés (ex: union et intersection), l'export de code compatible Formik/React Hook Form, et la génération automatique de jeux de données fictifs (mock data)."
+      }
+    },
+    "ouileep": {
+      "title": "Ouileep",
+      "home_title": "Ouileep",
+      "status": "beta-testing",
+      "subtitle": "Une alternative AI-powered aux 360 reviews épuisantes, qui capture les données quotidiennes de l'équipe et transforme automatiquement le sentiment brut en insights actionnables sur l'engineering velocity.",
+      "role": "Solo Founder & Lead Engineer",
+      "sections": {
+        "context_goal_title": "Origine du Projet & Objectifs",
+        "project_origin_title": "L'Origine",
+        "project_origin_content": "Ouileep est né d'une frustration bien précise que mes collègues et moi avons vécue en entreprise. Les process traditionnels de 360 review sont souvent épuisants et souffrent d'un fort biais de récence : les managers ne se souviennent généralement que des deux dernières semaines du trimestre. Je voulais créer une alternative AI-powered, intégrée directement dans Slack, permettant aux développeurs de logger rapidement leurs wins et leurs blockers au fil de l'eau, afin de garder un historique honnête et automatisé de leurs contributions.",
+        "learning_objectives_title": "Objectifs d'Apprentissage",
+        "learning_objectives_content": "Au-delà de la résolution de ce problème d'équipe, mon but avec Ouileep était de propulser mon exécution full-stack de '0 à 100' en tant que développeur solo. Sachant pertinemment, de par mes expériences précédentes, comment les choix d'architecture technique drivent les business outcomes, je voulais délibérément appliquer cette expertise ici. L'objectif était de prendre le lead sur l'intégralité du product life cycle et de prouver ma capacité à concevoir de bout en bout une infrastructure équilibrée entre rapidité de dev et utilité produit réelle.",
+        "user_friction_title": "Le Problème",
+        "workplace_frustration_title": "Friction Réelle sur le Terrain",
+        "workplace_frustration_content": "En observant la façon dont mon équipe interagissait avec les outils RH existants, j'ai compris pourquoi le feedback continu échoue dans la plupart des boîtes. Obliger un développeur à quitter son terminal et son workspace Slack pour aller renseigner ses accomplissements sur un portail externe fait chuter la fréquence de feedback de plus de 80%. Ces workflows complexes imposent une charge cognitive trop lourde, ce qui pousse les équipes à zapper complètement l'étape du feedback.",
+        "anonymity_challenge_title": "Le Défi de l'Anonymat",
+        "anonymity_challenge_content": "Durant la phase de build, j'ai fait face à un défi produit majeur : les membres de l'équipe ne partagent pas leurs insights ou leurs idées sans une sécurité psychologique totale. Pourtant, les managers ont besoin de savoir qui aider quand un projet est bloqué. J'ai résolu cela en concevant un pipeline de confidentialité conditionnel. Les idées, suggestions et wins sont totalement anonymisés au niveau de la gateway API pour protéger l'identité de l'utilisateur. En revanche, lorsqu'un collaborateur logue un blocker, le système préserve explicitement son nom dans le digest AI destiné au manager, permettant au leadership de step in immédiatement pour débloquer la bonne personne.",
+        "discovery_tradeoffs_title": "Développement & Arbitrages",
+        "scoping_mvp_title": "Scoping de l'MVP",
+        "scoping_mvp_content": "Pour sortir une version fonctionnelle le plus rapidement possible, je me suis concentré strictement sur des slash commands Slack ultra-simples (/win, /block, /suggest) et sur un dashboard Next.js épuré permettant aux managers de consulter le flux consolidé. J'ai volontairement mis de côté les fonctionnalités de reporting complexes et les graphes avancés pour focus à 100% sur la fiabilité de la classification de l'AI et la vitesse de réponse.",
+        "tech_debt_title": "Gestion de la Dette Technique",
+        "tech_debt_content": "Pour accélérer le time-to-market, j'ai couplé une structure monolithique Next.js avec un sous-routeur Hono ultra-léger et Drizzle ORM pour PostgreSQL. J'ai fait le choix de traiter l'ingestion des webhooks Slack et les écritures en BDD directement au sein de ces serverless routes edge-ready, plutôt que d'ajouter une couche asynchrone avec un message broker complexe (comme BullMQ). Bien que ce raccourci d'architecture expose l'application à des problématiques de connection pooling sous forte charge, c'était un trade-off totalement conscient pour ship un MVP ultra-rapide de bout en bout avant d'over-engineer pour une scalabilité théorique.",
+        "architecture_title": "Architecture & Code",
+        "topology_flow_title": "Architecture Système",
+        "topology_flow_content": "La stack se compose d'un event listener en temps réel qui gère les webhooks de l'API Slack, d'un backend Next.js Serverless utilisant les Structured Outputs d'OpenAI pour transformer du texte utilisateur brut en données JSON propres, d'une base de données PostgreSQL, et d'un state manager léger côté client avec Zustand pour assurer un rendu d'interface instantané.",
+        "screenshots": {
+          "items": [
+            {
+              "src": "/assets/image/ouileep/ouileep-slack.webp",
+              "alt": "Interface Slack affichant les commandes",
+              "title": "Intégration Slack",
+              "content": "Des slash commands permettant aux développeurs de logger leurs status updates sans quitter leur espace de travail."
+            },
+            {
+              "src": "/assets/image/ouileep/ouileep-digest.webp",
+              "alt": "Espace de travail Slack du manager affichant le digest quotidien généré automatiquement par l'AI.",
+              "title": "Digest Automatisé par AI",
+              "content": "Un résumé structuré envoyé directement dans Slack, synthétisant les logs bruts de l'équipe en insights exploitables sur l'engineering velocity."
+            },
+            {
+              "src": "/assets/image/ouileep/ouileep-dashboard.webp",
+              "alt": "L'interface du Feedback Feed d'Ouileep, affichant les wins, suggestions et roadblocks structurés avec des tags AI et des indicateurs de priorité.",
+              "title": "Dashboard Feedback Feed",
+              "content": "Une vue centralisée qui agrège les logs de l'équipe au fil de l'eau, appliquant une classification automatique par AI (tags, priorités) et un système de filtrage rapide par membre d'équipe."
+            }
+          ]
+        },
+        "code_implementation_title": "Implémentation du Code",
+        "code_implementation_content": "Utilisation d'endpoints API type-safes côté backend et d'un store de state minimaliste côté frontend pour garantir une navigation fluide sans visual shifts.",
+        "engineering_explanation": "Cette route serverless intercepte le payload envoyé par Slack, utilise le format json_schema d'OpenAI pour structurer le message brut en catégories claires, et persiste la télémétrie en base via Prisma.",
+        "resilient_ui_explanation": "Un store Zustand ultra-léger qui gère le filtrage de la vue client. Il met à jour l'interface instantanément de manière optimiste pour éviter les micro-sauts de layout ou les temps de chargement perceptibles par l'utilisateur.",
+        "performance_bottlenecks_title": "Goulots d'Étranglement",
+        "performance_bottlenecks_content": "Le principal problème de performance venait du temps de réponse cumulé entre les cold-starts des fonctions serverless et les appels API à OpenAI. Pour garder une UX hyper réactive, j'ai optimisé mes index de base de données pour accélérer les requêtes de lecture et j'ai implémenté des updates optimistes côté frontend pour rafraîchir le dashboard instantanément.",
+        "outcome_metrics_title": "Statut Actuel & Phase de Test",
+        "beta_testing_title": "Recherche de Partenaires Beta",
+        "beta_testing_content": "L'application full-stack est complète et 100% fonctionnelle. S'agissant d'un produit pré-launch, je recherche activement des partenaires pour lancer une phase pilote : idéalement des startups tech ou des équipes d'ingénierie de plus de 10 développeurs avec des product managers dédiés, afin de tester l'outil en conditions réelles et récolter du feedback.",
+        "technical_benchmarks_title": "Benchmarks Techniques",
+        "technical_benchmarks_content": "Lors de mes phases de test avec des données utilisateurs simulées, l'application a maintenu un temps de réponse inférieur à 200ms pour l'acquittement des requêtes Slack. La couche d'analyse AI a atteint un taux de précision stable de 94.2% pour le parsing et la catégorisation automatique des logs.",
+        "retrospective_title": "Rétrospective & Prochaines Étapes",
+        "key_takeaways_title": "Points Clés",
+        "key_takeaways_content": "Ce projet m'a prouvé qu'aller chercher les utilisateurs directement là où ils travaillent déjà (Slack) est infiniment plus efficace que de vouloir leur imposer une application secondaire. Côté architecture, contraindre les outputs de l'AI avec des schémas stricts est une nécessité absolue pour garantir un état de l'UI prévisible côté frontend.",
+        "future_roadmap_title": "Roadmap Future",
+        "future_roadmap_content": "Pour les prochaines itérations, je prévois d'intégrer des modals Slack interactives pour une meilleure UX, d'automatiser des rapports d'analyse hebdomadaires pour les managers, et de concevoir une intégration avec GitHub pour suggérer automatiquement des logs de feedback basés sur les Pull Requests validées."
+      },
+      "stats": {
+        "time_to_market": {
+          "label": "TIME-TO-MARKET",
+          "value": "3 Semaines",
+          "desc": "Temps écoulé entre le concept initial sur papier et le déploiement complet d'une application full-stack fonctionnelle."
+        },
+        "test_coverage": {
+          "label": "TEST COVERAGE",
+          "value": "85%",
+          "desc": "Taux de couverture des tests unitaires et d'intégration ciblés sur la logique critique du parser AI et des routes API sécurisées."
+        },
+        "cicd_velocity": {
+          "label": "VITESSE CI/CD",
+          "value": "< 2 Min",
+          "desc": "Validation automatisée de la suite de tests, build de l'application et propagation globale sur l'edge network à chaque push sur le main."
+        }
       }
     }
   },
