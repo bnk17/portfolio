@@ -108,7 +108,6 @@ export const useGetProjects = (): ProjectDetail[] => {
           logo_img: '/assets/image/ouileep-logo.png',
           architecture_img: '/assets/image/ouileep/ouileep-architecture.webp',
         },
-        liveUrl: 'https://ouileep.com',
         techStack: t('projects.ouileep.tools', {
           returnObjects: true,
         }) as any[],
@@ -319,11 +318,15 @@ export const useGetProjects = (): ProjectDetail[] => {
               {
                 id: 'project-origin',
                 title: t('projects.petitpals.sections.project_origin_title'),
-                content: t('projects.petitpals.sections.project_origin_content'),
+                content: t(
+                  'projects.petitpals.sections.project_origin_content'
+                ),
               },
               {
                 id: 'learning-objectives',
-                title: t('projects.petitpals.sections.learning_objectives_title'),
+                title: t(
+                  'projects.petitpals.sections.learning_objectives_title'
+                ),
                 content: t(
                   'projects.petitpals.sections.learning_objectives_content'
                 ),
@@ -345,13 +348,18 @@ export const useGetProjects = (): ProjectDetail[] => {
                 listTitle: t(
                   'projects.petitpals.sections.behavioral_insights_list_title'
                 ),
-                list: t('projects.petitpals.sections.behavioral_insights_list', {
-                  returnObjects: true,
-                }) as string[],
+                list: t(
+                  'projects.petitpals.sections.behavioral_insights_list',
+                  {
+                    returnObjects: true,
+                  }
+                ) as string[],
               },
               {
                 id: 'anonymity-challenge',
-                title: t('projects.petitpals.sections.anonymity_challenge_title'),
+                title: t(
+                  'projects.petitpals.sections.anonymity_challenge_title'
+                ),
                 content: t(
                   'projects.petitpals.sections.anonymity_challenge_content'
                 ),
@@ -388,7 +396,9 @@ export const useGetProjects = (): ProjectDetail[] => {
               },
               {
                 id: 'code-implementation',
-                title: t('projects.petitpals.sections.code_implementation_title'),
+                title: t(
+                  'projects.petitpals.sections.code_implementation_title'
+                ),
                 content: t(
                   'projects.petitpals.sections.code_implementation_content'
                 ),
@@ -520,7 +530,9 @@ export const useGetProjects = (): ProjectDetail[] => {
               {
                 id: 'future-roadmap',
                 title: t('projects.petitpals.sections.future_roadmap_title'),
-                content: t('projects.petitpals.sections.future_roadmap_content'),
+                content: t(
+                  'projects.petitpals.sections.future_roadmap_content'
+                ),
               },
             ],
           },
@@ -569,7 +581,9 @@ export const useGetProjects = (): ProjectDetail[] => {
         sections: [
           {
             id: 'context-goal',
-            title: t('projects.zod_schema_visualizer.sections.context_goal_title'),
+            title: t(
+              'projects.zod_schema_visualizer.sections.context_goal_title'
+            ),
             subSections: [
               {
                 id: 'project-origin',
